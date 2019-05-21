@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="Item" extends="ContentNode">
+
+    <interface>    
+        <!-- Collection or Video -->
+        <field id="itemType" type="string" />
+    </interface>
+</component>

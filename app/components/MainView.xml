@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="MainView" extends="Group">	
+
+	<interface>
+		<function name="initialise" />
+	</interface>
+
+	<script type="text/brightscript" uri="MainView.brs"  />
+
+	<children></children>
+
+</component>
