@@ -1,4 +1,4 @@
 function Init() as void
-    CreateObject("roSGNode", "RALETrackerTask")
     m.top.rLog = initializeRlog()
+    m.tracker=m.top.createChild("TrackerTask")
 end function

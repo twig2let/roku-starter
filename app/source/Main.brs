@@ -1,5 +1,7 @@
 sub Main()
-    if (type(Rooibos__Init) = "Function") then Rooibos__Init()
+    
+    ' Comment this in to run tests.
+    ' if (type(Rooibos__Init) = "Function") then Rooibos__Init()
     
     screen = CreateObject("roSGScreen")
     m.port = CreateObject("roMessagePort")
@@ -8,7 +10,7 @@ sub Main()
     m.scene = screen.CreateScene("MainScene")
     screen.show()
     
-    executeStartupSequence()
+    executeStartupSequence()            
 
     while(true)
         msg = wait(0, m.port)
