@@ -7,6 +7,8 @@
         {
             "type": "brightscript",
             "request": "launch",
+            "consoleOutput": "normal",
+            "internalConsoleOptions": "openOnSessionStart",
             "name": "Deploy & Debug",
             "envFile": "${workspaceFolder}/.env",
             "stopOnEntry": false,
@@ -16,7 +18,7 @@
             "sourceDirs": [
                 "${workspaceFolder}/src"
             ],
-            "enableDebuggerAutoRecovery": true
+            "enableDebuggerAutoRecovery": false
         }
     ]
 }

@@ -1,4 +1,3 @@
-function Init() as void
-    m.top.rLog = initializeRlog()
-    m.tracker=m.top.createChild("TrackerTask")
+function init() as void
+    m.tracker = m.top.createChild("TrackerTask")
 end function

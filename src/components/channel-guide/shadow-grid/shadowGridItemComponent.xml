@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="ShadowGridItemComponent" extends="Group">
+
+    <interface>
+        <field id="itemContent" type="node" alwaysNotify="false" />
+    </interface>
+
+    <children>
+        <Label
+            id="titleLabel"
+            width="0"
+            font="font:MediumBoldSystemFont"
+            opacity="0.3"
+            horizAlign = "left"
+            vertAlign = "center"
+            translation="[0,0]" />
+    </children>
+
+    <script type="text/brightscript" uri="pkg:/components/channel-guide/shadow-grid/shadowGridItemComponent.brs" />
+</component>

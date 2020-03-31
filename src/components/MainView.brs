@@ -1,9 +1,6 @@
-function Init()
-    ' registerLogger("MainView")  
-end function
-
-function initialise(args)
-    ' Show some stuff onscreen
+function init()
+    m.shadowGrid = m.top.findNode("shadowGrid")
+    m.shadowGrid.setFocus(true)
 end function
 
 

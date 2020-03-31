@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="MainScene" extends="Scene">
-    
-    <script type="text/brightscript" uri="pkg:/source/rLog/rLogMixin.brs" />
 
-    <interface>    
-        <!-- <field id="rLog" type="node" /> -->
-    </interface>
-    
+    <interface></interface>
+
     <script type="text/brightscript" uri="MainScene.brs" />
-    <script type="text/brightscript" uri="pkg:/source/rLog/rLogMixin.brs" />
+
     <children>
-        <Label
-            id="testLabel"
-            height="44"
-            width="0"
-            font="font:MediumBoldSystemFont"
-            text = "We will, we will, ROK-U!"
-            horizAlign = "left"
-            vertAlign = "center"
-            translation="[318,8]" />
+        <MainView />
     </children>
 </component>

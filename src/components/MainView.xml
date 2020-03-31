@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component name="MainView" extends="Group">	
+<component name="MainView" extends="Group">
 
-	<interface>
-		<function name="initialise" />
-	</interface>
+	<interface></interface>
 
 	<script type="text/brightscript" uri="MainView.brs"  />
 
-	<children></children>
+	<children>
+		<Rectangle
+			width="1920"
+			height="1280"
+			color="#000000"
+			translation="[0,0]">
+
+			<ShadowGrid
+				id="shadowGrid"
+				columnWidths="[1036, 560]"
+				itemSpacing="[0,0]"
+				itemSize="[0,100]"
+				rowSpacings="[100]"
+				numColumns="2"
+				numRows="5"
+				itemComponentName="ShadowGridItemComponent"
+				drawFocusFeedback="true"
+				vertFocusAnimationStyle="fixedFocus"
+				translation="[88,712]">
+			</ShadowGrid>
+
+		</Rectangle>
+	</children>
 
 </component>
