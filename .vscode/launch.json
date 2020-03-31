@@ -7,7 +7,7 @@
         {
             "type": "brightscript",
             "request": "launch",
-            "name": "Launch",
+            "name": "Deploy & Debug",
             "envFile": "${workspaceFolder}/.env",
             "stopOnEntry": false,
             "host": "${env:ROKU_DEV_TARGET}",

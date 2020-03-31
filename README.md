@@ -15,8 +15,11 @@ ROKU_DEV_TARGET=192.168.1.123
 ROKU_DEV_USERNAME=rokudev
 ROKU_DEV_PASSWORD=rokudev
 ```
-
 See the [Roku Setup Guide](https://blog.roku.com/developer/developer-setup-guide) for details on enabling the Roku developer mode.
+
+And finally, if you are using Visual Studio Code then install the Brightscript Langugage plugin:
+
+* $ code --install-extension celsoaf.brightscript or https://marketplace.visualstudio.com/items?itemName=celsoaf.brightscript#review-details
 
 * Install the project dependencies:
 
@@ -24,4 +27,13 @@ See the [Roku Setup Guide](https://blog.roku.com/developer/developer-setup-guide
 
 ## Deploying the Application
 
-$ `gulp deploy`
+This starter supports two ways of deploying the application
+
+1. $ `gulp deploy`
+2. In VSC, use the "Deploy & Debug" Run command. This method supports interactive breakpoints as standard.
+
+
+
+## Running Rooibos Unit Tests
+
+TBC
