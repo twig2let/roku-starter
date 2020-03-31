@@ -7,14 +7,27 @@
     </interface>
 
     <children>
-        <Label
-            id="titleLabel"
-            width="0"
-            font="font:MediumBoldSystemFont"
-            opacity="0.3"
-            horizAlign = "left"
-            vertAlign = "center"
-            translation="[0,0]" />
+        <LayoutGroup
+            layoutDirection="horiz"
+            horizAlignment="left"
+            vertAlignment="center"
+            itemSpacings="[46]"
+            addItemSpacingAfterChild="false">
+
+            <Poster
+                id="logoPoster"
+                width="56"
+                height="28"
+                uri="pkg:/images/shadow-logo.png" />
+
+                <Label
+                    id="titleLabel"
+                    width="0"
+                    font="font:MediumBoldSystemFont"
+                    opacity="0.3"
+                    horizAlign="left"
+                    vertAlign="center" />
+        </LayoutGroup>
     </children>
 
     <script type="text/brightscript" uri="pkg:/components/channel-guide/shadow-grid/shadowGridItemComponent.brs" />

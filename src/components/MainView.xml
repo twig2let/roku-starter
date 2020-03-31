@@ -16,7 +16,7 @@
 				id="shadowGrid"
 				columnWidths="[1036, 560]"
 				itemSpacing="[0,0]"
-				itemSize="[0,100]"
+				itemSize="[100,100]"
 				rowSpacings="[100]"
 				numColumns="2"
 				numRows="5"

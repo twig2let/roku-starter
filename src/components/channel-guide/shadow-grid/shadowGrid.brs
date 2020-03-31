@@ -71,7 +71,9 @@ function createContentNodes()
     rootNode = CreateObject("roSgNode", "ContentNode")
     for each channel in nowNextData
         for each item in ["now", "next"]
-            rootNode.createChild("ContentNode").addFields(channel[item])
+            itemNode = rootNode.createChild("ContentNode")
+            itemNode.addFields(channel[item])
+            if item = "next" then itemNode.addFields({isNext: true}) else itemNode.addFields({isNext: false})
         end for
     end for
 

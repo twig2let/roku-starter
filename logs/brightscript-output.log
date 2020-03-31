@@ -1469,3 +1469,477 @@ debugger: Moving selected files to staging area
 debugger: Adding stop statements for active breakpoints
 debugger: Creating zip archive from project sources
 debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+03-31 23:07:52.249 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:07:52.250 [beacon.signal] |AppCompileInitiate --------> TimeBase(0 ms)
+03-31 23:07:52.250 [scrpt.cmpl] Compiling 'Channel Guide Spike', id 'dev'
+03-31 23:07:52.253 [scrpt.load.mkup] Loading markup dev 'Channel Guide Spike'
+03-31 23:07:52.255 [scrpt.unload.mkup] Unloading markup dev 'Channel Guide Spike'
+03-31 23:07:52.266 [scrpt.parse.mkup.time] Parsed markup dev 'Channel Guide Spike' in 12 milliseconds
+
+------ Compiling dev 'Channel Guide Spike' ------
+03-31 23:07:52.267 [scrpt.ctx.cmpl.time] Compiled 'Channel Guide Spike', id 'dev' in 0 milliseconds
+03-31 23:07:52.336 [scrpt.proc.mkup.time] Processed markup dev 'Channel Guide Spike' in 68 milliseconds
+03-31 23:07:52.337 [beacon.signal] |AppCompileComplete --------> Duration(88 ms), 98.04 KiP
+03-31 23:07:52.343 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+03-31 23:07:52.343 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:07:53.872 [scrpt.ctx.run.enter] UI: Entering 'Channel Guide Spike', id 'dev'
+
+------ Running dev 'Channel Guide Spike' main ------
+Initialising the shadow grid
+[RALE][INFO] - Roku Advanced Layout Editor v.2.2.18
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+[RALE][INFO] - TrackerTask run
+[RALE][INFO] - Waiting on ECP input request
+Initialising shadow grid item component
+[RALE][INFO] - Start socket server on port 54321
+[RALE][WARN] - No 'init' command received. Socket connection closed
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+Initialising shadow grid item component
+[RALE][WARN] - No 'init' command received. Socket connection closed
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+[RALE][WARN] - No 'init' command received. Socket connection closed
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+[RALE][INFO] - Accepted new connection 87031902
+[RALE][INFO] - RALE Initialized
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+03-31 23:08:31.329 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:08:31.329 [beacon.signal] |AppCompileInitiate --------> TimeBase(1 ms)
+03-31 23:08:31.329 [scrpt.cmpl] Compiling 'Channel Guide Spike', id 'dev'
+03-31 23:08:31.332 [scrpt.load.mkup] Loading markup dev 'Channel Guide Spike'
+03-31 23:08:31.333 [scrpt.unload.mkup] Unloading markup dev 'Channel Guide Spike'
+03-31 23:08:31.342 [scrpt.parse.mkup.time] Parsed markup dev 'Channel Guide Spike' in 10 milliseconds
+
+------ Compiling dev 'Channel Guide Spike' ------
+03-31 23:08:31.344 [scrpt.ctx.cmpl.time] Compiled 'Channel Guide Spike', id 'dev' in 1 milliseconds
+03-31 23:08:31.401 [scrpt.proc.mkup.time] Processed markup dev 'Channel Guide Spike' in 56 milliseconds
+03-31 23:08:31.402 [beacon.signal] |AppCompileComplete --------> Duration(72 ms), 98.46 KiP
+03-31 23:08:31.407 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+03-31 23:08:31.407 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:08:32.872 [scrpt.ctx.run.enter] UI: Entering 'Channel Guide Spike', id 'dev'
+
+------ Running dev 'Channel Guide Spike' main ------
+Initialising the shadow grid
+[RALE][INFO] - Roku Advanced Layout Editor v.2.2.18
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+[RALE][INFO] - TrackerTask run
+Initialising shadow grid item component
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+[RALE][INFO] - Accepted new connection 87031904
+[RALE][INFO] - Socket connection closed
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+[RALE][INFO] - Accepted new connection 87031906
+[RALE][INFO] - RALE Initialized
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+03-31 23:10:05.725 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:10:05.726 [beacon.signal] |AppCompileInitiate --------> TimeBase(0 ms)
+03-31 23:10:05.726 [scrpt.cmpl] Compiling 'Channel Guide Spike', id 'dev'
+03-31 23:10:05.729 [scrpt.load.mkup] Loading markup dev 'Channel Guide Spike'
+03-31 23:10:05.731 [scrpt.unload.mkup] Unloading markup dev 'Channel Guide Spike'
+03-31 23:10:05.741 [scrpt.parse.mkup.time] Parsed markup dev 'Channel Guide Spike' in 11 milliseconds
+
+------ Compiling dev 'Channel Guide Spike' ------
+03-31 23:10:05.742 [scrpt.ctx.cmpl.time] Compiled 'Channel Guide Spike', id 'dev' in 0 milliseconds
+03-31 23:10:05.806 [scrpt.proc.mkup.time] Processed markup dev 'Channel Guide Spike' in 62 milliseconds
+03-31 23:10:05.807 [beacon.signal] |AppCompileComplete --------> Duration(81 ms), 98.16 KiP
+03-31 23:10:05.812 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+03-31 23:10:05.813 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:10:07.309 [scrpt.ctx.run.enter] UI: Entering 'Channel Guide Spike', id 'dev'
+
+------ Running dev 'Channel Guide Spike' main ------
+Initialising the shadow grid
+[RALE][INFO] - Roku Advanced Layout Editor v.2.2.18
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+[RALE][INFO] - TrackerTask run
+Initialising shadow grid item component
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+[RALE][INFO] - Accepted new connection 87031910
+[RALE][INFO] - RALE Initialized
+Initialising shadow grid item component
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+03-31 23:13:14.011 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:13:14.011 [beacon.signal] |AppCompileInitiate --------> TimeBase(1 ms)
+03-31 23:13:14.011 [scrpt.cmpl] Compiling 'Channel Guide Spike', id 'dev'
+03-31 23:13:14.014 [scrpt.load.mkup] Loading markup dev 'Channel Guide Spike'
+03-31 23:13:14.016 [scrpt.unload.mkup] Unloading markup dev 'Channel Guide Spike'
+03-31 23:13:14.026 [scrpt.parse.mkup.time] Parsed markup dev 'Channel Guide Spike' in 11 milliseconds
+
+------ Compiling dev 'Channel Guide Spike' ------
+03-31 23:13:14.028 [scrpt.ctx.cmpl.time] Compiled 'Channel Guide Spike', id 'dev' in 1 milliseconds
+03-31 23:13:14.092 [scrpt.proc.mkup.time] Processed markup dev 'Channel Guide Spike' in 63 milliseconds
+03-31 23:13:14.093 [beacon.signal] |AppCompileComplete --------> Duration(81 ms), 98.05 KiP
+03-31 23:13:14.098 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+03-31 23:13:14.098 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:13:15.642 [scrpt.ctx.run.enter] UI: Entering 'Channel Guide Spike', id 'dev'
+
+------ Running dev 'Channel Guide Spike' main ------
+Initialising the shadow grid
+[RALE][INFO] - Roku Advanced Layout Editor v.2.2.18
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+[RALE][INFO] - TrackerTask run
+Initialising shadow grid item component
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+[RALE][WARN] - No 'init' command received. Socket connection closed
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+[RALE][WARN] - No 'init' command received. Socket connection closed
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+Initialising shadow grid item component
+[RALE][INFO] - Accepted new connection 87031917
+[RALE][INFO] - RALE Initialized
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+03-31 23:15:27.679 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:15:27.679 [beacon.signal] |AppCompileInitiate --------> TimeBase(1 ms)
+03-31 23:15:27.679 [scrpt.cmpl] Compiling 'Channel Guide Spike', id 'dev'
+03-31 23:15:27.682 [scrpt.load.mkup] Loading markup dev 'Channel Guide Spike'
+03-31 23:15:27.684 [scrpt.unload.mkup] Unloading markup dev 'Channel Guide Spike'
+03-31 23:15:27.694 [scrpt.parse.mkup.time] Parsed markup dev 'Channel Guide Spike' in 11 milliseconds
+
+------ Compiling dev 'Channel Guide Spike' ------
+03-31 23:15:27.696 [scrpt.ctx.cmpl.time] Compiled 'Channel Guide Spike', id 'dev' in 1 milliseconds
+03-31 23:15:27.757 [scrpt.proc.mkup.time] Processed markup dev 'Channel Guide Spike' in 60 milliseconds
+03-31 23:15:27.757 [beacon.signal] |AppCompileComplete --------> Duration(78 ms), 98.19 KiP
+03-31 23:15:27.764 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+03-31 23:15:27.764 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:15:29.310 [scrpt.ctx.run.enter] UI: Entering 'Channel Guide Spike', id 'dev'
+
+------ Running dev 'Channel Guide Spike' main ------
+Initialising the shadow grid
+[RALE][INFO] - Roku Advanced Layout Editor v.2.2.18
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+[RALE][INFO] - TrackerTask run
+Initialising shadow grid item component
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+[RALE][WARN] - No 'init' command received. Socket connection closed
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+[RALE][INFO] - Accepted new connection 87031922
+[RALE][INFO] - RALE Initialized
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+03-31 23:20:09.222 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:20:09.222 [beacon.signal] |AppCompileInitiate --------> TimeBase(1 ms)
+03-31 23:20:09.222 [scrpt.cmpl] Compiling 'Channel Guide Spike', id 'dev'
+03-31 23:20:09.225 [scrpt.load.mkup] Loading markup dev 'Channel Guide Spike'
+03-31 23:20:09.226 [scrpt.unload.mkup] Unloading markup dev 'Channel Guide Spike'
+03-31 23:20:09.235 [scrpt.parse.mkup.time] Parsed markup dev 'Channel Guide Spike' in 10 milliseconds
+
+------ Compiling dev 'Channel Guide Spike' ------
+03-31 23:20:09.236 [scrpt.ctx.cmpl.time] Compiled 'Channel Guide Spike', id 'dev' in 1 milliseconds
+03-31 23:20:09.294 [scrpt.proc.mkup.time] Processed markup dev 'Channel Guide Spike' in 56 milliseconds
+03-31 23:20:09.295 [beacon.signal] |AppCompileComplete --------> Duration(72 ms), 98.60 KiP
+03-31 23:20:09.301 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+03-31 23:20:09.302 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:20:10.759 [scrpt.ctx.run.enter] UI: Entering 'Channel Guide Spike', id 'dev'
+
+------ Running dev 'Channel Guide Spike' main ------
+Initialising the shadow grid
+[RALE][INFO] - Roku Advanced Layout Editor v.2.2.18
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+[RALE][INFO] - TrackerTask run
+[RALE][INFO] - Waiting on ECP input request
+Initialising shadow grid item component
+[RALE][INFO] - Start socket server on port 54321
+[RALE][INFO] - Accepted new connection 87031924
+[RALE][INFO] - RALE Initialized
+Initialising shadow grid item component
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+03-31 23:21:08.730 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:21:08.730 [beacon.signal] |AppCompileInitiate --------> TimeBase(1 ms)
+03-31 23:21:08.730 [scrpt.cmpl] Compiling 'Channel Guide Spike', id 'dev'
+03-31 23:21:08.733 [scrpt.load.mkup] Loading markup dev 'Channel Guide Spike'
+03-31 23:21:08.734 [scrpt.unload.mkup] Unloading markup dev 'Channel Guide Spike'
+03-31 23:21:08.743 [scrpt.parse.mkup.time] Parsed markup dev 'Channel Guide Spike' in 10 milliseconds
+
+------ Compiling dev 'Channel Guide Spike' ------
+03-31 23:21:08.744 [scrpt.ctx.cmpl.time] Compiled 'Channel Guide Spike', id 'dev' in 0 milliseconds
+03-31 23:21:08.800 [scrpt.proc.mkup.time] Processed markup dev 'Channel Guide Spike' in 55 milliseconds
+03-31 23:21:08.801 [beacon.signal] |AppCompileComplete --------> Duration(70 ms), 98.66 KiP
+03-31 23:21:08.806 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+03-31 23:21:08.806 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:21:10.237 [scrpt.ctx.run.enter] UI: Entering 'Channel Guide Spike', id 'dev'
+
+------ Running dev 'Channel Guide Spike' main ------
+Initialising the shadow grid
+[RALE][INFO] - Roku Advanced Layout Editor v.2.2.18
+Initialising shadow grid item component
+
+BrightScript Micro Debugger.
+Enter any BrightScript statement, debug commands, or HELP.
+
+Suspending threads...
+Thread selected:  1*   ...d/shadowGridItemComponent.brs(13)    STOP
+
+Current Function:
+009:  function onItemContentChanged(evt = {} as object) as void
+010:      itemContent = m.top.itemContent
+011:      m.titleLabel.text = itemContent.title
+012:  
+013:* STOP
+014:      if itemContent.isNext <> invalid m.top.RemoveChild(m.logoPoster)
+015:  end function
+STOP (runtime error &hf7) in pkg:/components/channel-guide/shadow-grid/shadowGridItemComponent.brs(13)
+013: STOP
+Backtrace:
+#0  Function onitemcontentchanged(evt As Object) As Void
+   file/line: pkg:/components/channel-guide/shadow-grid/shadowGridItemComponent.brs(14)
+Local Variables:
+evt              roSGNodeEvent refcnt=2
+global           Interface:ifGlobal
+m                roAssociativeArray refcnt=2 count:4
+itemcontent      roSGNode:ContentNode refcnt=1
+Threads:
+ID    Location                                Source Code
+ 0    pkg:/source/Main.brs(10)                msg = wait(0, m.port)
+ 1*   ...d/shadowGridItemComponent.brs(13)    STOP
+  *selected
+
+Brightscript Debugger> 
+Initialising shadow grid item component
+
+BrightScript Micro Debugger.
+Enter any BrightScript statement, debug commands, or HELP.
+
+Suspending threads...
+Thread selected:  1*   ...d/shadowGridItemComponent.brs(13)    STOP
+
+Current Function:
+009:  function onItemContentChanged(evt = {} as object) as void
+010:      itemContent = m.top.itemContent
+011:      m.titleLabel.text = itemContent.title
+012:  
+013:* STOP
+014:      if itemContent.isNext <> invalid m.top.RemoveChild(m.logoPoster)
+015:  end function
+STOP (runtime error &hf7) in pkg:/components/channel-guide/shadow-grid/shadowGridItemComponent.brs(13)
+013: STOP
+Backtrace:
+#0  Function onitemcontentchanged(evt As Object) As Void
+   file/line: pkg:/components/channel-guide/shadow-grid/shadowGridItemComponent.brs(14)
+Local Variables:
+evt              roSGNodeEvent refcnt=2
+global           Interface:ifGlobal
+m                roAssociativeArray refcnt=2 count:4
+itemcontent      roSGNode:ContentNode refcnt=1
+vscodeloopkey    <uninitialized>
+Threads:
+ID    Location                                Source Code
+ 0[u] pkg:/source/Main.brs(10)                msg = wait(0, m.port)
+ 1*   ...d/shadowGridItemComponent.brs(13)    STOP
+  *selected   [u]unattached(not debuggable)
+
+Brightscript Debugger> 
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+03-31 23:21:39.522 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:21:39.522 [beacon.signal] |AppCompileInitiate --------> TimeBase(1 ms)
+03-31 23:21:39.522 [scrpt.cmpl] Compiling 'Channel Guide Spike', id 'dev'
+03-31 23:21:39.526 [scrpt.load.mkup] Loading markup dev 'Channel Guide Spike'
+03-31 23:21:39.528 [scrpt.unload.mkup] Unloading markup dev 'Channel Guide Spike'
+03-31 23:21:39.537 [scrpt.parse.mkup.time] Parsed markup dev 'Channel Guide Spike' in 11 milliseconds
+
+------ Compiling dev 'Channel Guide Spike' ------
+03-31 23:21:39.539 [scrpt.ctx.cmpl.time] Compiled 'Channel Guide Spike', id 'dev' in 1 milliseconds
+03-31 23:21:39.596 [scrpt.proc.mkup.time] Processed markup dev 'Channel Guide Spike' in 56 milliseconds
+03-31 23:21:39.597 [beacon.signal] |AppCompileComplete --------> Duration(74 ms), 98.69 KiP
+03-31 23:21:39.602 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+03-31 23:21:39.603 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:21:41.068 [scrpt.ctx.run.enter] UI: Entering 'Channel Guide Spike', id 'dev'
+
+------ Running dev 'Channel Guide Spike' main ------
+Initialising the shadow grid
+[RALE][INFO] - Roku Advanced Layout Editor v.2.2.18
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+[RALE][INFO] - TrackerTask run
+Initialising shadow grid item component
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+[RALE][WARN] - No 'init' command received. Socket connection closed
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+[RALE][WARN] - No 'init' command received. Socket connection closed
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+[RALE][INFO] - Accepted new connection 87031928
+[RALE][INFO] - RALE Initialized
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+03-31 23:23:13.796 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:23:13.797 [beacon.signal] |AppCompileInitiate --------> TimeBase(0 ms)
+03-31 23:23:13.797 [scrpt.cmpl] Compiling 'Channel Guide Spike', id 'dev'
+03-31 23:23:13.799 [scrpt.load.mkup] Loading markup dev 'Channel Guide Spike'
+03-31 23:23:13.801 [scrpt.unload.mkup] Unloading markup dev 'Channel Guide Spike'
+03-31 23:23:13.811 [scrpt.parse.mkup.time] Parsed markup dev 'Channel Guide Spike' in 11 milliseconds
+
+------ Compiling dev 'Channel Guide Spike' ------
+03-31 23:23:13.812 [scrpt.ctx.cmpl.time] Compiled 'Channel Guide Spike', id 'dev' in 1 milliseconds
+03-31 23:23:13.869 [scrpt.proc.mkup.time] Processed markup dev 'Channel Guide Spike' in 56 milliseconds
+03-31 23:23:13.870 [beacon.signal] |AppCompileComplete --------> Duration(74 ms), 98.61 KiP
+03-31 23:23:13.879 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+03-31 23:23:13.879 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 23:23:15.330 [scrpt.ctx.run.enter] UI: Entering 'Channel Guide Spike', id 'dev'
+
+------ Running dev 'Channel Guide Spike' main ------
+Initialising the shadow grid
+[RALE][INFO] - Roku Advanced Layout Editor v.2.2.18
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+Initialising shadow grid item component
+[RALE][INFO] - TrackerTask run
+Initialising shadow grid item component
+[RALE][INFO] - Waiting on ECP input request
+[RALE][INFO] - Start socket server on port 54321
+[RALE][INFO] - Accepted new connection 87031930
+[RALE][INFO] - RALE Initialized
+Initialising shadow grid item component
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
