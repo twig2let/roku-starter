@@ -8,25 +8,15 @@
             "type": "brightscript",
             "request": "launch",
             "name": "Launch",
-            "envFile": "${workspaceFolder}/devStuff/.env",
+            "envFile": "${workspaceFolder}/.env",
             "stopOnEntry": false,
             "host": "${env:ROKU_DEV_TARGET}",
-            "password": "${env:ROKU_DEVPASSWORD}",
-            "rootDir": "${workspaceFolder}/app",
-            "enableDebuggerAutoRecovery": false
-        },
-        {
-            "type": "brightscript",
-            "request": "launch",
-            "name": "Run Tests",
-            "preLaunchTask": "build tests",
-            "envFile": "${workspaceFolder}/devStuff/.env",
-            "stopOnEntry": false,
-            "host": "${env:ROKU_DEV_TARGET}",
-            "password": "${env:ROKU_DEVPASSWORD}",
-            "rootDir": "${workspaceFolder}/app",
-            "enableDebuggerAutoRecovery": false
+            "password": "${env:ROKU_DEV_PASSWORD}",
+            "rootDir": "${workspaceFolder}/src",
+            "sourceDirs": [
+                "${workspaceFolder}/src"
+            ],
+            "enableDebuggerAutoRecovery": true
         }
     ]
 }
-

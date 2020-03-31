@@ -1,0 +1,191 @@
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+03-31 12:04:02.037 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 12:04:02.037 [beacon.signal] |AppCompileInitiate --------> TimeBase(0 ms)
+03-31 12:04:02.037 [scrpt.cmpl] Compiling 'Workflow Demo', id 'dev'
+03-31 12:04:02.041 [scrpt.load.mkup] Loading markup dev 'Workflow Demo'
+03-31 12:04:02.043 [scrpt.unload.mkup] Unloading markup dev 'Workflow Demo'
+03-31 12:04:02.054 [scrpt.parse.mkup.time] Parsed markup dev 'Workflow Demo' in 12 milliseconds
+
+------ Compiling dev 'Workflow Demo' ------
+03-31 12:04:02.064 [scrpt.ctx.cmpl.time] Compiled 'Workflow Demo', id 'dev' in 9 milliseconds
+03-31 12:04:02.122 [scrpt.proc.mkup.time] Processed markup dev 'Workflow Demo' in 57 milliseconds
+03-31 12:04:02.123 [beacon.signal] |AppCompileComplete --------> Duration(86 ms), 92.00 KiP
+03-31 12:04:02.129 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+03-31 12:04:02.129 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 12:04:03.518 [scrpt.ctx.run.enter] UI: Entering 'Workflow Demo', id 'dev'
+
+------ Running dev 'Workflow Demo' main ------
+[METHOD] RLOG.onTransportsChange
+=================================================================
+Warning occurred while setting a field of an RoSGNode
+-- Tried to set nonexistent field "functionname" of a "rLog" node
+   at line 11 of file pkg:/components/rLogComponents/rLog.brs
+=================================================================
+=================================================================
+Warning occurred while setting a field of an RoSGNode
+-- Tried to set nonexistent field "control" of a "rLog" node
+   at line 13 of file pkg:/components/rLogComponents/rLog.brs
+=================================================================
+=================================================================
+Warning occurred while setting a field of an RoSGNode
+-- Tried to set nonexistent field "rlog" of a "MainScene" node
+   at line 2 of file pkg:/components/MainScene.brs
+=================================================================
+tracker Run
+accepted new connection  87031819
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+
+
+=================================================================
+An error occurred while attempting to install the application:
+
+------->Unzip failed. Invalid or corrupt zip archive.  Unloading.
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+
+
+=================================================================
+An error occurred while attempting to install the application:
+
+------->Unzip failed. Invalid or corrupt zip archive.  Unloading.
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+
+
+=================================================================
+An error occurred while attempting to install the application:
+
+------->Unzip failed. Invalid or corrupt zip archive.  Unloading.
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+03-31 12:06:52.214 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 12:06:52.214 [beacon.signal] |AppCompileInitiate --------> TimeBase(0 ms)
+03-31 12:06:52.214 [scrpt.cmpl] Compiling 'Workflow Demo', id 'dev'
+03-31 12:06:52.218 [scrpt.load.mkup] Loading markup dev 'Workflow Demo'
+03-31 12:06:52.219 [scrpt.unload.mkup] Unloading markup dev 'Workflow Demo'
+03-31 12:06:52.229 [scrpt.parse.mkup.time] Parsed markup dev 'Workflow Demo' in 11 milliseconds
+
+------ Compiling dev 'Workflow Demo' ------
+03-31 12:06:52.239 [scrpt.ctx.cmpl.time] Compiled 'Workflow Demo', id 'dev' in 9 milliseconds
+03-31 12:06:52.298 [scrpt.proc.mkup.time] Processed markup dev 'Workflow Demo' in 57 milliseconds
+03-31 12:06:52.299 [beacon.signal] |AppCompileComplete --------> Duration(85 ms), 94.05 KiP
+03-31 12:06:52.303 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+03-31 12:06:52.303 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 12:06:53.749 [scrpt.ctx.run.enter] UI: Entering 'Workflow Demo', id 'dev'
+
+------ Running dev 'Workflow Demo' main ------
+[METHOD] RLOG.onTransportsChange
+=================================================================
+Warning occurred while setting a field of an RoSGNode
+-- Tried to set nonexistent field "functionname" of a "rLog" node
+   at line 11 of file pkg:/components/rLogComponents/rLog.brs
+=================================================================
+=================================================================
+Warning occurred while setting a field of an RoSGNode
+-- Tried to set nonexistent field "control" of a "rLog" node
+   at line 13 of file pkg:/components/rLogComponents/rLog.brs
+=================================================================
+=================================================================
+Warning occurred while setting a field of an RoSGNode
+-- Tried to set nonexistent field "rlog" of a "MainScene" node
+   at line 2 of file pkg:/components/MainScene.brs
+=================================================================
+tracker Run
+debugger: Moving selected files to staging area
+debugger: Adding stop statements for active breakpoints
+debugger: Creating zip archive from project sources
+debugger: Connecting to Roku via telnet at 192.168.1.247
+03-31 12:07:11.046 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 12:07:11.046 [beacon.signal] |AppCompileInitiate --------> TimeBase(1 ms)
+03-31 12:07:11.046 [scrpt.cmpl] Compiling 'Workflow Demo', id 'dev'
+03-31 12:07:11.050 [scrpt.load.mkup] Loading markup dev 'Workflow Demo'
+03-31 12:07:11.052 [scrpt.unload.mkup] Unloading markup dev 'Workflow Demo'
+03-31 12:07:11.061 [scrpt.parse.mkup.time] Parsed markup dev 'Workflow Demo' in 10 milliseconds
+
+------ Compiling dev 'Workflow Demo' ------
+03-31 12:07:11.071 [scrpt.ctx.cmpl.time] Compiled 'Workflow Demo', id 'dev' in 9 milliseconds
+03-31 12:07:11.130 [scrpt.proc.mkup.time] Processed markup dev 'Workflow Demo' in 58 milliseconds
+03-31 12:07:11.131 [beacon.signal] |AppCompileComplete --------> Duration(84 ms), 94.10 KiP
+03-31 12:07:11.137 [ui.frm.plugin.running.enter] Entering PLUGIN_RUNNING for dev
+03-31 12:07:11.137 [beacon.signal] |AppLaunchInitiate ---------> TimeBase(0)
+03-31 12:07:12.542 [scrpt.ctx.run.enter] UI: Entering 'Workflow Demo', id 'dev'
+
+------ Running dev 'Workflow Demo' main ------
+[METHOD] RLOG.onTransportsChange
+=================================================================
+Warning occurred while setting a field of an RoSGNode
+-- Tried to set nonexistent field "functionname" of a "rLog" node
+   at line 11 of file pkg:/components/rLogComponents/rLog.brs
+=================================================================
+=================================================================
+Warning occurred while setting a field of an RoSGNode
+-- Tried to set nonexistent field "control" of a "rLog" node
+   at line 13 of file pkg:/components/rLogComponents/rLog.brs
+=================================================================
+=================================================================
+Warning occurred while setting a field of an RoSGNode
+-- Tried to set nonexistent field "rlog" of a "MainScene" node
+   at line 2 of file pkg:/components/MainScene.brs
+=================================================================
+
+BrightScript Micro Debugger.
+Enter any BrightScript statement, debug commands, or HELP.
+
+Suspending threads...
+Thread selected:  0*   pkg:/source/Main.brs(34)                STOP
+
+Current Function:
+026:  
+027:      ' Retrieve configuration
+028:      config = {}
+029:  
+030:      ' Create dependencies
+031:      parser = ParserModule(config)
+032:  
+033:      ' Get some data and parse it
+034:* STOP
+035:      json = getData()
+036:      content = parser.parse(json)
+037:  
+038:      ' Create main view and initialise it
+STOP (runtime error &hf7) in pkg:/source/Main.brs(34)
+034: STOP
+Backtrace:
+#1  Function executestartupsequence() As Dynamic
+   file/line: pkg:/source/Main.brs(35)
+#0  Function main() As Void
+   file/line: pkg:/source/Main.brs(13)
+Local Variables:
+global           Interface:ifGlobal
+m                roAssociativeArray refcnt=3 count:2
+config           roAssociativeArray refcnt=2 count:0
+parser           roAssociativeArray refcnt=1 count:4
+json             <uninitialized>
+content          <uninitialized>
+Threads:
+ID    Location                                Source Code
+ 0*   pkg:/source/Main.brs(34)                STOP
+ 1    ...omponents/RALETrackerTask.xml(1268)  appInfo = CreateObject("roAppInfo")
+  *selected
+
+Brightscript Debugger> 

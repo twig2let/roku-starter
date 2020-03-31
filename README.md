@@ -1,25 +1,27 @@
-# CONTENTS
+# Roku Starter
 
-- [About](#about)
-- [Prerequisites](#simple-syntax-for-writing-tests)
+This is a barebones scaffold for writing Roku applications.
 
-## About
-<a name="about"></a>
-This is an example project leveraging some popular BrightScript libraries and utilities. 
+## Getting Started
 
-1. [brightscript-language extension](https://github.com/TwitchBronBron/vscode-brightscript-language)
-2. [Rooibos Test Framework](https://github.com/georgejecook/rooibos)
-3. [RALE (Roku Advanced Layout Editor)](https://developer.roku.com/docs/developer-program/dev-tools/rale-tutorial.md)
-4. [rLog Logging for Roku](https://github.com/georgejecook/rLog)
+### Prerequisites
 
-
-
-##Prerequisites
-
-<a name="prerequisites"></a>
-
-### Rooibos Pre-Processor
+* Node.js (minimum version **v10.0.0**)
+* Yarn (minimum version **v1.22.0**)
+* Create a `.env` file in the root of the project with the following properties:
 
 ```
-npm install -g rooibos-preprocessor
+ROKU_DEV_TARGET=192.168.1.123
+ROKU_DEV_USERNAME=rokudev
+ROKU_DEV_PASSWORD=rokudev
 ```
+
+See the [Roku Setup Guide](https://blog.roku.com/developer/developer-setup-guide) for details on enabling the Roku developer mode.
+
+* Install the project dependencies:
+
+    $ `yarn`
+
+## Deploying the Application
+
+$ `gulp deploy`

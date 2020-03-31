@@ -1,9 +1,0 @@
-{
-    "testPath": "./app/source/tests/specs",
-    "rootPath": "./app/",
-    "outputPath": "./app/source/tests/rooibos",
-    "logLevel": 1,
-    "failFast": false,
-    "swallowRuntimeErrors": false,
-    "showOnlyFailures": false
-  }
