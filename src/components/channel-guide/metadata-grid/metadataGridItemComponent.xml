@@ -4,13 +4,14 @@
 
     <interface>
         <field id="itemContent" type="node" alwaysNotify="false" />
+        <field id="index" type="integer" />
         <field id="focusPercent" type="float" onChange="onFocusPercentChanged" />
     </interface>
 
     <children>
         <Poster
             id="backgroundPoster"
-            translation="[0,0]">
+            translation="[0,0]" />
 
             <Poster
                 id="logoPoster"
@@ -34,7 +35,18 @@
                     horizAlign="left"
                     vertAlign="center"
                     translation="[148,87]" />
-        </Poster>
+        <Animation
+            id="backgroundPosterAnimation"
+            duration="0.4"
+            repeat="false"
+            easeFunction="outExpo">
+
+            <FloatFieldInterpolator
+                id="backgroundPosterAnimationInterp"
+                key="[0.0, 1.0]"
+                keyValue="[ 1036.0, 0.0]"
+                fieldToInterp="backgroundPoster.width" />
+        </Animation>
     </children>
 
     <script type="text/brightscript" uri="pkg:/components/channel-guide/metadata-grid/metadataGridItemComponent.brs" />

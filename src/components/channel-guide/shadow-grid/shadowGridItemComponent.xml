@@ -41,7 +41,7 @@
             <Vector2DFieldInterpolator
                 id="nextColumnItemAlignmentInterp"
                 key="[0.0, 1.0]"
-                keyValue="[[0, 55], [-150, 55]]"
+                keyValue="[[0, 55], [-250, 55]]"
                 fieldToInterp="containerLayoutGroup.translation" />
         </Animation>
     </children>

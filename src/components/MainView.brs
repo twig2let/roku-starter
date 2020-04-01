@@ -3,7 +3,6 @@ function init()
     m.metadataGrid = m.top.findNode("metadataGrid")
     m.metadataGrid.setFocus(true)
 
-
     m.metadataGrid.observeField("currFocusRow", "onItemFocusedChanged")
     m.metadataGrid.observeField("currFocusColumn", "onCurrFocusColumnChanged")
 end function

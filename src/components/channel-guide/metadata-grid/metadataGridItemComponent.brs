@@ -5,9 +5,12 @@ function init()
     m.logoPoster = m.top.findNode("logoPoster")
     m.titleLabel = m.top.findNode("titleLabel")
     m.synopsisLabel = m.top.findNode("synopsisLabel")
+    m.backgroundPosterAnimation = m.top.findNode("backgroundPosterAnimation")
+    m.backgroundPosterAnimationInterp = m.top.findNode("backgroundPosterAnimationInterp")
 
     m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
     m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
+    m.top.getParent().ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
 end function
 
 function onItemContentChanged(evt = {} as object) as void
@@ -25,21 +28,41 @@ function onItemContentChanged(evt = {} as object) as void
 end function
 
 function onFocusPercentChanged()
-    if m.top.focusPercent > 0 then setFocusedState() else setUnfocusedState()
+    if m.top.focusPercent > 0
+        setFocusedStyle()
+    end if
+
+    if m.top.focusPercent < 1
+        setUnfocusedStyle()
+    end if
+
+    '  If this is a now item
+    if not m.top.itemContent.isNext and m.top.focusPercent < 1
+        m.backgroundPoster.translation = [(560*m.top.focusPercent), 0]
+    end if
+
 end function
 
-function setFocusedState()
+function setFocusedStyle()
     m.backgroundPoster.blendColor = "#FCCC12"
     m.titleLabel.color = "#000000"
     m.synopsisLabel.color = "#000000"
     m.logoPoster.uri="pkg:/images/metadata-logo-focused.png"
 end function
 
-function setUnfocusedState()
+function setUnfocusedStyle()
     m.backgroundPoster.blendColor = "#222222"
     m.titleLabel.color = "#ffffff"
     m.synopsisLabel.color = "#ffffff"
     m.logoPoster.uri="pkg:/images/metadata-logo.png"
+end function
+
+function onCurrFocusColumnChanged() as Void
+    ' Next column focused...
+    if m.top.getParent().currFocusColumn > 0
+        ' associatedNowItem = m.top.getParent().content.getChild(m.top.index - 1)
+        ' associatedNowItem.findNode("backgroundPoster").translation = [(800 * m.top.focusPercent),0]
+    end if
 end function
 
 function getLayout()
