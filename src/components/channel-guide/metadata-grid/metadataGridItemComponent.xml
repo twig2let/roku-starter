@@ -12,7 +12,6 @@
             id="backgroundPoster"
             translation="[0,0]">
 
-
             <Poster
                 id="logoPoster"
                 width="56"

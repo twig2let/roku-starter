@@ -10,15 +10,17 @@
         <LayoutGroup
             layoutDirection="horiz"
             horizAlignment="left"
-            vertAlignment="center"
+            vertAlignment="top"
             itemSpacings="[46]"
-            addItemSpacingAfterChild="false">
+            addItemSpacingAfterChild="false"
+            translation="[0,65]">
 
             <Poster
                 id="logoPoster"
                 width="56"
-                height="28"
-                uri="pkg:/images/shadow-logo.png" />
+                height="49"
+                uri="pkg:/images/shadow-logo.png"
+                blendColor="#222222" />
 
                 <Label
                     id="titleLabel"

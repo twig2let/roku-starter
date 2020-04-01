@@ -15,17 +15,13 @@
 			<ShadowGrid
 				id="shadowGrid"
 				columnWidths="[1036, 560]"
-				itemSpacing="[0,0]"
-				itemSize="[100,100]"
-				rowSpacings="[100]"
 				numColumns="2"
-				numRows="5"
+				numRows="3"
+				rowHeights="[130,130,130,130,130]"
 				itemComponentName="ShadowGridItemComponent"
-				drawFocusFeedback="true"
 				vertFocusAnimationStyle="fixedFocus"
 				translation="[88,712]">
 			</ShadowGrid>
-
 
 			<MetadataGrid
 				id="metadataGrid"

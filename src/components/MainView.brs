@@ -2,6 +2,11 @@ function init()
     m.shadowGrid = m.top.findNode("shadowGrid")
     m.metadataGrid = m.top.findNode("metadataGrid")
     m.metadataGrid.setFocus(true)
+
+    m.metadataGrid.observeField("currFocusRow", "onItemFocusedChanged")
 end function
 
+function onItemFocusedChanged()
+    m.shadowGrid.animateToItem = Cint(m.metadataGrid.currFocusRow) * 2
+end function
 
