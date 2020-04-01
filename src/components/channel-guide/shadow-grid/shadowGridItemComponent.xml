@@ -8,12 +8,13 @@
 
     <children>
         <LayoutGroup
+            id="containerLayoutGroup"
             layoutDirection="horiz"
             horizAlignment="left"
             vertAlignment="top"
             itemSpacings="[46]"
             addItemSpacingAfterChild="false"
-            translation="[0,65]">
+            translation="[0,55]">
 
             <Poster
                 id="logoPoster"
@@ -25,12 +26,26 @@
                 <Label
                     id="titleLabel"
                     width="0"
-                    font="font:MediumBoldSystemFont"
+                    font="font:SmallestBoldSystemFont"
                     opacity="0.3"
                     horizAlign="left"
                     vertAlign="center" />
         </LayoutGroup>
+
+        <Animation
+            id="nextColumnItemAlignmentAnimation"
+            duration="0.4"
+            repeat="false"
+            easeFunction="outExpo">
+
+            <Vector2DFieldInterpolator
+                id="nextColumnItemAlignmentInterp"
+                key="[0.0, 1.0]"
+                keyValue="[[0, 55], [-150, 55]]"
+                fieldToInterp="containerLayoutGroup.translation" />
+        </Animation>
     </children>
 
     <script type="text/brightscript" uri="pkg:/components/channel-guide/shadow-grid/shadowGridItemComponent.brs" />
+
 </component>

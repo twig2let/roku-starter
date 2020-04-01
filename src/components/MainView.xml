@@ -24,6 +24,7 @@
 			</ShadowGrid>
 
 			<MetadataGrid
+				drawFocusFeedback="false"
 				id="metadataGrid"
 				columnWidths="[1036, 560]"
 				itemSize="[1036,152]"
@@ -37,5 +38,4 @@
 
 		</Rectangle>
 	</children>
-
 </component>
