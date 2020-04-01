@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="metadataGridItemComponent" extends="Group">
+
+    <interface>
+        <field id="itemContent" type="node" alwaysNotify="false" />
+        <field id="focusPercent" type="float" onChange="onFocusPercentChanged" />
+    </interface>
+
+    <children>
+        <Poster
+            id="backgroundPoster"
+            translation="[0,0]">
+
+
+            <Poster
+                id="logoPoster"
+                width="56"
+                height="48"
+                translation="[46,52]" />
+
+                <Label
+                    id="titleLabel"
+                    width="0"
+                    font="font:MediumBoldSystemFont"
+                    horizAlign="left"
+                    vertAlign="center"
+                    translation="[148,31]" />
+
+                <Label
+                    id="synopsisLabel"
+                    width="800"
+                    ellipsizeOnBoundary="true"
+                    font="font:SmallestBoldSystemFont"
+                    horizAlign="left"
+                    vertAlign="center"
+                    translation="[148,87]" />
+        </Poster>
+    </children>
+
+    <script type="text/brightscript" uri="pkg:/components/channel-guide/metadata-grid/metadataGridItemComponent.brs" />
+</component>

@@ -26,6 +26,19 @@
 				translation="[88,712]">
 			</ShadowGrid>
 
+
+			<MetadataGrid
+				id="metadataGrid"
+				columnWidths="[1036, 560]"
+				itemSize="[1036,152]"
+				numColumns="2"
+				numRows="2"
+				itemComponentName="MetadataGridItemComponent"
+				vertFocusAnimationStyle="fixedFocus"
+				translation="[88,712]"
+				clippingRect="[0, 0, 1920, 152]">
+			</MetadataGrid>
+
 		</Rectangle>
 	</children>
 
