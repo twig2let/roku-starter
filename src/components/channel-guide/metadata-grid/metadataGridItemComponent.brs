@@ -11,7 +11,7 @@ function init()
 
     m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
     m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
-    m.top.getParent().ObserveFieldScoped("currFocusColumn", "onCurrFocusColumnChanged")
+    m.top.getParent().ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
 end function
 
 function onItemContentChanged(evt = {} as object) as void
@@ -20,7 +20,7 @@ function onItemContentChanged(evt = {} as object) as void
     ' m.synopsisLabel.text = itemContent.synopsis
 
     if itemContent.isNext
-        m.logoPoster.visible = false
+        m.logoPoster.visible = true
         m.synopsisLabel.visible = false
         m.backgroundPoster.setFields(m.layout.next.unfocused.backgroundPoster)
     else
@@ -41,7 +41,11 @@ end function
 
 function onCurrFocusColumnChanged(evt as object) as void
 
-    ?"onCurrFocusColumnChanged: "; evt.getData()
+    if evt.getData() = 0 and not m.top.itemContent.isNext
+        ?"setting item "; m.top.index; " as focused "
+        m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+    end if
+
     ' When moving from now column to next column
     if evt.getData() > 0 and not m.top.itemContent.isNext
         if not m.focusedPosterAnimation.state = "running"
@@ -77,6 +81,7 @@ function onCurrFocusColumnChanged(evt as object) as void
             m.focusedPosterAnimation.control = "start"
         ' end if
     end if
+
 
 end function
 
