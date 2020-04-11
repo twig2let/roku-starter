@@ -6,36 +6,40 @@
 	<script type="text/brightscript" uri="MainView.brs"  />
 
 	<children>
-		<Rectangle
-			width="1920"
-			height="1280"
-			color="#000000"
-			translation="[0,0]">
+	<poster
+		uri="pkg://images/bg.png"
+		width="1920"
+		height="1080" />
 
-			<ShadowGrid
-				id="shadowGrid"
-				columnWidths="[1036, 560]"
-				numColumns="2"
-				numRows="3"
-				rowHeights="[130,130,130,130,130]"
-				itemComponentName="ShadowGridItemComponent"
-				vertFocusAnimationStyle="fixedFocus"
-				translation="[88,712]">
-			</ShadowGrid>
+		<button
+			id="button"
+			width="150"
+			height="50"
+			translation="[100, 300]"
+			text="Menu Focus"/>
 
-			<MetadataGrid
-				drawFocusFeedback="false"
-				id="metadataGrid"
-				columnWidths="[1036, 560]"
-				itemSize="[1036,152]"
-				numColumns="2"
-				numRows="2"
-				itemComponentName="MetadataGridItemComponent"
-				vertFocusAnimationStyle="fixedFocus"
-				translation="[88,712]"
-				clippingRect="[0, 0, 1920, 152]">
-			</MetadataGrid>
+		<ShadowGrid
+			id="shadowGrid"
+			columnWidths="[1036, 560]"
+			numColumns="2"
+			numRows="3"
+			rowHeights="[130,130,130,130,130]"
+			itemComponentName="ShadowGridItemComponent"
+			vertFocusAnimationStyle="fixedFocus"
+			translation="[88,712]">
+		</ShadowGrid>
 
-		</Rectangle>
+		<MetadataGrid
+			drawFocusFeedback="false"
+			id="metadataGrid"
+			columnWidths="[1036, 560]"
+			itemSize="[1036,169]"
+			numColumns="2"
+			numRows="2"
+			itemComponentName="MetadataGridItemComponent"
+			vertFocusAnimationStyle="fixedFocus"
+			translation="[88,712]"
+			clippingRect="[0, 0, 1920, 169]">
+		</MetadataGrid>
 	</children>
 </component>

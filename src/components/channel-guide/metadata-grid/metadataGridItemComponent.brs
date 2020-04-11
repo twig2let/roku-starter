@@ -1,87 +1,116 @@
 function init()
     m.layout = getLayout()
-
     m.backgroundPoster = m.top.findNode("backgroundPoster")
     m.logoPoster = m.top.findNode("logoPoster")
+    m.focusPoster = m.top.findNode("focusPoster")
     m.titleLabel = m.top.findNode("titleLabel")
     m.synopsisLabel = m.top.findNode("synopsisLabel")
-    m.backgroundPosterAnimation = m.top.findNode("backgroundPosterAnimation")
-    m.backgroundPosterAnimationInterp = m.top.findNode("backgroundPosterAnimationInterp")
+
+    m.focusedPosterAnimation = m.top.findNode("focusedPosterAnimation")
+    m.focusedPosterAnimationInterp = m.top.findNode("focusedPosterAnimationInterp")
 
     m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
     m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
-    m.top.getParent().ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
+    m.top.getParent().ObserveFieldScoped("currFocusColumn", "onCurrFocusColumnChanged")
 end function
 
 function onItemContentChanged(evt = {} as object) as void
     itemContent = m.top.itemContent
-    m.titleLabel.text = itemContent.title
-    m.synopsisLabel.text = itemContent.synopsis
+    ' m.titleLabel.text = itemContent.title
+    ' m.synopsisLabel.text = itemContent.synopsis
 
     if itemContent.isNext
         m.logoPoster.visible = false
         m.synopsisLabel.visible = false
-        m.backgroundPoster.setFields(m.layout.next.backgroundPoster)
+        m.backgroundPoster.setFields(m.layout.next.unfocused.backgroundPoster)
     else
-        m.backgroundPoster.setFields(m.layout.now.backgroundPoster)
+        m.backgroundPoster.setFields(m.layout.now.footprint.backgroundPoster)
     end if
 end function
 
 function onFocusPercentChanged()
-    if m.top.focusPercent > 0
-        setFocusedStyle()
+    ' ? "onFocusPercentChanged..."
+    ' ?"item index: "; m.top.index; " focus percent: "; m.top.focusPercent
+end function
+
+function onItemHasFocusChanged()
+    if m.top.itemHasFocus and m.top.itemContent <> invalid
+        m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+    end if
+end function
+
+function onCurrFocusColumnChanged(evt as object) as void
+
+    ?"onCurrFocusColumnChanged: "; evt.getData()
+    ' When moving from now column to next column
+    if evt.getData() > 0 and not m.top.itemContent.isNext
+        if not m.focusedPosterAnimation.state = "running"
+            ? "Col Changed, animating focus for index "; m.top.index
+            m.focusedPosterAnimationInterp.keyValue = [
+                [
+                    m.focusPoster.translation[0],
+                    m.focusPoster.translation[1]
+                ],
+                [
+                    500,
+                    0
+                ]
+            ]
+            m.focusedPosterAnimation.control = "start"
+        end if
     end if
 
-    if m.top.focusPercent < 1
-        setUnfocusedStyle()
-    end if
-
-    '  If this is a now item
-    if not m.top.itemContent.isNext and m.top.focusPercent < 1
-        m.backgroundPoster.translation = [(560*m.top.focusPercent), 0]
+    ' When moving from next column to now column
+    if evt.getData() = 0 and not m.top.itemContent.isNext
+        ' if not m.focusedPosterAnimation.state = "running"
+            ? "Col Changed, animating focus for index "; m.top.index
+            m.focusedPosterAnimationInterp.keyValue = [
+                [
+                    m.focusPoster.translation[0],
+                    m.focusPoster.translation[1]
+                ],
+                [
+                    0,
+                    0
+                ]
+            ]
+            m.focusedPosterAnimation.control = "start"
+        ' end if
     end if
 
 end function
 
-function setFocusedStyle()
-    m.backgroundPoster.blendColor = "#FCCC12"
-    m.titleLabel.color = "#000000"
-    m.synopsisLabel.color = "#000000"
-    m.logoPoster.uri="pkg:/images/metadata-logo-focused.png"
-end function
 
-function setUnfocusedStyle()
-    m.backgroundPoster.blendColor = "#222222"
-    m.titleLabel.color = "#ffffff"
-    m.synopsisLabel.color = "#ffffff"
-    m.logoPoster.uri="pkg:/images/metadata-logo.png"
-end function
-
-function onCurrFocusColumnChanged() as Void
-    ' Next column focused...
-    if m.top.getParent().currFocusColumn > 0
-        ' associatedNowItem = m.top.getParent().content.getChild(m.top.index - 1)
-        ' associatedNowItem.findNode("backgroundPoster").translation = [(800 * m.top.focusPercent),0]
-    end if
-end function
-
+' Layout.brs
 function getLayout()
     return {
         now: {
-            backgroundPoster: {
-                width: 1036
-                height: 152
-                uri: "pkg://images/generic_left.9.png"
-                blendColor: "#222222"
+            footprint: {
+                backgroundPoster: {
+                    width: 1152
+                    height: 169
+                    uri: "pkg://images/generic_left.9.png"
+                    blendColor: "#222222"
+                }
+            }
+            focused: {
+                focusPoster: {
+                    width: 1152
+                    height: 169
+                    uri: "pkg://images/generic_left.9.png"
+                    blendColor: "#FDCD00"
+                }
             }
         }
-        next: {
+    next: {
+        unfocused: {
             backgroundPoster: {
-                width: 560
-                height: 152
+                width: 592
+                height: 169
                 uri: "pkg://images/generic_right.9.png"
-                blendColor: "#222222"
+                blendColor: "#000000"
             }
         }
     }
+}
 end function

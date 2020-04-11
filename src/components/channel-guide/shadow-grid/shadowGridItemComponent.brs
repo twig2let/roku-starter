@@ -23,13 +23,13 @@ function onCurrFocusColumnChanged() as Void
 
     ' Next column focused...
     if m.metadataGrid.currFocusColumn > 0
-        ? "Next column focused..."
+        ' ? "Next column focused..."
         m.nextColumnItemAlignmentInterp.reverse = false
         if m.nextColumnItemAlignmentAnimation.state <> "running" then m.nextColumnItemAlignmentAnimation.control = "start"
     end if
 
     if m.metadataGrid.currFocusColumn = 0
-        ? "Now column focused..."
+        ' ? "Now column focused..."
         m.nextColumnItemAlignmentInterp.reverse = true
         if m.nextColumnItemAlignmentAnimation.state <> "running" then m.nextColumnItemAlignmentAnimation.control = "start"
     end if

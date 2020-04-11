@@ -4,6 +4,7 @@
 
     <interface>
         <field id="itemContent" type="node" alwaysNotify="false" />
+        <field id="itemHasFocus" type="boolean" onChange="onItemHasFocusChanged" />
         <field id="index" type="integer" />
         <field id="focusPercent" type="float" onChange="onFocusPercentChanged" />
     </interface>
@@ -11,6 +12,10 @@
     <children>
         <Poster
             id="backgroundPoster"
+            translation="[0,0]" />
+
+        <Poster
+            id="focusPoster"
             translation="[0,0]" />
 
             <Poster
@@ -35,17 +40,17 @@
                     horizAlign="left"
                     vertAlign="center"
                     translation="[148,87]" />
+
         <Animation
-            id="backgroundPosterAnimation"
+            id="focusedPosterAnimation"
             duration="0.4"
             repeat="false"
             easeFunction="outExpo">
 
-            <FloatFieldInterpolator
-                id="backgroundPosterAnimationInterp"
+            <Vector2DFieldInterpolator
+                id = "focusedPosterAnimationInterp"
                 key="[0.0, 1.0]"
-                keyValue="[ 1036.0, 0.0]"
-                fieldToInterp="backgroundPoster.width" />
+                fieldToInterp="focusPoster.translation"   />
         </Animation>
     </children>
 

@@ -1,8 +1,7 @@
 function init()
     m.shadowGrid = m.top.findNode("shadowGrid")
     m.metadataGrid = m.top.findNode("metadataGrid")
-    m.metadataGrid.setFocus(true)
-
+    
     m.metadataGrid.observeField("currFocusRow", "onItemFocusedChanged")
     m.metadataGrid.observeField("currFocusColumn", "onCurrFocusColumnChanged")
 end function
