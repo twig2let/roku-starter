@@ -7,7 +7,7 @@
 
 	<children>
 	<poster
-		uri="pkg://images/bg.png"
+		uri="pkg://images/bgpng"
 		width="1920"
 		height="1080" />
 
@@ -32,8 +32,8 @@
 		<MetadataGrid
 			drawFocusFeedback="false"
 			id="metadataGrid"
-			columnWidths="[1036, 560]"
-			itemSize="[1036,169]"
+			columnWidths="[1152, 592]"
+			itemSize="[1744,169]"
 			numColumns="2"
 			numRows="2"
 			itemComponentName="MetadataGridItemComponent"

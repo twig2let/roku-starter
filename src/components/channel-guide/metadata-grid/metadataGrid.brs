@@ -1,7 +1,15 @@
 function init()
     ? "Initialising the shadow grid"
+    m.metadataGrid = m.top.findNode("metadataGrid")
     m.top.content = createContentNodes()
     m.top.setFocus(true)
+
+    m.top.ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
+end function
+
+
+function onCurrFocusColumnChanged()
+
 end function
 
 

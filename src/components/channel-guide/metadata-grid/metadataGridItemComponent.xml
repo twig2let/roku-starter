@@ -41,9 +41,10 @@
                     vertAlign="center"
                     translation="[148,87]" />
 
+        <!-- Now Item Focus Poster  -->
         <Animation
             id="focusedPosterAnimation"
-            duration="0.4"
+            duration="0.6"
             repeat="false"
             easeFunction="outExpo">
 
@@ -51,6 +52,19 @@
                 id = "focusedPosterAnimationInterp"
                 key="[0.0, 1.0]"
                 fieldToInterp="focusPoster.translation"   />
+        </Animation>
+
+        <!-- Next Item Focus Poster  -->
+        <Animation
+            id="focusedPosterWidthAnimation"
+            duration="0.9"
+            repeat="false"
+            easeFunction="outExpo">
+
+        <FloatFieldInterpolator
+            id = "focusedPosterWidthAnimationInterp"
+            key="[0.0, 1.0]"
+            fieldToInterp="focusPoster.width"   />
         </Animation>
     </children>
 
