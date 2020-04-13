@@ -44,9 +44,9 @@
         <!-- Now Item Focus Poster  -->
         <Animation
             id="focusedPosterAnimation"
-            duration="0.6"
+            duration="0.4"
             repeat="false"
-            easeFunction="outExpo">
+            easeFunction="inOutExpo">
 
             <Vector2DFieldInterpolator
                 id = "focusedPosterAnimationInterp"
@@ -57,9 +57,9 @@
         <!-- Next Item Focus Poster  -->
         <Animation
             id="focusedPosterWidthAnimation"
-            duration="0.9"
+            duration="0.4"
             repeat="false"
-            easeFunction="outExpo">
+            easeFunction="inOutExpo">
 
         <FloatFieldInterpolator
             id = "focusedPosterWidthAnimationInterp"

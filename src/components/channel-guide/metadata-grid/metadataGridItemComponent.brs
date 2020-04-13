@@ -32,6 +32,7 @@ function onItemContentChanged(evt = {} as object) as void
         m.synopsisLabel.visible = false
         m.titleLabel.setFields(m.layout.next.focused.title)
         m.backgroundPoster.setFields(m.layout.next.unfocused.backgroundPoster)
+        m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
     else
         m.backgroundPoster.setFields(m.layout.now.footprint.backgroundPoster)
         m.focusPoster.setFields(m.layout.now.focused.focusPoster)
@@ -56,12 +57,14 @@ function onFocusPercentChanged()
 
     ' If next item is Focused e.g. focusPercent is 1
     if m.top.focusPercent = 1 and m.top.itemContent.isNext
-        m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+        ' m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+        animateNextItemFocused()
     end if
 
     ' If next item is Unfocused e.g. focusPercent is 0
     if m.top.focusPercent = 0 and m.top.itemContent.isNext
-        m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
+        ' m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
+        animateNextItemUnfocused()
     end if
 
 
@@ -198,6 +201,23 @@ function animateNowItemFocused() as void
     m.focusedPosterAnimation.control = "start"
 end function
 
+function animateNextItemFocused() as void
+    ' if m.focusedPosterAnimation.state = "running" return
+    m.focusedPosterWidthAnimationInterp.keyValue = [
+        0,
+        1003
+    ]
+    m.focusedPosterWidthAnimation.control = "start"
+end function
+
+function animateNextItemUnfocused() as void
+    ' if m.focusedPosterAnimation.state = "running" return
+    m.focusedPosterWidthAnimationInterp.keyValue = [
+        m.focusPoster.width,
+        0
+    ]
+    m.focusedPosterWidthAnimation.control = "start"
+end function
 
 ' Layout.brs
 function getLayout()
@@ -237,14 +257,14 @@ function getLayout()
                 width: 592
                 height: 169
                 uri: "pkg://images/generic_right.9.png"
-                blendColor: "#000000"
+                blendColor: "#222222"
             }
             focusPoster: {
                 width: 0
                 height: 169
                 uri: "pkg://images/generic_right.9.png"
                 blendColor: "#FDCD00"
-                translation: [ - 296, 0]
+                translation: [-412, 0]
             }
         }
         focused: {
@@ -258,7 +278,7 @@ function getLayout()
                 uri: "pkg://images/generic_right.9.png"
                 blendColor: "#FDCD00"
                 ' 1152 (width of now column) - 740 (Unfocused width of now column) = 412
-                translation: [ - 412, 0]
+                translation: [-412, 0]
             }
         }
     }
