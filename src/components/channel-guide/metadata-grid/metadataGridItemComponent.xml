@@ -18,54 +18,28 @@
             id="focusPoster"
             translation="[0,0]" />
 
-            <Poster
-                id="logoPoster"
-                width="56"
-                height="48"
-                translation="[46,52]" />
+        <Poster
+            id="logoPoster"
+            width="56"
+            height="48"
+            translation="[46,52]" />
 
-                <Label
-                    id="titleLabel"
-                    width="0"
-                    font="font:MediumBoldSystemFont"
-                    horizAlign="left"
-                    vertAlign="center"
-                    translation="[148,31]" />
+        <Label
+            id="titleLabel"
+            width="0"
+            font="font:MediumBoldSystemFont"
+            horizAlign="left"
+            vertAlign="center"
+            translation="[148,31]" />
 
-                <Label
-                    id="synopsisLabel"
-                    width="800"
-                    ellipsizeOnBoundary="true"
-                    font="font:SmallestBoldSystemFont"
-                    horizAlign="left"
-                    vertAlign="center"
-                    translation="[148,87]" />
-
-        <!-- Now Item Focus Poster  -->
-        <Animation
-            id="focusedPosterAnimation"
-            duration="0.4"
-            repeat="false"
-            easeFunction="linear">
-
-            <Vector2DFieldInterpolator
-                id = "focusedPosterAnimationInterp"
-                key="[0.0, 1.0]"
-                fieldToInterp="focusPoster.translation"   />
-        </Animation>
-
-        <!-- Next Item Focus Poster  -->
-        <Animation
-            id="focusedPosterWidthAnimation"
-            duration="0.4"
-            repeat="false"
-            easeFunction="linear">
-
-        <FloatFieldInterpolator
-            id = "focusedPosterWidthAnimationInterp"
-            key="[0.0, 1.0]"
-            fieldToInterp="focusPoster.width"   />
-        </Animation>
+        <Label
+            id="synopsisLabel"
+            width="800"
+            ellipsizeOnBoundary="true"
+            font="font:SmallestBoldSystemFont"
+            horizAlign="left"
+            vertAlign="center"
+            translation="[148,87]" />
     </children>
 
     <script type="text/brightscript" uri="pkg:/components/channel-guide/metadata-grid/metadataGridItemComponent.brs" />

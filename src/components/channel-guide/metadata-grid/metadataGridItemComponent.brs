@@ -6,17 +6,6 @@ function init()
     m.titleLabel = m.top.findNode("titleLabel")
     m.synopsisLabel = m.top.findNode("synopsisLabel")
 
-    ' Parallel Animation
-    m.parallelAnimation = m.top.findNode("parallelAnimation")
-
-    ' Now Item Animations
-    m.focusedPosterAnimation = m.top.findNode("focusedPosterAnimation")
-    m.focusedPosterAnimationInterp = m.top.findNode("focusedPosterAnimationInterp")
-
-    ' Next Item Animations
-    m.focusedPosterWidthAnimation = m.top.findNode("focusedPosterWidthAnimation")
-    m.focusedPosterWidthAnimationInterp = m.top.findNode("focusedPosterWidthAnimationInterp")
-
     m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
     m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
     ' m.top.getParent().ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
@@ -43,31 +32,15 @@ function onFocusPercentChanged()
     ' ? "onFocusPercentChanged..."
     ?"item index: "; m.top.index; " focus percent: "; m.top.focusPercent
 
-    ' If now item is Focused e.g. focusPercent is 1
-    if m.top.focusPercent = 1 and not m.top.itemContent.isNext
-        ' m.focusPoster.setFields(m.layout.now.focused.focusPoster)
-        animateNowItemFocused()
+    ' Now Item
+    if not m.top.itemContent.isNext
+        m.focusPoster.translation = [abs(740*m.top.focusPercent-740), 0]
     end if
 
-    ' If now item is Unfocused e.g. focusPercent is 0
-    if m.top.focusPercent = 0 and not m.top.itemContent.isNext
-        ' m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
-        animateNowItemUnfocused()
+    ' Next Item
+    if m.top.itemContent.isNext
+        m.focusPoster.width = 1003 * m.top.focusPercent
     end if
-
-    ' If next item is Focused e.g. focusPercent is 1
-    if m.top.focusPercent = 1 and m.top.itemContent.isNext
-        ' m.focusPoster.setFields(m.layout.next.focused.focusPoster)
-        animateNextItemFocused()
-    end if
-
-    ' If next item is Unfocused e.g. focusPercent is 0
-    if m.top.focusPercent = 0 and m.top.itemContent.isNext
-        ' m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
-        animateNextItemUnfocused()
-    end if
-
-
 end function
 
 function onItemHasFocusChanged()
@@ -80,58 +53,6 @@ function onCurrFocusColumnChanged(evt as object) as void
 
 end function
 
-
-' Animations States
-function animateNowItemUnfocused() as void
-    ' if m.focusedPosterAnimation.state = "running" return
-
-    m.focusedPosterAnimationInterp.keyValue = [
-        [
-            m.focusPoster.translation[0],
-            m.focusPoster.translation[1]
-        ],
-        [
-            740,
-            0
-        ]
-    ]
-    m.focusedPosterAnimation.control = "start"
-end function
-
-function animateNowItemFocused() as void
-
-    ' if m.focusedPosterAnimation.state = "running" return
-
-    m.focusedPosterAnimationInterp.keyValue = [
-        [
-            m.focusPoster.translation[0],
-            m.focusPoster.translation[1]
-        ],
-        [
-            0,
-            0
-        ]
-    ]
-    m.focusedPosterAnimation.control = "start"
-end function
-
-function animateNextItemFocused() as void
-    ' if m.focusedPosterAnimation.state = "running" return
-    m.focusedPosterWidthAnimationInterp.keyValue = [
-        0,
-        1003
-    ]
-    m.focusedPosterWidthAnimation.control = "start"
-end function
-
-function animateNextItemUnfocused() as void
-    ' if m.focusedPosterAnimation.state = "running" return
-    m.focusedPosterWidthAnimationInterp.keyValue = [
-        m.focusPoster.width,
-        0
-    ]
-    m.focusedPosterWidthAnimation.control = "start"
-end function
 
 ' Layout.brs
 function getLayout()
