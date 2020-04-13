@@ -20,6 +20,8 @@
 
         <Poster
             id="logoPoster"
+            visible="false"
+            uri="pkg:/images/metadata-logo.png"
             width="56"
             height="48"
             translation="[46,52]" />

@@ -4,6 +4,7 @@
 
     <interface>
         <field id="itemContent" type="node" alwaysNotify="false" />
+        <field id="focusPercent" type="float" onChange="onFocusPercentChanged" alwaysNotify="false" />
     </interface>
 
     <children>
@@ -31,19 +32,6 @@
                     horizAlign="left"
                     vertAlign="center" />
         </LayoutGroup>
-
-        <Animation
-            id="nextColumnItemAlignmentAnimation"
-            duration="0.4"
-            repeat="false"
-            easeFunction="outExpo">
-
-            <Vector2DFieldInterpolator
-                id="nextColumnItemAlignmentInterp"
-                key="[0.0, 1.0]"
-                keyValue="[[0, 55], [-250, 55]]"
-                fieldToInterp="containerLayoutGroup.translation" />
-        </Animation>
     </children>
 
     <script type="text/brightscript" uri="pkg:/components/channel-guide/shadow-grid/shadowGridItemComponent.brs" />

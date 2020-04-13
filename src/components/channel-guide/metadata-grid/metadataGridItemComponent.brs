@@ -19,32 +19,38 @@ function onItemContentChanged(evt = {} as object) as void
     m.synopsisLabel.text = itemContent.synopsis
 
     if itemContent.isNext
-        m.logoPoster.visible = true
+        m.logoPoster.visible = false
         m.synopsisLabel.visible = false
         m.titleLabel.setFields(m.layout.next.focused.title)
         m.backgroundPoster.setFields(m.layout.next.unfocused.backgroundPoster)
-        m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
+        if m.columnIndex = 0
+            m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
+        else
+            m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+        end if
     else
+        m.logoPoster.visible = true
         m.backgroundPoster.setFields(m.layout.now.footprint.backgroundPoster)
-        m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+
+        if m.columnIndex = 0
+            m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+        else
+            m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
+        end if
+
     end if
 end function
 
 function onFocusPercentChanged()
-    ' ? "onFocusPercentChanged..."
-    ?"item index: "; m.top.index; " focus percent: "; m.top.focusPercent
-
-
 end function
 
 function onItemHasFocusChanged()
-
 end function
 
 ' When user changes the column focus then set the focused states for
 ' all the items in that column.
 function onCurrFocusColumnChanged(evt as object) as void
-    columnIndex = evt.getData()
+    m.columnIndex = evt.getData()
 
     ' Now Item
     if not m.top.itemContent.isNext
@@ -57,12 +63,12 @@ function onCurrFocusColumnChanged(evt as object) as void
     end if
 
     ' ' Now Column
-    if columnIndex = 0 and not m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
-    if columnIndex = 1 and not m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
+    if m.columnIndex = 0 and not m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+    if m.columnIndex = 1 and not m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
 
     ' Next Column
-    if columnIndex = 0 and m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
-    if columnIndex = 1 and m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+    if m.columnIndex = 0 and m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
+    if m.columnIndex = 1 and m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.next.focused.focusPoster)
 end function
 
 
