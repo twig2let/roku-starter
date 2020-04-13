@@ -72,98 +72,12 @@ end function
 
 function onItemHasFocusChanged()
 
-    ' if m.top.itemContent <> invalid
-    '     if m.top.itemHasFocus
-    '         ' If now item
-    '         if not m.top.itemContent.isNext
-    '             m.focusPoster.setFields(m.layout.now.focused.focusPoster)
-    '         else
-    '             m.focusPoster.setFields(m.layout.next.focused.focusPoster)
-    '         end if
-    '     else
-    '         ' If now item
-    '         if not m.top.itemContent.isNext
-    '             m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
-    '         else
-    '             m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
-    '         end if
-    '     end if
-    ' end if
 end function
 
 ' When user changes the column focus then set the focused states for
 ' all the items in that column.
 function onCurrFocusColumnChanged(evt as object) as void
 
-    ' if not m.focusedPosterAnimation.state = "running"
-    '     if not m.top.itemContent.isNext
-    '         m.focusPoster.setFields(m.layout.now.focused.focusPoster)
-    '     else
-    '         m.focusPoster.setFields(m.layout.next.focused.focusPoster)
-    '     end if
-    ' end if
-
-
-    ' **** Now Item Animations ****
-
-    ' ' When moving from now column to next column
-    ' if evt.getData() > 0 and not m.top.itemContent.isNext
-    '     ' ? "Col Changed, animating focus for index "; m.top.index
-    '     m.focusedPosterAnimationInterp.keyValue = [
-    '         [
-    '             m.focusPoster.translation[0],
-    '             m.focusPoster.translation[1]
-    '         ],
-    '         [
-    '             740,
-    '             0
-    '         ]
-    '     ]
-    '     m.focusedPosterAnimation.control = "start"
-    ' end if
-
-    ' ' When moving from next column to now column
-    ' if evt.getData() = 0 and not m.top.itemContent.isNext
-    '     m.focusPoster.uri = "pkg://images/generic_left.9.png"
-    '     ' ? "Col Changed, animating focus for index "; m.top.index
-    '     m.focusedPosterAnimationInterp.keyValue = [
-    '         [
-    '             m.focusPoster.translation[0],
-    '             m.focusPoster.translation[1]
-    '         ],
-    '         [
-    '             0,
-    '             0
-    '         ]
-    '     ]
-    '     m.focusedPosterAnimation.control = "start"
-    ' end if
-
-    ' ' **** End Now Item Animations ****
-
-
-    ' ' **** Next Item Animations ****
-
-    ' if evt.getData() > 0 and m.top.itemContent.isNext
-    '     m.focusPoster.setFields(m.layout.next.focused.focusPoster)
-    ' end if
-
-    ' ' When moving from now column to next column
-    ' if evt.getData() > 0 and m.top.itemContent.isNext
-    '     m.focusedPosterWidthAnimationInterp.keyValue = [
-    '         0,
-    '         1002
-    '     ]
-    '     m.focusedPosterWidthAnimation.control = "start"
-    ' end if
-
-    ' if evt.getData() = 0 and m.top.itemContent.isNext
-    '     m.focusedPosterWidthAnimationInterp.keyValue = [
-    '         m.focusPoster.width,
-    '         0
-    '     ]
-    '     m.focusedPosterWidthAnimation.control = "start"
-    ' end if
 end function
 
 
