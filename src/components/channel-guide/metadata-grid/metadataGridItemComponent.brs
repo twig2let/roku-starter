@@ -8,7 +8,9 @@ function init()
 
     m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
     m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
-    ' m.top.getParent().ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
+    m.top.getParent().ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
+
+    m.columnIndex = 0
 end function
 
 function onItemContentChanged(evt = {} as object) as void
@@ -32,15 +34,7 @@ function onFocusPercentChanged()
     ' ? "onFocusPercentChanged..."
     ?"item index: "; m.top.index; " focus percent: "; m.top.focusPercent
 
-    ' Now Item
-    if not m.top.itemContent.isNext
-        m.focusPoster.translation = [abs(740*m.top.focusPercent-740), 0]
-    end if
 
-    ' Next Item
-    if m.top.itemContent.isNext
-        m.focusPoster.width = 1003 * m.top.focusPercent
-    end if
 end function
 
 function onItemHasFocusChanged()
@@ -50,7 +44,25 @@ end function
 ' When user changes the column focus then set the focused states for
 ' all the items in that column.
 function onCurrFocusColumnChanged(evt as object) as void
+    columnIndex = evt.getData()
 
+    ' Now Item
+    if not m.top.itemContent.isNext
+        m.focusPoster.translation = [abs(740*m.top.focusPercent-740), 0]
+    end if
+
+    ' Next Item
+    if m.top.itemContent.isNext
+        m.focusPoster.width = 1003 * m.top.focusPercent
+    end if
+
+    ' ' Now Column
+    if columnIndex = 0 and not m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+    if columnIndex = 1 and not m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
+
+    ' Next Column
+    if columnIndex = 0 and m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
+    if columnIndex = 1 and m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.next.focused.focusPoster)
 end function
 
 
