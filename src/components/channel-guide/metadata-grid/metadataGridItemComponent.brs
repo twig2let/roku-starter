@@ -19,7 +19,7 @@ function init()
 
     m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
     m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
-    m.top.getParent().ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
+    ' m.top.getParent().ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
 end function
 
 function onItemContentChanged(evt = {} as object) as void
@@ -34,92 +34,168 @@ function onItemContentChanged(evt = {} as object) as void
         m.backgroundPoster.setFields(m.layout.next.unfocused.backgroundPoster)
     else
         m.backgroundPoster.setFields(m.layout.now.footprint.backgroundPoster)
+        m.focusPoster.setFields(m.layout.now.focused.focusPoster)
     end if
 end function
 
 function onFocusPercentChanged()
     ' ? "onFocusPercentChanged..."
-    ' ?"item index: "; m.top.index; " focus percent: "; m.top.focusPercent
+    ?"item index: "; m.top.index; " focus percent: "; m.top.focusPercent
+
+    ' If now item is Focused e.g. focusPercent is 1
+    if m.top.focusPercent = 1 and not m.top.itemContent.isNext
+        ' m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+        animateNowItemFocused()
+    end if
+
+    ' If now item is Unfocused e.g. focusPercent is 0
+    if m.top.focusPercent = 0 and not m.top.itemContent.isNext
+        ' m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
+        animateNowItemUnfocused()
+    end if
+
+    ' If next item is Focused e.g. focusPercent is 1
+    if m.top.focusPercent = 1 and m.top.itemContent.isNext
+        m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+    end if
+
+    ' If next item is Unfocused e.g. focusPercent is 0
+    if m.top.focusPercent = 0 and m.top.itemContent.isNext
+        m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
+    end if
+
+
 end function
 
 function onItemHasFocusChanged()
-    ' If is Now item
-    if m.top.itemHasFocus and m.top.itemContent <> invalid and not m.top.itemContent.isNext
-        m.focusPoster.setFields(m.layout.now.focused.focusPoster)
-    end if
 
-    ' If is Next item
-    if m.top.itemHasFocus and m.top.itemContent <> invalid and m.top.itemContent.isNext
-        m.focusPoster.setFields(m.layout.next.focused.focusPoster)
-    end if
+    ' if m.top.itemContent <> invalid
+    '     if m.top.itemHasFocus
+    '         ' If now item
+    '         if not m.top.itemContent.isNext
+    '             m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+    '         else
+    '             m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+    '         end if
+    '     else
+    '         ' If now item
+    '         if not m.top.itemContent.isNext
+    '             m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
+    '         else
+    '             m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
+    '         end if
+    '     end if
+    ' end if
 end function
 
+' When user changes the column focus then set the focused states for
+' all the items in that column.
 function onCurrFocusColumnChanged(evt as object) as void
+
+    ' if not m.focusedPosterAnimation.state = "running"
+    '     if not m.top.itemContent.isNext
+    '         m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+    '     else
+    '         m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+    '     end if
+    ' end if
+
 
     ' **** Now Item Animations ****
 
-    if evt.getData() = 0 and not m.top.itemContent.isNext
-        ?"setting item "; m.top.index; " as focused "
-        m.focusPoster.setFields(m.layout.now.focused.focusPoster)
-    end if
+    ' ' When moving from now column to next column
+    ' if evt.getData() > 0 and not m.top.itemContent.isNext
+    '     ' ? "Col Changed, animating focus for index "; m.top.index
+    '     m.focusedPosterAnimationInterp.keyValue = [
+    '         [
+    '             m.focusPoster.translation[0],
+    '             m.focusPoster.translation[1]
+    '         ],
+    '         [
+    '             740,
+    '             0
+    '         ]
+    '     ]
+    '     m.focusedPosterAnimation.control = "start"
+    ' end if
 
-    ' When moving from now column to next column
-    if evt.getData() > 0 and not m.top.itemContent.isNext
-        ? "Col Changed, animating focus for index "; m.top.index
-        m.focusedPosterAnimationInterp.keyValue = [
-            [
-                m.focusPoster.translation[0],
-                m.focusPoster.translation[1]
-            ],
-            [
-                740,
-                0
-            ]
-        ]
-        m.focusedPosterAnimation.control = "start"
-    end if
+    ' ' When moving from next column to now column
+    ' if evt.getData() = 0 and not m.top.itemContent.isNext
+    '     m.focusPoster.uri = "pkg://images/generic_left.9.png"
+    '     ' ? "Col Changed, animating focus for index "; m.top.index
+    '     m.focusedPosterAnimationInterp.keyValue = [
+    '         [
+    '             m.focusPoster.translation[0],
+    '             m.focusPoster.translation[1]
+    '         ],
+    '         [
+    '             0,
+    '             0
+    '         ]
+    '     ]
+    '     m.focusedPosterAnimation.control = "start"
+    ' end if
 
-    ' When moving from next column to now column
-    if evt.getData() = 0 and not m.top.itemContent.isNext
-        ? "Col Changed, animating focus for index "; m.top.index
-        m.focusedPosterAnimationInterp.keyValue = [
-            [
-                m.focusPoster.translation[0],
-                m.focusPoster.translation[1]
-            ],
-            [
-                0,
-                0
-            ]
-        ]
-        m.focusedPosterAnimation.control = "start"
-    end if
-
-    ' **** End Now Item Animations ****
+    ' ' **** End Now Item Animations ****
 
 
-    ' **** Next Item Animations ****
+    ' ' **** Next Item Animations ****
 
-    if evt.getData() = 1 and m.top.itemContent.isNext
-        m.focusPoster.setFields(m.layout.next.focused.focusPoster)
-    end if
+    ' if evt.getData() > 0 and m.top.itemContent.isNext
+    '     m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+    ' end if
 
-    ' When moving from now column to next column
-    if evt.getData() > 0 and m.top.itemContent.isNext
-        m.focusedPosterWidthAnimationInterp.keyValue = [
-            0,
-            1002
-        ]
-        m.focusedPosterWidthAnimation.control = "start"
-    end if
+    ' ' When moving from now column to next column
+    ' if evt.getData() > 0 and m.top.itemContent.isNext
+    '     m.focusedPosterWidthAnimationInterp.keyValue = [
+    '         0,
+    '         1002
+    '     ]
+    '     m.focusedPosterWidthAnimation.control = "start"
+    ' end if
 
-    if evt.getData() = 0 and m.top.itemContent.isNext
-        m.focusedPosterWidthAnimationInterp.keyValue = [
-            m.focusPoster.width,
+    ' if evt.getData() = 0 and m.top.itemContent.isNext
+    '     m.focusedPosterWidthAnimationInterp.keyValue = [
+    '         m.focusPoster.width,
+    '         0
+    '     ]
+    '     m.focusedPosterWidthAnimation.control = "start"
+    ' end if
+end function
+
+
+' Animations States
+function animateNowItemUnfocused() as void
+    ' if m.focusedPosterAnimation.state = "running" return
+
+    m.focusedPosterAnimationInterp.keyValue = [
+        [
+            m.focusPoster.translation[0],
+            m.focusPoster.translation[1]
+        ],
+        [
+            740,
             0
         ]
-        m.focusedPosterWidthAnimation.control = "start"
-    end if
+    ]
+    m.focusedPosterAnimation.control = "start"
+end function
+
+function animateNowItemFocused() as void
+
+    ' if m.focusedPosterAnimation.state = "running" return
+
+    m.focusedPosterAnimationInterp.keyValue = [
+        [
+            m.focusPoster.translation[0],
+            m.focusPoster.translation[1]
+        ],
+        [
+            0,
+            0
+        ]
+    ]
+    m.focusedPosterAnimation.control = "start"
 end function
 
 
@@ -133,6 +209,7 @@ function getLayout()
                     height: 169
                     uri: "pkg://images/generic_left.9.png"
                     blendColor: "#222222"
+                    translation: [0, 0]
                 }
             }
             focused: {
@@ -141,6 +218,16 @@ function getLayout()
                     height: 169
                     uri: "pkg://images/generic_left.9.png"
                     blendColor: "#FDCD00"
+                    translation: [0, 0]
+                }
+            }
+            unfocused: {
+                focusPoster: {
+                    width: 1152
+                    height: 169
+                    uri: "pkg://images/generic_left.9.png"
+                    blendColor: "#FDCD00"
+                    translation: [740, 0]
                 }
             }
         }

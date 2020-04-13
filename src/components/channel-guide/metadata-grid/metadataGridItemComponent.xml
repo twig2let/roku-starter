@@ -6,7 +6,7 @@
         <field id="itemContent" type="node" alwaysNotify="false" />
         <field id="itemHasFocus" type="boolean" onChange="onItemHasFocusChanged" />
         <field id="index" type="integer" />
-        <field id="focusPercent" type="float" onChange="onFocusPercentChanged" />
+        <field id="focusPercent" type="float" onChange="onFocusPercentChanged" alwaysNotify="false" />
     </interface>
 
     <children>
