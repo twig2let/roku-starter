@@ -54,12 +54,14 @@ function onCurrFocusColumnChanged(evt as object) as void
 
     ' Now Item
     if not m.top.itemContent.isNext
+        ' 0 when focused
+        ' 740 when unfocused (uses abs to get a positive integer e.g. -740 becomes 740)
         m.focusPoster.translation = [abs(740*m.top.focusPercent-740), 0]
     end if
 
     ' Next Item
     if m.top.itemContent.isNext
-        m.focusPoster.width = 1003 * m.top.focusPercent
+        m.focusPoster.width = 1004 * m.top.focusPercent
     end if
 
     ' ' Now Column

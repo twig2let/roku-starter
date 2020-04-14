@@ -7,16 +7,9 @@
 
 	<children>
 	<poster
-		uri="pkg://images/bgpng"
+		uri="pkg://images/bg.png"
 		width="1920"
 		height="1080" />
-
-		<button
-			id="button"
-			width="150"
-			height="50"
-			translation="[100, 300]"
-			text="Menu Focus"/>
 
 		<ShadowGrid
 			id="shadowGrid"
