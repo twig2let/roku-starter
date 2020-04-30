@@ -3,7 +3,7 @@
 
 	<interface></interface>
 
-	<script type="text/brightscript" uri="MainView.brs"  />
+	<script type="text/brightscript" uri="MainView.brs"  />	
 
 	<children>
 	<poster

@@ -2,18 +2,13 @@ function init()
     m.metadataGrid = m.top.findNode("metadataGrid")
     m.top.content = createContentNodes()
     m.top.setFocus(true)
-
     m.top.ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
 end function
 
-
 function onCurrFocusColumnChanged()
-
 end function
 
-
 function createContentNodes()
-    
     rootNode = CreateObject("roSgNode", "ContentNode")
     for each channel in ChannelGuideJSON()
         for each item in ["now", "next"]

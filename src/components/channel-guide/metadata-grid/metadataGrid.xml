@@ -5,4 +5,5 @@
     <interface></interface>
 
     <script type="text/brightscript" uri="pkg:/components/channel-guide/metadata-grid/metadataGrid.brs" />
+    <script type="text/brightscript" uri="pkg:/components/ChannelGuideJSON.brs"  />
 </component>

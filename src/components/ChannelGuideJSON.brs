@@ -2,16 +2,18 @@ function ChannelGuideJSON() as Object
     return [
         {
             now: {
-                "period": "5:30 - 7:30pm"
-                "title": "Nightly News with Lester Holt"
-                "synopsis": "The very latest on the day's top stories."
-                "parentalRating": "TV-14"
+                "period": "5:30 - 7:30pm",
+                "title": "Nightly News with Lester Holt",
+                "synopsis": "The very latest on the day's top stories.",
+                "genre": "Drama",
+                "parentalRating": "TV-14",
             }
             next: {
                 "period": "7:30 - 8:30pm",
                 "title": "Top Stories",
-                "synopsis": "Latest news, headlines, analysis, photos and videos on NBC News."
-                "parentalRating": "TV-14"
+                "synopsis": "Latest news, headlines, analysis, photos and videos on NBC News.",
+                "genre": "Action",
+                "parentalRating": "TV-14",
             }
         },
         {
@@ -27,43 +29,55 @@ function ChannelGuideJSON() as Object
                 "title": "Jason Bourne",
                 "synopsis": "Adipisicing ad aliquip ullamco commodo nostrud labore excepteur mollit occaecat.",
                 "parentalRating": "R",
-                "genre": "Action"
+                "genre": "Action",
             }
         },
         {
             now: {
                 "period": "5:30 - 7:30pm",
                 "title": "Definitely Maybe",
-                "synopsis": "Adipisicing ad aliquip ullamco commodo nostrud labore excepteur mollit occaecat."
+                "synopsis": "Adipisicing ad aliquip ullamco commodo nostrud labore excepteur mollit occaecat.",
+                "genre": "Adventure",
+                "parentalRating": "TV-14",
             }
             next: {
                 "period": "7:30 - 8:30pm",
                 "title": "Love Happens",
-                "synopsis": "Adipisicing ad aliquip ullamco commodo nostrud labore excepteur mollit occaecat."
+                "synopsis": "Adipisicing ad aliquip ullamco commodo nostrud labore excepteur mollit occaecat.",
+                "genre": "Romance",
+                "parentalRating": "TV-14",
             }
         },
         {
             now: {
                 "period": "5:30 - 7:30pm",
                 "title": "Manchester United vs Chelsea",
-                "synopsis": "Adipisicing ad aliquip ullamco commodo nostrud labore excepteur mollit occaecat."
+                "synopsis": "Adipisicing ad aliquip ullamco commodo nostrud labore excepteur mollit occaecat.",
+                "genre": "Thriller",
+                "parentalRating": "TV-14",
             }
             next: {
                 "period": "7:30 - 8:30pm",
                 "title": "Arsenal vs Liverpool",
-                "synopsis": "Adipisicing ad aliquip ullamco commodo nostrud labore excepteur mollit occaecat."
+                "synopsis": "Adipisicing ad aliquip ullamco commodo nostrud labore excepteur mollit occaecat.",
+                "parentalRating": "TV-14",
+                "genre": "Psychological",
             }
         },
         {
             now: {
                 "period": "5:30 - 7:30pm",
                 "title": "Stars of Tokyo - Simone Biles",
-                "synopsis": "Adipisicing ad aliquip ullamco commodo nostrud labore excepteur mollit occaecat."
+                "synopsis": "Adipisicing ad aliquip ullamco commodo nostrud labore excepteur mollit occaecat.",
+                "parentalRating": "TV-14",
+                "genre": "Fantasy",
             }
             next: {
                 "period": "7:30 - 8:30pm",
                 "title": "The Worlds Longest Splinters",
-                "synopsis": "Adipisicing ad aliquip ullamco commodo nostrud labore excepteur mollit occaecat."
+                "synopsis": "Adipisicing ad aliquip ullamco commodo nostrud labore excepteur mollit occaecat.",
+                "parentalRating": "TV-14",
+                "genre": "Fantasy",
             }
         }
     ]

@@ -1,10 +1,14 @@
-function init()
+function init() as void
     m.layout = getLayout()
     m.backgroundPoster = m.top.findNode("backgroundPoster")
-    m.logoPoster = m.top.findNode("logoPoster")
     m.focusPoster = m.top.findNode("focusPoster")
+
+    ' Metadata
+    m.logoPoster = m.top.findNode("logoPoster")
     m.titleLabel = m.top.findNode("titleLabel")
     m.synopsisLabel = m.top.findNode("synopsisLabel")
+    m.ratingLabel = m.top.findNode("ratingLabel")
+    m.timeLabel = m.top.findNode("timeLabel")
 
     m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
     m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
@@ -15,7 +19,10 @@ end function
 
 function onItemContentChanged(evt = {} as object) as void
     itemContent = m.top.itemContent
+
     m.titleLabel.text = itemContent.title
+    m.ratingLabel.text = itemContent.parentalRating
+    m.timeLabel.text = itemContent.period
     m.synopsisLabel.text = itemContent.synopsis
 
     if itemContent.isNext
@@ -23,6 +30,7 @@ function onItemContentChanged(evt = {} as object) as void
         m.synopsisLabel.visible = false
         m.titleLabel.setFields(m.layout.next.focused.title)
         m.backgroundPoster.setFields(m.layout.next.unfocused.backgroundPoster)
+
         if m.columnIndex = 0
             m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
         else
@@ -32,12 +40,22 @@ function onItemContentChanged(evt = {} as object) as void
         m.logoPoster.visible = true
         m.backgroundPoster.setFields(m.layout.now.footprint.backgroundPoster)
 
+        ' If Now Column is focused...
         if m.columnIndex = 0
             m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+            m.titleLabel.setFields(m.layout.now.focused.titleLabel)
+            m.ratingLabel.setFields(m.layout.now.focused.ratingLabel)
+            m.timeLabel.setFields(m.layout.now.focused.timeLabel)
+            m.timeLabel.translation = [m.layout.now.focused.width - m.timeLabel.boundingRect().width - m.layout.now.itemPadding, m.layout.now.itemPadding]
+            m.synopsisLabel.setFields(m.layout.now.focused.synopsisLabel)
         else
-            m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
+            m.focusPoster.setFields(m.layout.now.unfocusedWide.focusPoster)
+            m.titleLabel.setFields(m.layout.now.unfocusedWide.titleLabel)
+            m.ratingLabel.setFields(m.layout.now.unfocusedWide.ratingLabel)
+            m.timeLabel.setFields(m.layout.now.unfocusedWide.timeLabel)
+            m.synopsisLabel.setFields(m.layout.now.unfocusedWide.synopsisLabel)
+            m.focusPoster.setFields(m.layout.now.unfocusedWide.focusPoster)
         end if
-
     end if
 end function
 
@@ -56,7 +74,7 @@ function onCurrFocusColumnChanged(evt as object) as void
     if not m.top.itemContent.isNext
         ' 0 when focused
         ' 740 when unfocused (uses abs to get a positive integer e.g. -740 becomes 740)
-        m.focusPoster.translation = [abs(740*m.top.focusPercent-740), 0]
+        m.focusPoster.translation = [abs(740 * m.top.focusPercent - 740), 0]
     end if
 
     ' Next Item
@@ -64,9 +82,24 @@ function onCurrFocusColumnChanged(evt as object) as void
         m.focusPoster.width = 1004 * m.top.focusPercent
     end if
 
-    ' ' Now Column
-    if m.columnIndex = 0 and not m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
-    if m.columnIndex = 1 and not m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
+    ' Now Column
+    if m.columnIndex = 0 and not m.top.itemContent.isNext
+        m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+        m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+        m.titleLabel.setFields(m.layout.now.focused.titleLabel)
+        m.ratingLabel.setFields(m.layout.now.focused.ratingLabel)
+        m.timeLabel.setFields(m.layout.now.focused.timeLabel)
+        m.synopsisLabel.setFields(m.layout.now.focused.synopsisLabel)
+    end if
+
+    if m.columnIndex = 1 and not m.top.itemContent.isNext
+        m.focusPoster.setFields(m.layout.now.unfocusedNarrow.focusPoster)
+        m.focusPoster.setFields(m.layout.now.unfocusedNarrow.focusPoster)
+        m.titleLabel.setFields(m.layout.now.unfocusedNarrow.titleLabel)
+        m.ratingLabel.setFields(m.layout.now.unfocusedNarrow.ratingLabel)
+        m.timeLabel.setFields(m.layout.now.unfocusedNarrow.timeLabel)
+        m.synopsisLabel.setFields(m.layout.now.unfocusedNarrow.synopsisLabel)
+    end if
 
     ' Next Column
     if m.columnIndex = 0 and m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
@@ -76,66 +109,126 @@ end function
 
 ' Layout.brs
 function getLayout()
+
+    itemHeight = 152
+    itemPadding = 31
+
+    nowItemWideWidth = 1036
+    nowItemUnfocusedNarrowWidth = 708
+
     return {
         now: {
+            itemPadding: itemPadding
             footprint: {
                 backgroundPoster: {
-                    width: 1152
-                    height: 169
+                    width: nowItemWideWidth
+                    height: itemHeight
                     uri: "pkg://images/generic_left.9.png"
                     blendColor: "#222222"
                     translation: [0, 0]
                 }
             }
             focused: {
+                width: nowItemWideWidth
                 focusPoster: {
-                    width: 1152
-                    height: 169
+                    width: nowItemWideWidth
+                    height: itemHeight
                     uri: "pkg://images/generic_left.9.png"
                     blendColor: "#FDCD00"
                     translation: [0, 0]
                 }
+                titleLabel: {
+                    color: "#000000"
+                }
+                ratingLabel: {
+                    visible: true
+                    color: "#000000"
+                }
+                timeLabel: {
+                    ' Can't offset from the right on Roku, translation must be determined after setting the label text and we know the width
+                    ' translation: [nowItemWideWidth - itemPadding, itemPadding]
+                    color: "#000000"
+                }
+                synopsisLabel: {
+                    visible: true
+                    color: "#000000"
+                }
             }
-            unfocused: {
+            unfocusedWide: {
                 focusPoster: {
-                    width: 1152
-                    height: 169
+                    width: nowItemWideWidth
+                    height: itemHeight
                     uri: "pkg://images/generic_left.9.png"
                     blendColor: "#FDCD00"
-                    translation: [740, 0]
+                    translation: [nowItemUnfocusedNarrowWidth, 0]
+                }
+                titleLabel: {
+                    color: "#ffffff"
+                }
+                ratingLabel: {
+                    visible: false
+                }
+                timeLabel: {
+                    color: "#ffffff"
+                }
+                synopsisLabel: {
+                    visible: false
+                }
+            }
+            unfocusedNarrow: {
+                focusPoster: {
+                    width: nowItemWideWidth
+                    height: itemHeight
+                    uri: "pkg://images/generic_left.9.png"
+                    blendColor: "#FDCD00"
+                    translation: [nowItemUnfocusedNarrowWidth, 0]
+                }
+                titleLabel: {
+                    color: "#ffffff"
+                }
+                ratingLabel: {
+                    visible: false
+                }
+                timeLabel: {
+                    color: "#ffffff"
+                }
+                synopsisLabel: {
+                    visible: false
                 }
             }
         }
-    next: {
-        unfocused: {
-            backgroundPoster: {
-                width: 592
-                height: 169
-                uri: "pkg://images/generic_right.9.png"
-                blendColor: "#222222"
+        next: {
+            unfocused: {
+                backgroundPoster: {
+                    width: 592
+                    height: itemHeight
+                    uri: "pkg://images/generic_right.9.png"
+                    blendColor: "#222222"
+                }
+                focusPoster: {
+                    visible: false
+                    width: 0
+                    height: itemHeight
+                    uri: "pkg://images/generic_right.9.png"
+                    blendColor: "#FDCD00"
+                    translation: [ - 412, 0]
+                }
             }
-            focusPoster: {
-                width: 0
-                height: 169
-                uri: "pkg://images/generic_right.9.png"
-                blendColor: "#FDCD00"
-                translation: [-412, 0]
-            }
-        }
-        focused: {
-            title: {
-                translation: [ - 166, 45]
-                color: "#000000"
-            }
-            focusPoster: {
-                width: 1002
-                height: 169
-                uri: "pkg://images/generic_right.9.png"
-                blendColor: "#FDCD00"
-                ' 1152 (width of now column) - 740 (Unfocused width of now column) = 412
-                translation: [-412, 0]
+            focused: {
+                title: {
+                    translation: [ - 166, 45]
+                    color: "#000000"
+                }
+                focusPoster: {
+                    visible: true
+                    width: 888
+                    height: itemHeight
+                    uri: "pkg://images/generic_right.9.png"
+                    blendColor: "#FDCD00"
+                    ' 1036 (width of now column) - 708 (Unfocused width of now column) = 328
+                    translation: [ - 328, 0]
+                }
             }
         }
     }
-}
 end function

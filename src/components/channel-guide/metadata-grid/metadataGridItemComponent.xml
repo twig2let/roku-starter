@@ -26,19 +26,34 @@
             height="48"
             translation="[46,52]" />
 
+        <LayoutGroup
+            id="topRowMetadata"
+            layoutDirection="horiz"
+            horizAlignment="left"
+            translation="[148,31]"
+            itemSpacings="[46]">
+
+            <Label
+                id="titleLabel"
+                width="0"
+                font="font:SmallBoldSystemFont" />
+
+            <Label
+                id="ratingLabel"
+                width="0"
+                font="font:SmallSystemFont" />
+        </LayoutGroup>
+
         <Label
-            id="titleLabel"
+            id="timeLabel"
             width="0"
-            font="font:MediumBoldSystemFont"
-            horizAlign="left"
-            vertAlign="center"
-            translation="[148,31]" />
+            font="font:SmallestSystemFont" />
 
         <Label
             id="synopsisLabel"
             width="800"
             ellipsizeOnBoundary="true"
-            font="font:SmallestBoldSystemFont"
+            font="font:SmallestSystemFont"
             horizAlign="left"
             vertAlign="center"
             translation="[148,87]" />

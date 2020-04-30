@@ -7,4 +7,5 @@
     </interface>
 
     <script type="text/brightscript" uri="pkg:/components/channel-guide/shadow-grid/shadowGrid.brs" />
+    <script type="text/brightscript" uri="pkg:/components/ChannelGuideJSON.brs"  />
 </component>
