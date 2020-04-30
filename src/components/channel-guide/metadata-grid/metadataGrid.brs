@@ -1,5 +1,4 @@
-function init()
-    ? "Initialising the shadow grid"
+function init()    
     m.metadataGrid = m.top.findNode("metadataGrid")
     m.top.content = createContentNodes()
     m.top.setFocus(true)

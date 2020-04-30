@@ -1,5 +1,4 @@
 function init()
-    ? "Initialising the shadow grid"
     m.top.content = createContentNodes()
 end function
 
