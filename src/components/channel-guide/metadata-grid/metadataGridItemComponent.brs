@@ -75,6 +75,13 @@ function onCurrFocusColumnChanged(evt as object) as void
         ' 0 when focused
         ' 740 when unfocused (uses abs to get a positive integer e.g. -740 becomes 740)
         m.focusPoster.translation = [abs(740 * m.top.focusPercent - 740), 0]
+
+        ' Fade out the metadata we don't want to see when the item is in its narrow state
+        m.synopsisLabel.opacity = m.top.focusPercent
+        m.timeLabel.opacity = m.top.focusPercent
+        m.ratingLabel.opacity = m.top.focusPercent
+
+        ?"m.top.focusPercent: "; m.top.focusPercent
     end if
 
     ' Next Item
@@ -83,6 +90,7 @@ function onCurrFocusColumnChanged(evt as object) as void
     end if
 
     ' Now Column
+    ' Set the atomic item style states, when the focus transition has completed e.g. we have a whole number, 0 or 1
     if m.columnIndex = 0 and not m.top.itemContent.isNext
         m.focusPoster.setFields(m.layout.now.focused.focusPoster)
         m.focusPoster.setFields(m.layout.now.focused.focusPoster)
@@ -138,19 +146,21 @@ function getLayout()
                     translation: [0, 0]
                 }
                 titleLabel: {
+                    opacity: 1
                     color: "#000000"
                 }
                 ratingLabel: {
-                    visible: true
+                    opacity: 1
                     color: "#000000"
                 }
                 timeLabel: {
                     ' Can't offset from the right on Roku, translation must be determined after setting the label text and we know the width
                     ' translation: [nowItemWideWidth - itemPadding, itemPadding]
                     color: "#000000"
+                    opacity: 1
                 }
                 synopsisLabel: {
-                    visible: true
+                    opacity: 1
                     color: "#000000"
                 }
             }
@@ -163,16 +173,18 @@ function getLayout()
                     translation: [nowItemUnfocusedNarrowWidth, 0]
                 }
                 titleLabel: {
+                    opacity: 1
                     color: "#ffffff"
                 }
                 ratingLabel: {
-                    visible: false
+                    opacity: 1
                 }
                 timeLabel: {
+                    opacity: 1
                     color: "#ffffff"
                 }
                 synopsisLabel: {
-                    visible: false
+                    opacity: 1
                 }
             }
             unfocusedNarrow: {
@@ -184,16 +196,18 @@ function getLayout()
                     translation: [nowItemUnfocusedNarrowWidth, 0]
                 }
                 titleLabel: {
+                    opacity: 1
                     color: "#ffffff"
                 }
                 ratingLabel: {
-                    visible: false
+                    opacity: 0
                 }
                 timeLabel: {
+                    opacity: 0
                     color: "#ffffff"
                 }
                 synopsisLabel: {
-                    visible: false
+                    opacity: 0
                 }
             }
         }
