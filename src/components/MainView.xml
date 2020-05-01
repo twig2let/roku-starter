@@ -3,7 +3,7 @@
 
 	<interface></interface>
 
-	<script type="text/brightscript" uri="MainView.brs"  />	
+	<script type="text/brightscript" uri="MainView.brs"  />
 
 	<children>
 	<poster
@@ -25,14 +25,14 @@
 		<MetadataGrid
 			drawFocusFeedback="false"
 			id="metadataGrid"
-			columnWidths="[1152, 592]"
-			itemSize="[1744,169]"
+			columnWidths="[1036, 560]"
+			itemSize="[1596,152]"
 			numColumns="2"
 			numRows="2"
 			itemComponentName="MetadataGridItemComponent"
 			vertFocusAnimationStyle="fixedFocus"
 			translation="[88,712]"
-			clippingRect="[0, 0, 1920, 169]">
+			clippingRect="[0, 0, 1920, 152]">
 		</MetadataGrid>
 	</children>
 </component>

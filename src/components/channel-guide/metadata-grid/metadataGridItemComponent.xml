@@ -26,37 +26,65 @@
             height="48"
             translation="[46,52]" />
 
+        <!-- UNFOCUSED METADATA LAYOUT GROUP -->
         <LayoutGroup
-            id="topRowMetadata"
+            opacity="1"
+            id="unfocusedMetadataLayoutGroup"
             layoutDirection="horiz"
             horizAlignment="left"
             translation="[148,31]"
-            itemSpacings="[46]">
+            itemSpacings="[31]">
 
             <Label
-                id="titleLabel"
+                id="titleLabel_truncated"
                 width="0"
+                color="#ffffff"
+                text="Nightly News with..."
                 font="font:SmallBoldSystemFont" />
 
             <Label
-                id="ratingLabel"
+                id="timeLabel_unfocused"
+                color="#ffffff"
                 width="0"
-                font="font:SmallSystemFont" />
+                font="font:SmallestBoldSystemFont" />
         </LayoutGroup>
 
-        <Label
-            id="timeLabel"
-            width="0"
-            font="font:SmallestSystemFont" />
+        <!-- FOCUSED METADATA LAYOUT GROUP -->
+        <Group
+            opacity="0"
+            id="focusedMetadataLayoutGroup">
 
-        <Label
-            id="synopsisLabel"
-            width="800"
-            ellipsizeOnBoundary="true"
-            font="font:SmallestSystemFont"
-            horizAlign="left"
-            vertAlign="center"
-            translation="[148,87]" />
+            <LayoutGroup
+                layoutDirection="horiz"
+                horizAlignment="left"
+                translation="[148,31]"
+                itemSpacings="[46]">
+
+                <Label
+                    id="titleLabel"
+                    width="0"
+                    font="font:SmallBoldSystemFont" />
+
+                <Label
+                    id="ratingLabel"
+                    width="0"
+                    font="font:SmallSystemFont" />
+            </LayoutGroup>
+
+            <Label
+                id="timeLabel"
+                width="0"
+                font="font:SmallestSystemFont" />
+
+            <Label
+                id="synopsisLabel"
+                width="800"
+                ellipsizeOnBoundary="true"
+                font="font:SmallestSystemFont"
+                horizAlign="left"
+                vertAlign="center"
+                translation="[148,87]" />
+        </Group>
     </children>
 
     <script type="text/brightscript" uri="pkg:/components/channel-guide/metadata-grid/metadataGridItemComponent.brs" />

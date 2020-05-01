@@ -4,11 +4,16 @@ function init() as void
     m.focusPoster = m.top.findNode("focusPoster")
 
     ' Metadata
+    m.focusedMetadataLayoutGroup = m.top.findNode("focusedMetadataLayoutGroup")
+    m.unfocusedMetadataLayoutGroup = m.top.findNode("unfocusedMetadataLayoutGroup")
+
     m.logoPoster = m.top.findNode("logoPoster")
     m.titleLabel = m.top.findNode("titleLabel")
+    m.titleLabel_truncated = m.top.findNode("titleLabel_truncated")
     m.synopsisLabel = m.top.findNode("synopsisLabel")
     m.ratingLabel = m.top.findNode("ratingLabel")
     m.timeLabel = m.top.findNode("timeLabel")
+    m.timeLabel_unfocused = m.top.findNode("timeLabel_unfocused")
 
     m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
     m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
@@ -23,6 +28,7 @@ function onItemContentChanged(evt = {} as object) as void
     m.titleLabel.text = itemContent.title
     m.ratingLabel.text = itemContent.parentalRating
     m.timeLabel.text = itemContent.period
+    m.timeLabel_unfocused.text = itemContent.period
     m.synopsisLabel.text = itemContent.synopsis
 
     if itemContent.isNext
@@ -44,6 +50,7 @@ function onItemContentChanged(evt = {} as object) as void
         if m.columnIndex = 0
             m.focusPoster.setFields(m.layout.now.focused.focusPoster)
             m.titleLabel.setFields(m.layout.now.focused.titleLabel)
+            m.titleLabel_truncated.text = itemContent.title.Left(17) + "..."
             m.ratingLabel.setFields(m.layout.now.focused.ratingLabel)
             m.timeLabel.setFields(m.layout.now.focused.timeLabel)
             m.timeLabel.translation = [m.layout.now.focused.width - m.timeLabel.boundingRect().width - m.layout.now.itemPadding, m.layout.now.itemPadding]
@@ -74,14 +81,11 @@ function onCurrFocusColumnChanged(evt as object) as void
     if not m.top.itemContent.isNext
         ' 0 when focused
         ' 740 when unfocused (uses abs to get a positive integer e.g. -740 becomes 740)
-        m.focusPoster.translation = [abs(740 * m.top.focusPercent - 740), 0]
+        m.focusPoster.translation = [abs(m.layout.now.unfocusedNarrow.nowItemUnfocusedNarrowWidth * m.top.focusPercent - m.layout.now.unfocusedNarrow.nowItemUnfocusedNarrowWidth), 0]
 
         ' Fade out the metadata we don't want to see when the item is in its narrow state
-        m.synopsisLabel.opacity = m.top.focusPercent
-        m.timeLabel.opacity = m.top.focusPercent
-        m.ratingLabel.opacity = m.top.focusPercent
-
-        ?"m.top.focusPercent: "; m.top.focusPercent
+        m.focusedMetadataLayoutGroup.opacity = m.top.focusPercent
+        m.unfocusedMetadataLayoutGroup.opacity = abs(1 * m.top.focusPercent - 1)
     end if
 
     ' Next Item
@@ -90,23 +94,21 @@ function onCurrFocusColumnChanged(evt as object) as void
     end if
 
     ' Now Column
-    ' Set the atomic item style states, when the focus transition has completed e.g. we have a whole number, 0 or 1
+    ' Set the atomic item style states, when the focus transition has completed e.g. we have a whole number, 0 or 1 ... actually necessary?
     if m.columnIndex = 0 and not m.top.itemContent.isNext
         m.focusPoster.setFields(m.layout.now.focused.focusPoster)
-        m.focusPoster.setFields(m.layout.now.focused.focusPoster)
-        m.titleLabel.setFields(m.layout.now.focused.titleLabel)
-        m.ratingLabel.setFields(m.layout.now.focused.ratingLabel)
-        m.timeLabel.setFields(m.layout.now.focused.timeLabel)
-        m.synopsisLabel.setFields(m.layout.now.focused.synopsisLabel)
+        m.logoPoster.setFields(m.layout.now.focused.logoPoster)
+
+        m.unfocusedMetadataLayoutGroup.opacity = 0
+        m.focusedMetadataLayoutGroup.opacity = 1
     end if
 
     if m.columnIndex = 1 and not m.top.itemContent.isNext
         m.focusPoster.setFields(m.layout.now.unfocusedNarrow.focusPoster)
-        m.focusPoster.setFields(m.layout.now.unfocusedNarrow.focusPoster)
-        m.titleLabel.setFields(m.layout.now.unfocusedNarrow.titleLabel)
-        m.ratingLabel.setFields(m.layout.now.unfocusedNarrow.ratingLabel)
-        m.timeLabel.setFields(m.layout.now.unfocusedNarrow.timeLabel)
-        m.synopsisLabel.setFields(m.layout.now.unfocusedNarrow.synopsisLabel)
+        m.logoPoster.setFields(m.layout.now.unfocusedNarrow.logoPoster)
+
+        m.unfocusedMetadataLayoutGroup.opacity = 1
+        m.focusedMetadataLayoutGroup.opacity = 0
     end if
 
     ' Next Column
@@ -145,22 +147,21 @@ function getLayout()
                     blendColor: "#FDCD00"
                     translation: [0, 0]
                 }
+                logoPoster: {
+                    blendColor: "#000000"
+                }
                 titleLabel: {
-                    opacity: 1
                     color: "#000000"
                 }
                 ratingLabel: {
-                    opacity: 1
                     color: "#000000"
                 }
                 timeLabel: {
                     ' Can't offset from the right on Roku, translation must be determined after setting the label text and we know the width
                     ' translation: [nowItemWideWidth - itemPadding, itemPadding]
                     color: "#000000"
-                    opacity: 1
                 }
                 synopsisLabel: {
-                    opacity: 1
                     color: "#000000"
                 }
             }
@@ -172,22 +173,20 @@ function getLayout()
                     blendColor: "#FDCD00"
                     translation: [nowItemUnfocusedNarrowWidth, 0]
                 }
+                logoPoster: {
+                    blendColor: "#FFFFFF"
+                }
                 titleLabel: {
-                    opacity: 1
-                    color: "#ffffff"
                 }
                 ratingLabel: {
-                    opacity: 1
                 }
                 timeLabel: {
-                    opacity: 1
-                    color: "#ffffff"
                 }
                 synopsisLabel: {
-                    opacity: 1
                 }
             }
             unfocusedNarrow: {
+                nowItemUnfocusedNarrowWidth: nowItemUnfocusedNarrowWidth
                 focusPoster: {
                     width: nowItemWideWidth
                     height: itemHeight
@@ -195,19 +194,16 @@ function getLayout()
                     blendColor: "#FDCD00"
                     translation: [nowItemUnfocusedNarrowWidth, 0]
                 }
+                logoPoster: {
+                    blendColor: "#FFFFFF"
+                }
                 titleLabel: {
-                    opacity: 1
-                    color: "#ffffff"
                 }
                 ratingLabel: {
-                    opacity: 0
                 }
                 timeLabel: {
-                    opacity: 0
-                    color: "#ffffff"
                 }
                 synopsisLabel: {
-                    opacity: 0
                 }
             }
         }
