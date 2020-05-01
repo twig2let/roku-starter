@@ -4,8 +4,15 @@ function init() as void
     m.focusPoster = m.top.findNode("focusPoster")
 
     ' Metadata
+
+    ' NOW ITEM
     m.focusedMetadataLayoutGroup = m.top.findNode("focusedMetadataLayoutGroup")
     m.unfocusedMetadataLayoutGroup = m.top.findNode("unfocusedMetadataLayoutGroup")
+
+    ' NEXT ITEM
+    m.nextItemUnfocusedMetadataLayoutGroup = m.top.findNode("nextItemUnfocusedMetadataLayoutGroup")
+    m.nextTitleLabel = m.top.findNode("nextTitleLabel")
+    m.nextSynopsisLabel = m.top.findNode("nextSynopsisLabel")
 
     m.logoPoster = m.top.findNode("logoPoster")
     m.titleLabel = m.top.findNode("titleLabel")
@@ -25,37 +32,55 @@ end function
 function onItemContentChanged(evt = {} as object) as void
     itemContent = m.top.itemContent
 
-    m.titleLabel.text = itemContent.title
-    m.ratingLabel.text = itemContent.parentalRating
-    m.timeLabel.text = itemContent.period
-    m.timeLabel_unfocused.text = itemContent.period
-    m.synopsisLabel.text = itemContent.synopsis
+    reset()
 
     if itemContent.isNext
+        m.unfocusedMetadataLayoutGroup.opacity = 0 ' next item
+        m.nextItemUnfocusedMetadataLayoutGroup.opacity = 1
+
+        m.backgroundPoster.setFields(m.layout.next.unfocusedNarrow.backgroundPoster)
         m.logoPoster.visible = false
         m.synopsisLabel.visible = false
-        m.titleLabel.setFields(m.layout.next.focused.title)
-        m.backgroundPoster.setFields(m.layout.next.unfocused.backgroundPoster)
+        m.nextTitleLabel.setFields(m.layout.next.unfocusedNarrow.title)
+        m.nextTitleLabel.text = itemContent.title
+
+        m.nextSynopsisLabel.setFields(m.layout.next.unfocusedNarrow.synopsis)
+        m.nextSynopsisLabel.text = itemContent.synopsis
+
 
         if m.columnIndex = 0
-            m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
+            m.focusPoster.setFields(m.layout.next.unfocusedNarrow.focusPoster)
         else
             m.focusPoster.setFields(m.layout.next.focused.focusPoster)
         end if
     else
         m.logoPoster.visible = true
         m.backgroundPoster.setFields(m.layout.now.footprint.backgroundPoster)
+        m.titleLabel.text = itemContent.title
+        m.ratingLabel.text = itemContent.parentalRating
+        m.timeLabel.text = itemContent.period
+        m.timeLabel_unfocused.text = itemContent.period
+        m.synopsisLabel.text = itemContent.synopsis
 
         ' If Now Column is focused...
         if m.columnIndex = 0
-            m.focusPoster.setFields(m.layout.now.focused.focusPoster)
-            m.titleLabel.setFields(m.layout.now.focused.titleLabel)
-            m.titleLabel_truncated.text = itemContent.title.Left(17) + "..."
-            m.ratingLabel.setFields(m.layout.now.focused.ratingLabel)
-            m.timeLabel.setFields(m.layout.now.focused.timeLabel)
-            m.timeLabel.translation = [m.layout.now.focused.width - m.timeLabel.boundingRect().width - m.layout.now.itemPadding, m.layout.now.itemPadding]
-            m.synopsisLabel.setFields(m.layout.now.focused.synopsisLabel)
+
+            ' Now Item
+            if not itemContent.isNext
+                m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+                m.titleLabel.setFields(m.layout.now.focused.titleLabel)
+                m.titleLabel_truncated.text = itemContent.title.Left(17) + "..."
+                m.ratingLabel.setFields(m.layout.now.focused.ratingLabel)
+                m.timeLabel.setFields(m.layout.now.focused.timeLabel)
+                m.timeLabel.translation = [m.layout.now.focused.width - m.timeLabel.boundingRect().width - m.layout.now.itemPadding, m.layout.now.itemPadding]
+                m.synopsisLabel.setFields(m.layout.now.focused.synopsisLabel)
+            else
+                ' Next Item
+                m.focusPoster.setFields(m.layout.next.unfocusedNarrow.focusPoster)
+                m.titleLabel.setFields(m.layout.next.unfocusedNarrow.titleLabel)
+            end if
         else
+            ' Now Item
             m.focusPoster.setFields(m.layout.now.unfocusedWide.focusPoster)
             m.titleLabel.setFields(m.layout.now.unfocusedWide.titleLabel)
             m.ratingLabel.setFields(m.layout.now.unfocusedWide.ratingLabel)
@@ -64,6 +89,12 @@ function onItemContentChanged(evt = {} as object) as void
             m.focusPoster.setFields(m.layout.now.unfocusedWide.focusPoster)
         end if
     end if
+end function
+
+function reset()
+    m.focusedMetadataLayoutGroup.opacity = 0
+    m.unfocusedMetadataLayoutGroup.opacity = 1
+    m.nextItemUnfocusedMetadataLayoutGroup.opacity = 0
 end function
 
 function onFocusPercentChanged()
@@ -90,7 +121,8 @@ function onCurrFocusColumnChanged(evt as object) as void
 
     ' Next Item
     if m.top.itemContent.isNext
-        m.focusPoster.width = 1004 * m.top.focusPercent
+        m.focusPoster.width = abs(m.layout.next.focused.width  * m.top.focusPercent - 1)
+        m.nextItemUnfocusedMetadataLayoutGroup.translation = [m.layout.next.focused.nextItemUnfocusedMetadataLayoutGroup.translation[0] * m.top.focusPercent, m.layout.next.focused.nextItemUnfocusedMetadataLayoutGroup.translation[1]]
     end if
 
     ' Now Column
@@ -112,7 +144,7 @@ function onCurrFocusColumnChanged(evt as object) as void
     end if
 
     ' Next Column
-    if m.columnIndex = 0 and m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
+    if m.columnIndex = 0 and m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.next.unfocusedNarrow.focusPoster)
     if m.columnIndex = 1 and m.top.itemContent.isNext then m.focusPoster.setFields(m.layout.next.focused.focusPoster)
 end function
 
@@ -125,6 +157,9 @@ function getLayout()
 
     nowItemWideWidth = 1036
     nowItemUnfocusedNarrowWidth = 708
+
+    nextItemWideWidth = 888
+    nextItemUnfocusedNarrowWidth = 560
 
     return {
         now: {
@@ -208,35 +243,48 @@ function getLayout()
             }
         }
         next: {
-            unfocused: {
+            unfocusedNarrow: {
+                width: nextItemUnfocusedNarrowWidth
                 backgroundPoster: {
-                    width: 592
+                    width: nextItemUnfocusedNarrowWidth
                     height: itemHeight
                     uri: "pkg://images/generic_right.9.png"
                     blendColor: "#222222"
                 }
                 focusPoster: {
-                    visible: false
                     width: 0
                     height: itemHeight
                     uri: "pkg://images/generic_right.9.png"
                     blendColor: "#FDCD00"
-                    translation: [ - 412, 0]
+                    translation: [0, 0]
+                }
+                title: {
+                    color: "#FFFFFF"
+                }
+                synopsis: {
+                    color: "#000000"
+                    opacity: 0
                 }
             }
             focused: {
-                title: {
-                    translation: [ - 166, 45]
-                    color: "#000000"
+                width: nextItemWideWidth
+                nextItemUnfocusedMetadataLayoutGroup: {
+                    translation: [-300, itemPadding]
                 }
                 focusPoster: {
-                    visible: true
-                    width: 888
+                    width: nextItemWideWidth
                     height: itemHeight
                     uri: "pkg://images/generic_right.9.png"
                     blendColor: "#FDCD00"
-                    ' 1036 (width of now column) - 708 (Unfocused width of now column) = 328
-                    translation: [ - 328, 0]
+                    ' 1036 (width of now column) - 708 (now item unfocusedNarrow width) = 328
+                    translation: [-328, 0]
+                }
+                title: {
+                    color: "#000000"
+                }
+                synopsis: {
+                    color: "#000000"
+                    opacity: 1
                 }
             }
         }

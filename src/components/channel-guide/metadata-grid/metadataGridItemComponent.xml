@@ -26,7 +26,7 @@
             height="48"
             translation="[46,52]" />
 
-        <!-- UNFOCUSED METADATA LAYOUT GROUP -->
+        <!-- NOW ITEM UNFOCUSED METADATA LAYOUT GROUP -->
         <LayoutGroup
             opacity="1"
             id="unfocusedMetadataLayoutGroup"
@@ -49,7 +49,7 @@
                 font="font:SmallestBoldSystemFont" />
         </LayoutGroup>
 
-        <!-- FOCUSED METADATA LAYOUT GROUP -->
+        <!-- NOW ITEM FOCUSED METADATA LAYOUT GROUP -->
         <Group
             opacity="0"
             id="focusedMetadataLayoutGroup">
@@ -84,6 +84,32 @@
                 horizAlign="left"
                 vertAlign="center"
                 translation="[148,87]" />
+        </Group>
+
+        <!-- NEXT ITEM UNFOCUSED METADATA LAYOUT GROUP -->
+        <Group
+            opacity="0"
+            id="nextItemUnfocusedMetadataLayoutGroup"
+            translation="[31,31]">
+
+            <LayoutGroup
+                layoutDirection="vert"
+                horizAlignment="left"
+                itemSpacings="[31]">
+                
+                <Label
+                    id="nextTitleLabel"
+                    width="0"
+                    font="font:SmallBoldSystemFont" />
+
+                <Label
+                    id="nextSynopsisLabel"
+                    width="800"
+                    ellipsizeOnBoundary="true"
+                    font="font:SmallestSystemFont"
+                    horizAlign="left"
+                    vertAlign="center" />
+            </LayoutGroup>
         </Group>
     </children>
 
