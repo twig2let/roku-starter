@@ -6,6 +6,8 @@ function init() as void
 
     m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
     m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
+    m.top.ObserveFieldScoped("gridHasFocus", "onGridHasFocusChanged")
+
     ' We observe the grid event so all item components can be update to reflect their focused/unfocused states
     m.top.getParent().ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
 end function
@@ -19,28 +21,25 @@ function onItemContentChanged(evt as object) as void
         m.backgroundPoster.setFields(m.layout.now.backgroundPoster)
         m.focusPoster.setFields(m.layout.now.focusPoster)
     else
-        m.backgroundPoster.setFields(m.layout.next.backgroundPoster)
-        m.focusPoster.setFields(m.layout.next.focusPoster)
-    end if
+    m.backgroundPoster.setFields(m.layout.next.backgroundPoster)
+m.focusPoster.setFields(m.layout.next.focusPoster)
+end if
 end function
 
 function onFocusPercentChanged(evt as object) as void
-    ' m.focusPoster.width = abs(m.layout.now.focused.focusPoster.width * m.top.focusPercent - 1)
 
-        ' if isFirstColumnItem()
-        '     ?"onFocusPercentChanged: " m.top.index
-        '     m.focusPoster.translation = [abs(m.layout.now.focused.focusPoster.width * m.top.focusPercent + m.layout.now.unfocused.focusPoster.width), 0]
-        ' else
-        '     m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
-        ' end if
+    if isFirstColumnItem()
+        m.focusPoster.translation = [abs(m.layout.now.focusPoster.unfocused.xCoordOffset * m.top.focusPercent - m.layout.now.focusPoster.unfocused.xCoordOffset), 0]
+    else
+        ' m.focusPoster.width = abs(m.layout.next.focused.focusPoster.width  * m.top.focusPercent - 1)
+    end if
 
-        ' if isFirstColumnItem()
-        '     m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
-        ' else
-        '     m.focusPoster.setFields(m.layout.next.focused.focusPoster)
-        ' end if
+    ' if isFirstColumnItem()
+    '     m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
+    ' else
+    '     m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+    ' end if
 end function
-
 ' Update all items, so when the user scrolls all items (within the currently focused column) are in their correct state
 function onCurrFocusColumnChanged(evt as object) as void
     ' If this is a NOW item
@@ -49,16 +48,24 @@ function onCurrFocusColumnChanged(evt as object) as void
         if isFirstColumnItem()
             m.focusPoster.setFields(m.layout.now.focused.focusPoster)
         else
-            m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
-        end if
+        m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
     end if
+end if
 
-    if evt.getData() = 1 ' If this is a NEXT item
-        if isFirstColumnItem()
-            m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
-        else
-            m.focusPoster.setFields(m.layout.next.focused.focusPoster)
-        end if
+if evt.getData() = 1 ' If this is a NEXT item
+    if isFirstColumnItem()
+        m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
+    else
+        m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+    end if
+end if
+end function
+
+function onGridHasFocusChanged(evt as object)
+    if not m.top.gridHasFocus
+        m.focusPoster.setFields(m.layout.footprint.focusPoster)
+    else
+        ' if m.top.item
     end if
 end function
 
@@ -76,12 +83,18 @@ function getLayout()
     itemHeight = 152
     itemPadding = 31
 
-    ' The item widths never change, we use grow/shrink the focus poster and offset metadata to give the impression of scaling items
+    ' The "item" widths never change, we grow/shrink the focus poster and offset item metadata to give the impression of scaling items
     nowItemWidth = 1036
+    nowItemUnfocusedWidth = 708
 
     nextItemWidth = 560
 
     return {
+        footprint: {
+            focusPoster: {
+                opacity: 0
+            }
+        }
         now: {
             backgroundPoster: {
                 width: nowItemWidth
@@ -89,6 +102,12 @@ function getLayout()
                 uri: "pkg://images/generic_left.9.png"
                 blendColor: "#222222"
                 translation: [0, 0]
+            }
+            focusPoster: {
+                unfocused: {
+                    ' The offset we animate the translation to when unfocused
+                    xCoordOffset: nowItemUnfocusedWidth + 1 ' We plus 1 pixel so the rounded corner is hidden but we still achieve the transition effect
+                }
             }
             focused: {
                 focusPoster: {
@@ -102,12 +121,11 @@ function getLayout()
             }
             unfocused: {
                 focusPoster: {
-                    opacity: 0
-                    width: 0
-                    height: 0
+                    opacity: 1
+                    height: itemHeight
                     uri: "pkg://images/generic_left.9.png"
                     blendColor: "#FCCC12"
-                    translation: [0, 0]
+                    translation: [nowItemUnfocusedWidth, 0]
                 }
             }
         }
@@ -268,7 +286,7 @@ end function
 '     end if
 
 '     ' Next Item
-'     if m.top.itemContent.isNow
+'     if not m.top.itemContent.isNow
 '         m.focusPoster.width = abs(m.layout.next.focused.width  * m.top.focusPercent - 1)
 '         m.nextItemUnfocusedMetadataLayoutGroup.translation = [m.layout.next.focused.nextItemUnfocusedMetadataLayoutGroup.translation[0] * m.top.focusPercent, m.layout.next.focused.nextItemUnfocusedMetadataLayoutGroup.translation[1]]
 '     end if

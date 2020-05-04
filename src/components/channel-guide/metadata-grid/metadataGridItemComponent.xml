@@ -4,7 +4,8 @@
 
     <interface>
         <field id="itemContent" type="node" alwaysNotify="true" />
-        <field id="itemHasFocus" type="boolean" />
+        <field id="itemHasFocus" type="boolean" alwaysNotify="false" />
+        <field id="gridHasFocus" type="boolean" alwaysNotify="false" />
         <field id="index" type="integer" />
         <field id="focusPercent" type="float" />
     </interface>

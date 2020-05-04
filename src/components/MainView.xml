@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component name="MainView" extends="Group">
+<component name="MainView" extends="Group" initialFocus="button">
 
 	<interface></interface>
 
 	<script type="text/brightscript" uri="MainView.brs"  />
 
 	<children>
+
 	<poster
 		uri="pkg://images/bg.png"
 		width="1920"
 		height="1080" />
+
+		<Button id="button" text="A button" />
 
 		<ShadowGrid
 			id="shadowGrid"
