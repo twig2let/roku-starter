@@ -17,22 +17,22 @@ function onItemContentChanged(evt as object) as void
 
     itemContent = m.top.itemContent
 
-    if itemContent.isNow
+    if isFirstColumnItem()
         m.backgroundPoster.setFields(m.layout.now.backgroundPoster)
         m.focusPoster.setFields(m.layout.now.focusPoster)
     else
-    m.backgroundPoster.setFields(m.layout.next.backgroundPoster)
-m.focusPoster.setFields(m.layout.next.focusPoster)
-end if
+        m.backgroundPoster.setFields(m.layout.next.backgroundPoster)
+        m.focusPoster.setFields(m.layout.next.focusPoster)
+    end if
 end function
 
 function onFocusPercentChanged(evt as object) as void
 
-    if isFirstColumnItem()
-        m.focusPoster.translation = [abs(m.layout.now.focusPoster.unfocused.xCoordOffset * m.top.focusPercent - m.layout.now.focusPoster.unfocused.xCoordOffset), 0]
-    else
+    ' if isFirstColumnItem()
+    '     m.focusPoster.translation = [abs(m.layout.now.focusPoster.unfocused.xCoordOffset * m.top.focusPercent - m.layout.now.focusPoster.unfocused.xCoordOffset), 0]
+    ' else
         ' m.focusPoster.width = abs(m.layout.next.focused.focusPoster.width  * m.top.focusPercent - 1)
-    end if
+    ' end if
 
     ' if isFirstColumnItem()
     '     m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
@@ -40,25 +40,33 @@ function onFocusPercentChanged(evt as object) as void
     '     m.focusPoster.setFields(m.layout.next.focused.focusPoster)
     ' end if
 end function
+
 ' Update all items, so when the user scrolls all items (within the currently focused column) are in their correct state
 function onCurrFocusColumnChanged(evt as object) as void
+
     ' If this is a NOW item
+    if isFirstColumnItem()
+        m.focusPoster.translation = [abs(m.layout.now.focusPoster.unfocused.xCoordOffset * m.top.focusPercent - m.layout.now.focusPoster.unfocused.xCoordOffset), 0]
+    else
+        m.focusPoster.width = abs(m.layout.next.focused.focusPoster.width * m.top.focusPercent)
+    end if
+
     if evt.getData() = 0
-        ?"onCurrFocusColumnChanged: " m.top.index
         if isFirstColumnItem()
             m.focusPoster.setFields(m.layout.now.focused.focusPoster)
         else
-        m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
+            m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
+        end if
     end if
-end if
 
-if evt.getData() = 1 ' If this is a NEXT item
-    if isFirstColumnItem()
-        m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
-    else
-        m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+    if evt.getData() = 1 ' If this is a NEXT item
+        if isFirstColumnItem()
+            m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
+        else
+            m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+        end if
     end if
-end if
+
 end function
 
 function onGridHasFocusChanged(evt as object)
@@ -88,6 +96,7 @@ function getLayout()
     nowItemUnfocusedWidth = 708
 
     nextItemWidth = 560
+    nextItemFocusedWidth = 888
 
     return {
         footprint: {
@@ -137,24 +146,32 @@ function getLayout()
                 blendColor: "#000000"
                 translation: [0, 0]
             }
+            focusPoster: {
+                opacity: 1
+                width: 0
+                height: itemHeight
+                uri: "pkg://images/generic_right.9.png"
+                blendColor: "#FCCC12"
+                translation: [- (nowItemWidth - nowItemUnfocusedWidth), 0]
+            }
             focused: {
                 focusPoster: {
                     opacity: 1
-                    width: nextItemWidth
+                    width: nextItemFocusedWidth
                     height: itemHeight
                     uri: "pkg://images/generic_right.9.png"
                     blendColor: "#FCCC12"
-                    translation: [0, 0]
+                    translation: [- (nowItemWidth - nowItemUnfocusedWidth), 0]
                 }
             }
             unfocused: {
                 focusPoster: {
-                    opacity: 0
+                    opacity: 1
                     width: 0
-                    height: 0
+                    height: itemHeight
                     uri: "pkg://images/generic_right.9.png"
                     blendColor: "#FCCC12"
-                    translation: [0, 0]
+                    translation: [- (nowItemWidth - nowItemUnfocusedWidth), 0]
                 }
             }
         }
