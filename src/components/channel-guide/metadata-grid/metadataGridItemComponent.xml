@@ -84,6 +84,13 @@
                 horizAlign="left"
                 vertAlign="center"
                 translation="[148,87]" />
+
+            <Animation id="testAnimation" duration="1" repeat="false" easeFunction="linear" >
+                <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="titleLabel.color"   />
+                <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="ratingLabel.color"   />
+                <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="timeLabel.color"   />
+                <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="synopsisLabel.color"   />
+            </Animation>
         </Group>
 
         <!-- NEXT ITEM UNFOCUSED METADATA LAYOUT GROUP -->
@@ -96,7 +103,7 @@
                 layoutDirection="vert"
                 horizAlignment="left"
                 itemSpacings="[31]">
-                
+
                 <Label
                     id="nextTitleLabel"
                     width="0"

@@ -8,6 +8,9 @@ function init() as void
     ' NOW ITEM
     m.focusedMetadataLayoutGroup = m.top.findNode("focusedMetadataLayoutGroup")
     m.unfocusedMetadataLayoutGroup = m.top.findNode("unfocusedMetadataLayoutGroup")
+    
+    ' Animation
+    m.testAnimation = m.top.findNode("testAnimation")
 
     ' NEXT ITEM
     m.nextItemUnfocusedMetadataLayoutGroup = m.top.findNode("nextItemUnfocusedMetadataLayoutGroup")
