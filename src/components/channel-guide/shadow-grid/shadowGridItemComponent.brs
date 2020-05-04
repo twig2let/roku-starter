@@ -15,14 +15,13 @@ function onItemContentChanged(evt = {} as object) as Void
     itemContent = m.top.itemContent
     m.titleLabel.text = itemContent.title
 
-    if itemContent.isNext m.logoPoster.visible = false
+    if itemContent.isNow m.logoPoster.visible = true
 end function
 
 function onCurrFocusColumnChanged(evt as Object) as Void
-    if not m.top.itemContent.isNext return
 
     ' Next Item
-    if m.top.itemContent.isNext
+    if not m.top.itemContent.isNow
         m.containerLayoutGroup.translation = [-250 * evt.getData(), 55]
     end if
 end function

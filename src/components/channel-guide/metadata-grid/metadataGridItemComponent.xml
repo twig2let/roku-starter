@@ -3,122 +3,16 @@
 <component name="metadataGridItemComponent" extends="Group">
 
     <interface>
-        <field id="itemContent" type="node" alwaysNotify="false" />
-        <field id="itemHasFocus" type="boolean" onChange="onItemHasFocusChanged" />
+        <field id="itemContent" type="node" alwaysNotify="true" />
+        <field id="itemHasFocus" type="boolean" />
         <field id="index" type="integer" />
-        <field id="focusPercent" type="float" onChange="onFocusPercentChanged" alwaysNotify="false" />
+        <field id="focusPercent" type="float" />
     </interface>
 
     <children>
-        <Poster
-            id="backgroundPoster"
-            translation="[0,0]" />
-
-        <Poster
-            id="focusPoster"
-            translation="[0,0]" />
-
-        <Poster
-            id="logoPoster"
-            visible="false"
-            uri="pkg:/images/metadata-logo.png"
-            width="56"
-            height="48"
-            translation="[46,52]" />
-
-        <!-- NOW ITEM UNFOCUSED METADATA LAYOUT GROUP -->
-        <LayoutGroup
-            opacity="1"
-            id="unfocusedMetadataLayoutGroup"
-            layoutDirection="horiz"
-            horizAlignment="left"
-            translation="[148,31]"
-            itemSpacings="[31]">
-
-            <Label
-                id="titleLabel_truncated"
-                width="0"
-                color="#ffffff"
-                text="Nightly News with..."
-                font="font:SmallBoldSystemFont" />
-
-            <Label
-                id="timeLabel_unfocused"
-                color="#ffffff"
-                width="0"
-                font="font:SmallestBoldSystemFont" />
-        </LayoutGroup>
-
-        <!-- NOW ITEM FOCUSED METADATA LAYOUT GROUP -->
-        <Group
-            opacity="0"
-            id="focusedMetadataLayoutGroup">
-
-            <LayoutGroup
-                layoutDirection="horiz"
-                horizAlignment="left"
-                translation="[148,31]"
-                itemSpacings="[46]">
-
-                <Label
-                    id="titleLabel"
-                    width="0"
-                    font="font:SmallBoldSystemFont" />
-
-                <Label
-                    id="ratingLabel"
-                    width="0"
-                    font="font:SmallSystemFont" />
-            </LayoutGroup>
-
-            <Label
-                id="timeLabel"
-                width="0"
-                font="font:SmallestSystemFont" />
-
-            <Label
-                id="synopsisLabel"
-                width="800"
-                ellipsizeOnBoundary="true"
-                font="font:SmallestSystemFont"
-                horizAlign="left"
-                vertAlign="center"
-                translation="[148,87]" />
-
-            <Animation id="testAnimation" duration="1" repeat="false" easeFunction="linear" >
-                <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="titleLabel.color"   />
-                <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="ratingLabel.color"   />
-                <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="timeLabel.color"   />
-                <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="synopsisLabel.color"   />
-            </Animation>
-        </Group>
-
-        <!-- NEXT ITEM UNFOCUSED METADATA LAYOUT GROUP -->
-        <Group
-            opacity="0"
-            id="nextItemUnfocusedMetadataLayoutGroup"
-            translation="[31,31]">
-
-            <LayoutGroup
-                layoutDirection="vert"
-                horizAlignment="left"
-                itemSpacings="[31]">
-
-                <Label
-                    id="nextTitleLabel"
-                    width="0"
-                    font="font:SmallBoldSystemFont" />
-
-                <Label
-                    id="nextSynopsisLabel"
-                    width="800"
-                    ellipsizeOnBoundary="true"
-                    font="font:SmallestSystemFont"
-                    horizAlign="left"
-                    vertAlign="center" />
-            </LayoutGroup>
-        </Group>
+        <Poster id="backgroundPoster" />
+        <Poster id="focusPoster" />
     </children>
 
-    <script type="text/brightscript" uri="pkg:/components/channel-guide/metadata-grid/metadataGridItemComponent.brs" />
+    <script type="text/brightscript" uri="metadataGridItemComponent.brs" />
 </component>

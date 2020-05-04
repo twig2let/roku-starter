@@ -14,7 +14,9 @@ function createContentNodes()
         for each item in ["now", "next"]
             itemNode = rootNode.createChild("ContentNode")
             itemNode.addFields(channel[item])
-            if item = "next" then itemNode.addFields({isNext: true}) else itemNode.addFields({isNext: false})
+            itemNode.addFields({
+                isNow: item = "now"
+            })
         end for
     end for
 

@@ -2,14 +2,14 @@ function init()
     m.top.content = createContentNodes()
 end function
 
-function createContentNodes()    
+function createContentNodes()
     rootNode = CreateObject("roSgNode", "ContentNode")
     for each channel in ChannelGuideJSON()
         for each item in ["now", "next"]
             itemNode = rootNode.createChild("ContentNode")
             itemNode.addFields(channel[item])
             itemNode.addFields({
-                isNext: item = "next"
+                isNow: item = "now"
             })
         end for
     end for
