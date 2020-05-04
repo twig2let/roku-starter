@@ -1,6 +1,11 @@
 function init() as void
     m.layout = getLayout()
 
+    m.constants = {
+        NOW_COLUMN_INDEX: 0
+        NEXT_COLUMN_INDEX: 1
+    }
+
     m.backgroundPoster = m.top.findNode("backgroundPoster")
     m.focusPoster = m.top.findNode("focusPoster")
 
@@ -9,7 +14,8 @@ function init() as void
     m.top.ObserveFieldScoped("gridHasFocus", "onGridHasFocusChanged")
 
     ' We observe the grid event so all item components can be update to reflect their focused/unfocused states
-    m.top.getParent().ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
+    m.grid = m.top.getParent()
+    m.grid.ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
 end function
 
 function onItemContentChanged(evt as object) as void
@@ -20,9 +26,13 @@ function onItemContentChanged(evt as object) as void
     if isFirstColumnItem()
         m.backgroundPoster.setFields(m.layout.now.backgroundPoster)
         m.focusPoster.setFields(m.layout.now.focusPoster)
+
+        if m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
     else
         m.backgroundPoster.setFields(m.layout.next.backgroundPoster)
         m.focusPoster.setFields(m.layout.next.focusPoster)
+
+        if m.grid.currFocusColumn = m.constants.NEXT_COLUMN_INDEX then m.focusPoster.setFields(m.layout.next.focused.focusPoster)
     end if
 end function
 
@@ -51,7 +61,7 @@ function onCurrFocusColumnChanged(evt as object) as void
         m.focusPoster.width = abs(m.layout.next.focused.focusPoster.width * m.top.focusPercent)
     end if
 
-    if evt.getData() = 0
+    if evt.getData() = m.constants.NOW_COLUMN_INDEX
         if isFirstColumnItem()
             m.focusPoster.setFields(m.layout.now.focused.focusPoster)
         else
@@ -59,7 +69,7 @@ function onCurrFocusColumnChanged(evt as object) as void
         end if
     end if
 
-    if evt.getData() = 1 ' If this is a NEXT item
+    if evt.getData() = m.constants.NEXT_COLUMN_INDEX ' If this is a NEXT item
         if isFirstColumnItem()
             m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
         else
@@ -73,7 +83,7 @@ function onGridHasFocusChanged(evt as object)
     if not m.top.gridHasFocus
         m.focusPoster.setFields(m.layout.footprint.focusPoster)
     else
-        ' if m.top.item
+        ' if m.top.itemHasFocus
     end if
 end function
 
@@ -81,7 +91,7 @@ function reset()
 end function
 
 function isFirstColumnItem() as boolean
-    return m.top.index MOD 2 = 0
+    return m.top.index MOD 2 = m.constants.NOW_COLUMN_INDEX
 end function
 
 
