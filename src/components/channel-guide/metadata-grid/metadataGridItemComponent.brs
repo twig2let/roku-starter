@@ -37,7 +37,6 @@ function onItemContentChanged(evt as object) as void
 end function
 
 function onFocusPercentChanged(evt as object) as void
-
     ' if isFirstColumnItem()
     '     m.focusPoster.translation = [abs(m.layout.now.focusPoster.unfocused.xCoordOffset * m.top.focusPercent - m.layout.now.focusPoster.unfocused.xCoordOffset), 0]
     ' else
@@ -79,11 +78,14 @@ function onCurrFocusColumnChanged(evt as object) as void
 
 end function
 
+' ToDo: Fix this, hiding/showing focus highlight when focuse moved on and off grid
 function onGridHasFocusChanged(evt as object)
     if not m.top.gridHasFocus
         m.focusPoster.setFields(m.layout.footprint.focusPoster)
     else
-        ' if m.top.itemHasFocus
+        if nowColumnIsFocused()
+            if isFirstColumnItem() then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+        end if
     end if
 end function
 
@@ -92,6 +94,10 @@ end function
 
 function isFirstColumnItem() as boolean
     return m.top.index MOD 2 = m.constants.NOW_COLUMN_INDEX
+end function
+
+function nowColumnIsFocused() as boolean
+    return m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX
 end function
 
 
