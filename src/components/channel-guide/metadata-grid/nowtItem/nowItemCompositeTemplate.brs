@@ -22,7 +22,7 @@ end function
 function onItemContentChanged(evt as object) as void
     itemContent = m.top.itemContent
 
-    m.activeFocused_titleLabel.text = itemContent.title
+    m.activeFocused_titleLabel.text = itemContent.title.Left(30)
     m.activeFocused_ratingLabel.text = itemContent.parentalRating
     m.activeFocused_timeRangeLabel.text = itemContent.period
     m.activeFocused_synopsisLabel.text = itemContent.synopsis
@@ -37,7 +37,6 @@ function onFocusPercentChanged(evt as object) as void
 end function
 
 function onGridHasFocusChanged(evt as object) as void
-
     for each interp in m.labelInterps
         interp.reverse = not m.top.gridHasFocus
     end for

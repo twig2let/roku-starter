@@ -11,6 +11,8 @@
     </interface>
 
     <children>
+
+        <!-- Active and Focused Template -->
         <Group
             id="activeAndFocusedTemplate"
             opacity="1"
@@ -67,6 +69,7 @@
             </Animation>
         </Group>
 
+        <!-- Unfocused Template -->
         <Group
             id="unfocusedTemplate"
             opacity="0"
