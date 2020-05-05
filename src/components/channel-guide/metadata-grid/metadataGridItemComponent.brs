@@ -93,12 +93,38 @@ end function
 
 ' ToDo: Fix this, hiding/showing focus highlight when focus moves on and off grid
 function onGridHasFocusChanged(evt = {} as object)
-    ?"onGridHasFocusChanged"
+    ' If the grid has been unfocused
+
+    ?"onGridHasFocusChanged:"; m.grid.currFocusColumn
     if not m.top.gridHasFocus
-        m.focusPoster.setFields(m.layout.footprint.focusPoster)
+        ' If the first column was last focused
+        if m.grid.currFocusColumn < m.constants.NEXT_COLUMN_INDEX
+            m.focusPoster.setFields(m.layout.now.footprint.focusPoster)
+            if isFirstColumnItem()
+                m.patch.setFields(m.layout.now.footprint.patch)
+            else
+                m.focusPoster.setFields(m.layout.next.footprint.focusPoster)
+            end if
+        else
+            if isFirstColumnItem()
+                ' Technically the patch "belongs" to the now item layou but we leverage it
+                ' to achieve the impression of a wider, unfoucsed next item
+                m.patch.setFields(m.layout.next.footprint.patch)
+            else
+                m.focusPoster.setFields(m.layout.next.footprint.focusPoster)
+            end if
+        end if
     else
         if m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX
-            if isFirstColumnItem() then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+            if isFirstColumnItem()
+                m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+                m.patch.setFields(m.layout.now.patch)
+            else
+                m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
+            end if
+        else
+            m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+            if isFirstColumnItem() then m.patch.setFields(m.layout.now.unfocused.patch)
         end if
     end if
 
@@ -135,11 +161,6 @@ function getLayout()
     phantomWidth = 10
 
     return {
-        footprint: {
-            focusPoster: {
-                opacity: 0
-            }
-        }
         now: {
             backgroundPoster: {
                 width: nowItemWidth
@@ -161,6 +182,14 @@ function getLayout()
                 height: itemHeight
                 translation: [nowItemWidth - (nowItemWidth - nowItemUnfocusedWidth), 0]
             }
+            footprint: {
+                focusPoster: {
+                    opacity: 0
+                }
+                patch: {
+                    opacity: 0
+                }
+            }
             focused: {
                 focusPoster: {
                     opacity: 1
@@ -172,6 +201,7 @@ function getLayout()
                 }
                 patch: {
                     opacity: 1
+                    color: "#FCCC12"
                 }
             }
             unfocused: {
@@ -184,6 +214,7 @@ function getLayout()
                 }
                 patch: {
                     opacity: 1
+                    color: "#FCCC12"
                 }
             }
         }
@@ -203,6 +234,15 @@ function getLayout()
                 blendColor: "#FCCC12"
                 translation: [ - phantomWidth, 0]
             }
+            footprint: {
+                focusPoster: {
+                    opacity: 0
+                }
+                patch: {
+                    opacity: 1
+                    color: "#000000"
+                }
+            }
             focused: {
                 focusPoster: {
                     opacity: 1
@@ -213,6 +253,7 @@ function getLayout()
             }
             unfocused: {
                 focusPoster: {
+                    opacity: 1
                     width: 0
                     translation: [ - phantomWidth, 0]
                 }
