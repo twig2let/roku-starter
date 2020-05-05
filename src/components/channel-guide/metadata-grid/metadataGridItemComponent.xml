@@ -13,6 +13,7 @@
     <children>
         <Poster id="backgroundPoster" />
         <Poster id="focusPoster" />
+        <Rectangle id="patch" />
         <Group id="templateContainer" />
     </children>
 

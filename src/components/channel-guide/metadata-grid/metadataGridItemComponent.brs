@@ -12,6 +12,7 @@ function init() as void
     m.grid = m.top.getParent()
     m.backgroundPoster = m.top.findNode("backgroundPoster")
     m.focusPoster = m.top.findNode("focusPoster")
+    m.patch = m.top.findNode("patch")
     m.templateContainer = m.top.findNode("templateContainer")
 
     ' We observe the grid's currFocusColumn field so that we know when to update an item
@@ -30,6 +31,7 @@ function onItemContentChanged(evt as object) as void
     if isFirstColumnItem()
         m.backgroundPoster.setFields(m.layout.now.backgroundPoster)
         m.focusPoster.setFields(m.layout.now.focusPoster)
+        m.patch.setFields(m.layout.now.patch)
 
         if m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
 
@@ -48,7 +50,7 @@ function onItemContentChanged(evt as object) as void
     m.top.ObserveFieldScoped("gridHasFocus", "onGridHasFocusChanged")
     m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
 
-    ' Fire the GridHasFocus callback so any new item's subscribers get the current state.
+    ' Fire the GridHasFocus callback so any new item subscribers get the current state.
     onGridHasFocusChanged()
 
     m.template.itemContent = itemContent
@@ -69,16 +71,16 @@ function onCurrFocusColumnChanged(evt as object) as void
             ' Set all second column items to their unfocused layout
             m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
         end if
-    ' Else if the second column is fully focused...
+        ' Else if the second column is fully focused...
     else if m.grid.currFocusColumn = m.constants.NEXT_COLUMN_INDEX
         if isFirstColumnItem()
-            ' Set all first column items to their focused layout
+            ' Set all first column items to their unfocused layout
             m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
         else
-            ' Set all second column items to their unfocused layout
+            ' Set all second column items to their focused layout
             m.focusPoster.setFields(m.layout.next.focused.focusPoster)
         end if
-    ' Else focus is still transitioning
+        ' Else focus is still transitioning
     else
         ' We perform the focus poster transitions in this block using m.top.focusPercent
         if isFirstColumnItem()
@@ -129,6 +131,9 @@ function getLayout()
     nextItemWidth = 560
     nextItemFocusedWidth = 888
 
+    ' Even with a width of 0 (unfocused.focusPoster) the 9 Patch is 10px wide
+    phantomWidth = 10
+
     return {
         footprint: {
             focusPoster: {
@@ -149,6 +154,13 @@ function getLayout()
                     xCoordOffset: nowItemUnfocusedWidth + 1 ' We plus 1 pixel so the rounded corner is hidden but we still achieve the transition effect
                 }
             }
+            patch: {
+                opacity: 1
+                color: "#FCCC12"
+                width: nowItemWidth - nowItemUnfocusedWidth
+                height: itemHeight
+                translation: [nowItemWidth - (nowItemWidth - nowItemUnfocusedWidth), 0]
+            }
             focused: {
                 focusPoster: {
                     opacity: 1
@@ -158,6 +170,9 @@ function getLayout()
                     blendColor: "#FCCC12"
                     translation: [0, 0]
                 }
+                patch: {
+                    opacity: 1
+                }
             }
             unfocused: {
                 focusPoster: {
@@ -166,6 +181,9 @@ function getLayout()
                     uri: "pkg://images/generic_left.9.png"
                     blendColor: "#FCCC12"
                     translation: [nowItemUnfocusedWidth, 0]
+                }
+                patch: {
+                    opacity: 1
                 }
             }
         }
@@ -183,26 +201,20 @@ function getLayout()
                 height: itemHeight
                 uri: "pkg://images/generic_right.9.png"
                 blendColor: "#FCCC12"
-                translation: [ - (nowItemWidth - nowItemUnfocusedWidth), 0]
+                translation: [ - phantomWidth, 0]
             }
             focused: {
                 focusPoster: {
                     opacity: 1
-                    width: nextItemFocusedWidth
-                    height: itemHeight
-                    uri: "pkg://images/generic_right.9.png"
-                    blendColor: "#FCCC12"
-                    translation: [ - (nowItemWidth - nowItemUnfocusedWidth), 0]
+                    ' Plus the phantomWidth to account for the -phantomWidth offset required to hide (camouflage)
+                    ' the now item focus poster in its unfocuse state.
+                    width: nextItemWidth + phantomWidth
                 }
             }
             unfocused: {
                 focusPoster: {
-                    opacity: 1
                     width: 0
-                    height: itemHeight
-                    uri: "pkg://images/generic_right.9.png"
-                    blendColor: "#FCCC12"
-                    translation: [ - (nowItemWidth - nowItemUnfocusedWidth), 0]
+                    translation: [ - phantomWidth, 0]
                 }
             }
         }
