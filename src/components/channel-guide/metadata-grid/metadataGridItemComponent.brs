@@ -59,14 +59,8 @@ function onFocusPercentChanged(evt as object) as void
 end function
 
 function onCurrFocusColumnChanged(evt as object) as void
-    ' We perform the focus poster transitions in this block using m.top.focusPercent
-    if isFirstColumnItem()
-        m.focusPoster.translation = [abs(m.layout.now.focusPoster.unfocused.xCoordOffset * m.top.focusPercent - m.layout.now.focusPoster.unfocused.xCoordOffset), 0]
-    else
-        m.focusPoster.width = abs(m.layout.next.focused.focusPoster.width * m.top.focusPercent)
-    end if
 
-    ' If the first column is focused...
+    ' If the first column is fully focused ...
     if m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX
         ' Set all first column items to their focused layout
         if isFirstColumnItem()
@@ -75,10 +69,8 @@ function onCurrFocusColumnChanged(evt as object) as void
             ' Set all second column items to their unfocused layout
             m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
         end if
-    end if
-
-    ' If the second column is focused...
-    if m.grid.currFocusColumn = m.constants.NEXT_COLUMN_INDEX
+    ' Else if the second column is fully focused...
+    else if m.grid.currFocusColumn = m.constants.NEXT_COLUMN_INDEX
         if isFirstColumnItem()
             ' Set all first column items to their focused layout
             m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
@@ -86,8 +78,15 @@ function onCurrFocusColumnChanged(evt as object) as void
             ' Set all second column items to their unfocused layout
             m.focusPoster.setFields(m.layout.next.focused.focusPoster)
         end if
+    ' Else focus is still transitioning
+    else
+        ' We perform the focus poster transitions in this block using m.top.focusPercent
+        if isFirstColumnItem()
+            m.focusPoster.translation = [abs(m.layout.now.focusPoster.unfocused.xCoordOffset * m.top.focusPercent - m.layout.now.focusPoster.unfocused.xCoordOffset), 0]
+        else
+            m.focusPoster.width = abs(m.layout.next.focused.focusPoster.width * m.top.focusPercent)
+        end if
     end if
-
 end function
 
 ' ToDo: Fix this, hiding/showing focus highlight when focus moves on and off grid
