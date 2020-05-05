@@ -7,51 +7,60 @@
     <interface>
         <field id="itemContent" type="node" alwaysNotify="true" />
         <field id="focusPercent" type="float" alwaysNotify="true" />
+        <field id="gridHasFocus" type="boolean" alwaysNotify="false" />
     </interface>
 
     <children>
+        <Group id="activeAndFocusedTemplate">
+            <Poster
+                id="logoPoster"
+                uri="pkg:/images/metadata-logo.png"
+                width="56"
+                height="48"
+                translation="[46,52]"
+                blendColor="0xFFFFFFFF" />
 
-         <Poster
-            id="logoPoster"
-            uri="pkg:/images/metadata-logo.png"
-            width="56"
-            height="48"
-            translation="[46,52]" />
+            <LayoutGroup
+                layoutDirection="horiz"
+                horizAlignment="left"
+                vertAlignment="center"
+                translation="[148,41]"
+                itemSpacings="[46]">
 
-        <LayoutGroup
-            layoutDirection="horiz"
-            horizAlignment="left"
-            vertAlignment="center"
-            translation="[148,31]"
-            itemSpacings="[46]">
+                <Label
+                    color="0xFFFFFFFF"
+                    id="titleLabel"
+                    font="font:SmallBoldSystemFont" />
+
+                <Label
+                    color="0xFFFFFFFF"
+                    id="ratingLabel"
+                    font="font:SmallSystemFont" />
+
+                <Label
+                    color="0xFFFFFFFF"
+                    id="timeRangeLabel"
+                    font="font:SmallestSystemFont" />
+            </LayoutGroup>
 
             <Label
-                id="titleLabel"
-                font="font:SmallBoldSystemFont" />
+                color="0xFFFFFFFF"
+                id="synopsisLabel"
+                width="800"
+                ellipsizeOnBoundary="true"
+                font="font:SmallestSystemFont"
+                horizAlign="left"
+                vertAlign="center"
+                translation="[148,87]" />
 
-            <Label
-                id="ratingLabel"
-                font="font:SmallSystemFont" />
-
-            <Label
-                id="timeRangeLabel"
-                font="font:SmallestSystemFont" />
-        </LayoutGroup>
-
-        <Label
-            id="synopsisLabel"
-            width="800"
-            ellipsizeOnBoundary="true"
-            font="font:SmallestSystemFont"
-            horizAlign="left"
-            vertAlign="center"
-            translation="[148,87]" />
-
-        <Animation id="textColorFadeAnimation" duration="0.8" repeat="false" easeFunction="linear">
-            <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="titleLabel.color"   />
-            <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="ratingLabel.color"   />
-            <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="timeLabel.color"   />
-            <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="synopsisLabel.color"   />
-        </Animation>
+            <Animation id="textColorAnimation" duration="0.8" repeat="false" easeFunction="outExpo">
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="logoPoster.blendColor"   />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="titleLabel.color"   />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="ratingLabel.color"   />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="timeRangeLabel.color"   />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="timeLabel.color"   />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="synopsisLabel.color"   />
+            </Animation>
+        </Group>
     </children>
 </component>

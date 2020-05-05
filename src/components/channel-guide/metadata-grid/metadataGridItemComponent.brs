@@ -14,14 +14,12 @@ function init() as void
     m.focusPoster = m.top.findNode("focusPoster")
     m.templateContainer = m.top.findNode("templateContainer")
 
-    m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
-    m.top.ObserveFieldScoped("gridHasFocus", "onGridHasFocusChanged")
-    m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
-
     ' We observe the grid's currFocusColumn field so that we know when to update an item
     ' (in its respective column) to reflect the appropriate focused/unfocused states when
     ' e.g. when a user switches column.
     m.grid.ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
+
+    m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
 end function
 
 function onItemContentChanged(evt as object) as void
@@ -45,6 +43,14 @@ function onItemContentChanged(evt as object) as void
         m.template = m.templateContainer.createChild("nextItemCompositeTemplate")
     end if
 
+    ' These field's observers depend on the existence of m.template so we don't want to
+    ' observe them until m.template has been set.
+    m.top.ObserveFieldScoped("gridHasFocus", "onGridHasFocusChanged")
+    m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
+
+    ' Fire the GridHasFocus callback so any new item's subscribers get the current state.
+    onGridHasFocusChanged()
+
     m.template.itemContent = itemContent
 end function
 
@@ -53,7 +59,6 @@ function onFocusPercentChanged(evt as object) as void
 end function
 
 function onCurrFocusColumnChanged(evt as object) as void
-
     ' We perform the focus poster transitions in this block using m.top.focusPercent
     if isFirstColumnItem()
         m.focusPoster.translation = [abs(m.layout.now.focusPoster.unfocused.xCoordOffset * m.top.focusPercent - m.layout.now.focusPoster.unfocused.xCoordOffset), 0]
@@ -86,7 +91,8 @@ function onCurrFocusColumnChanged(evt as object) as void
 end function
 
 ' ToDo: Fix this, hiding/showing focus highlight when focus moves on and off grid
-function onGridHasFocusChanged(evt as object)
+function onGridHasFocusChanged(evt = {} as object)
+    ?"onGridHasFocusChanged"
     if not m.top.gridHasFocus
         m.focusPoster.setFields(m.layout.footprint.focusPoster)
     else
@@ -94,9 +100,14 @@ function onGridHasFocusChanged(evt as object)
             if isFirstColumnItem() then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
         end if
     end if
+
+    m.template.gridHasFocus = m.top.gridHasFocus
 end function
 
 function reset()
+    m.top.unobserveField("gridHasFocus")
+    m.top.unobserveField("focusPercent")
+
     m.templateContainer.removeChildrenIndex(m.templateContainer.getChildCount(), 0)
 end function
 
@@ -173,7 +184,7 @@ function getLayout()
                 height: itemHeight
                 uri: "pkg://images/generic_right.9.png"
                 blendColor: "#FCCC12"
-                translation: [- (nowItemWidth - nowItemUnfocusedWidth), 0]
+                translation: [ - (nowItemWidth - nowItemUnfocusedWidth), 0]
             }
             focused: {
                 focusPoster: {
@@ -182,7 +193,7 @@ function getLayout()
                     height: itemHeight
                     uri: "pkg://images/generic_right.9.png"
                     blendColor: "#FCCC12"
-                    translation: [- (nowItemWidth - nowItemUnfocusedWidth), 0]
+                    translation: [ - (nowItemWidth - nowItemUnfocusedWidth), 0]
                 }
             }
             unfocused: {
@@ -192,7 +203,7 @@ function getLayout()
                     height: itemHeight
                     uri: "pkg://images/generic_right.9.png"
                     blendColor: "#FCCC12"
-                    translation: [- (nowItemWidth - nowItemUnfocusedWidth), 0]
+                    translation: [ - (nowItemWidth - nowItemUnfocusedWidth), 0]
                 }
             }
         }
