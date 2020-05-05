@@ -9,6 +9,7 @@ function init() as void
     m.grid = m.top.getParent()
     m.backgroundPoster = m.top.findNode("backgroundPoster")
     m.focusPoster = m.top.findNode("focusPoster")
+    m.templateContainer = m.top.findNode("templateContainer")
 
     m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
     m.top.ObserveFieldScoped("gridHasFocus", "onGridHasFocusChanged")
@@ -28,6 +29,8 @@ function onItemContentChanged(evt as object) as void
         m.focusPoster.setFields(m.layout.now.focusPoster)
 
         if m.grid.currFocusColumn = 0 then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+
+        m.templateContainer.createChild("nowItemCompositeTemplate").itemContent = itemContent
     else
         m.backgroundPoster.setFields(m.layout.next.backgroundPoster)
         m.focusPoster.setFields(m.layout.next.focusPoster)
@@ -81,6 +84,7 @@ function onGridHasFocusChanged(evt as object)
 end function
 
 function reset()
+    m.templateContainer.removeChildrenIndex(m.templateContainer.getChildCount(), 0)
 end function
 
 function isFirstColumnItem() as boolean

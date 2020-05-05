@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<component name="nowItemActiveTemplate" extends="Group">
+<component name="nowItemCompositeTemplate" extends="Group">
 
-    <interface></interface>
+    <script type="text/brightscript" uri="nowItemCompositeTemplate.brs" />
+
+    <interface>
+        <field id="itemContent" type="node" alwaysNotify="true" />
+    </interface>
 
     <children>
 
          <Poster
             id="logoPoster"
-            visible="false"
             uri="pkg:/images/metadata-logo.png"
             width="56"
             height="48"
@@ -17,7 +20,7 @@
         <LayoutGroup
             layoutDirection="horiz"
             horizAlignment="left"
-            vertAlign="center"
+            vertAlignment="center"
             translation="[148,31]"
             itemSpacings="[46]">
 
@@ -28,11 +31,11 @@
             <Label
                 id="ratingLabel"
                 font="font:SmallSystemFont" />
-        </LayoutGroup>
 
-        <Label
-            id="timeRangeLabel"
-            font="font:SmallestSystemFont" />
+            <Label
+                id="timeRangeLabel"
+                font="font:SmallestSystemFont" />
+        </LayoutGroup>
 
         <Label
             id="synopsisLabel"
@@ -43,13 +46,11 @@
             vertAlign="center"
             translation="[148,87]" />
 
-        <Animation id="testAnimation" duration="1" repeat="false" easeFunction="linear">
+        <Animation id="textColorFadeAnimation" duration="0.8" repeat="false" easeFunction="linear">
             <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="titleLabel.color"   />
             <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="ratingLabel.color"   />
             <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="timeLabel.color"   />
             <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="synopsisLabel.color"   />
         </Animation>
     </children>
-
-    <script type="text/brightscript" uri="nowItemActiveTemplate.brs" />
 </component>

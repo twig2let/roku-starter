@@ -13,6 +13,7 @@
     <children>
         <Poster id="backgroundPoster" />
         <Poster id="focusPoster" />
+        <Group id="templateContainer"/>
     </children>
 
     <script type="text/brightscript" uri="metadataGridItemComponent.brs" />
