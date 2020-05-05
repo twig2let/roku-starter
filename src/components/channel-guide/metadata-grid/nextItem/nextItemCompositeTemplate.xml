@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<component name="nowItemCompositeTemplate" extends="Group">
+<component name="nextItemCompositeTemplate" extends="Group">
 
-    <script type="text/brightscript" uri="nowItemCompositeTemplate.brs" />
+    <script type="text/brightscript" uri="nextItemCompositeTemplate.brs" />
 
     <interface>
         <field id="itemContent" type="node" alwaysNotify="true" />
@@ -10,19 +10,11 @@
     </interface>
 
     <children>
-
-         <Poster
-            id="logoPoster"
-            uri="pkg:/images/metadata-logo.png"
-            width="56"
-            height="48"
-            translation="[46,52]" />
-
         <LayoutGroup
             layoutDirection="horiz"
             horizAlignment="left"
             vertAlignment="center"
-            translation="[148,31]"
+            translation="[31,31]"
             itemSpacings="[46]">
 
             <Label

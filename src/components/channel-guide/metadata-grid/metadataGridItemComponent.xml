@@ -7,7 +7,7 @@
         <field id="itemHasFocus" type="boolean" alwaysNotify="false" />
         <field id="gridHasFocus" type="boolean" alwaysNotify="false" />
         <field id="index" type="integer" />
-        <field id="focusPercent" type="float" />
+        <field id="focusPercent" type="float" alwaysNotify="true" />
     </interface>
 
     <children>

@@ -6,6 +6,9 @@ function init() as void
         NEXT_COLUMN_INDEX: 1
     }
 
+    ' Assigned the now or next component template
+    m.template = invalid
+
     m.grid = m.top.getParent()
     m.backgroundPoster = m.top.findNode("backgroundPoster")
     m.focusPoster = m.top.findNode("focusPoster")
@@ -13,6 +16,8 @@ function init() as void
 
     m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
     m.top.ObserveFieldScoped("gridHasFocus", "onGridHasFocusChanged")
+    m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
+
     ' We observe the grid's currFocusColumn field so that we know when to update an item
     ' (in its respective column) to reflect the appropriate focused/unfocused states when
     ' e.g. when a user switches column.
@@ -30,13 +35,21 @@ function onItemContentChanged(evt as object) as void
 
         if m.grid.currFocusColumn = 0 then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
 
-        m.templateContainer.createChild("nowItemCompositeTemplate").itemContent = itemContent
+        m.template = m.templateContainer.createChild("nowItemCompositeTemplate")
     else
         m.backgroundPoster.setFields(m.layout.next.backgroundPoster)
         m.focusPoster.setFields(m.layout.next.focusPoster)
 
         if m.grid.currFocusColumn = 1 then m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+
+        m.template = m.templateContainer.createChild("nextItemCompositeTemplate")
     end if
+
+    m.template.itemContent = itemContent
+end function
+
+function onFocusPercentChanged(evt as object) as void
+    m.template.focusPercent = m.top.focusPercent
 end function
 
 function onCurrFocusColumnChanged(evt as object) as void
@@ -72,7 +85,7 @@ function onCurrFocusColumnChanged(evt as object) as void
 
 end function
 
-' ToDo: Fix this, hiding/showing focus highlight when focuse moved on and off grid
+' ToDo: Fix this, hiding/showing focus highlight when focus moves on and off grid
 function onGridHasFocusChanged(evt as object)
     if not m.top.gridHasFocus
         m.focusPoster.setFields(m.layout.footprint.focusPoster)

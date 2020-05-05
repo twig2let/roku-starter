@@ -9,7 +9,7 @@ end function
 
 function onItemContentChanged(evt as object) as void
     m.titleLabel.text = m.top.itemContent.title
-    m.ratingLabel.text = m.top.itemContent.parentalRating
-    m.timeRangeLabel.text = m.top.itemContent.period
-    m.synopsisLabel.text = m.top.itemContent.synopsis
+    ' m.ratingLabel.text = m.top.itemContent.parentalRating
+    ' m.timeRangeLabel.text = m.top.itemContent.period
+    ' m.synopsisLabel.text = m.top.itemContent.synopsis
 end function
