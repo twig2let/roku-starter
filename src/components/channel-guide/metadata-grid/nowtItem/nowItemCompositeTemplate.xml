@@ -11,9 +11,13 @@
     </interface>
 
     <children>
-        <Group id="activeAndFocusedTemplate">
+        <Group
+            id="activeAndFocusedTemplate"
+            opacity="1"
+            translation="[0,0]">
+
             <Poster
-                id="logoPoster"
+                id="activeAndFocusedTemplate_logoPoster"
                 uri="pkg:/images/metadata-logo.png"
                 width="56"
                 height="48"
@@ -29,23 +33,23 @@
 
                 <Label
                     color="0xFFFFFFFF"
-                    id="titleLabel"
+                    id="activeAndFocusedTemplate_titleLabel"
                     font="font:SmallBoldSystemFont" />
 
                 <Label
                     color="0xFFFFFFFF"
-                    id="ratingLabel"
+                    id="activeAndFocusedTemplate_ratingLabel"
                     font="font:SmallSystemFont" />
 
                 <Label
                     color="0xFFFFFFFF"
-                    id="timeRangeLabel"
+                    id="activeAndFocusedTemplate_timeRangeLabel"
                     font="font:SmallestSystemFont" />
             </LayoutGroup>
 
             <Label
                 color="0xFFFFFFFF"
-                id="synopsisLabel"
+                id="activeAndFocusedTemplate_synopsisLabel"
                 width="800"
                 ellipsizeOnBoundary="true"
                 font="font:SmallestSystemFont"
@@ -54,13 +58,45 @@
                 translation="[148,87]" />
 
             <Animation id="textColorAnimation" duration="0.8" repeat="false" easeFunction="outExpo">
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="logoPoster.blendColor"   />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="titleLabel.color" />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="ratingLabel.color" />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="timeRangeLabel.color" />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="timeLabel.color" />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="synopsisLabel.color" />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_logoPoster.blendColor"   />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_titleLabel.color" />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_ratingLabel.color" />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_timeRangeLabel.color" />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_timeLabel.color" />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_synopsisLabel.color" />
             </Animation>
+        </Group>
+
+        <Group
+            id="unfocusedTemplate"
+            opacity="0"
+            translation="[0,0]">
+
+            <Poster
+                id="unfocusedTemplate_logoPoster"
+                uri="pkg:/images/metadata-logo.png"
+                width="56"
+                height="48"
+                translation="[46,52]"
+                blendColor="0xFFFFFFFF" />
+
+            <LayoutGroup
+                layoutDirection="horiz"
+                horizAlignment="left"
+                vertAlignment="center"
+                translation="[148,41]"
+                itemSpacings="[30]">
+
+                <Label
+                    id="unfocusedTemplate_titleLabel"
+                    color="0xFFFFFFFF"
+                    font="font:SmallBoldSystemFont" />
+
+                <Label
+                    id="unfocusedTemplate_timeRangeLabel"
+                    color="0xFFFFFFFF"
+                    font="font:SmallestSystemFont" />
+            </LayoutGroup>
         </Group>
     </children>
 </component>
