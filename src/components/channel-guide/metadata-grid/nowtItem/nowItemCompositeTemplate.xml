@@ -55,11 +55,11 @@
 
             <Animation id="textColorAnimation" duration="0.8" repeat="false" easeFunction="outExpo">
                 <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="logoPoster.blendColor"   />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="titleLabel.color"   />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="ratingLabel.color"   />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="timeRangeLabel.color"   />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="timeLabel.color"   />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="synopsisLabel.color"   />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="titleLabel.color" />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="ratingLabel.color" />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="timeRangeLabel.color" />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="timeLabel.color" />
+                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="synopsisLabel.color" />
             </Animation>
         </Group>
     </children>

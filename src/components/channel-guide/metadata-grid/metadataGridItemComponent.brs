@@ -31,14 +31,14 @@ function onItemContentChanged(evt as object) as void
         m.backgroundPoster.setFields(m.layout.now.backgroundPoster)
         m.focusPoster.setFields(m.layout.now.focusPoster)
 
-        if m.grid.currFocusColumn = 0 then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+        if m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
 
         m.template = m.templateContainer.createChild("nowItemCompositeTemplate")
     else
         m.backgroundPoster.setFields(m.layout.next.backgroundPoster)
         m.focusPoster.setFields(m.layout.next.focusPoster)
 
-        if m.grid.currFocusColumn = 1 then m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+        if m.grid.currFocusColumn = m.constants.NEXT_COLUMN_INDEX then m.focusPoster.setFields(m.layout.next.focused.focusPoster)
 
         m.template = m.templateContainer.createChild("nextItemCompositeTemplate")
     end if
