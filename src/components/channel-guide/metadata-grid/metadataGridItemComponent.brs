@@ -6,15 +6,15 @@ function init() as void
         NEXT_COLUMN_INDEX: 1
     }
 
+    m.grid = m.top.getParent()
     m.backgroundPoster = m.top.findNode("backgroundPoster")
     m.focusPoster = m.top.findNode("focusPoster")
 
     m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
-    m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
     m.top.ObserveFieldScoped("gridHasFocus", "onGridHasFocusChanged")
-
-    ' We observe the grid event so all item components can be update to reflect their focused/unfocused states
-    m.grid = m.top.getParent()
+    ' We observe the grid's currFocusColumn field so that we know when to update an item
+    ' (in its respective column) to reflect the appropriate focused/unfocused states when
+    ' e.g. when a user switches column.
     m.grid.ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
 end function
 
@@ -27,51 +27,42 @@ function onItemContentChanged(evt as object) as void
         m.backgroundPoster.setFields(m.layout.now.backgroundPoster)
         m.focusPoster.setFields(m.layout.now.focusPoster)
 
-        if m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
+        if m.grid.currFocusColumn = 0 then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
     else
         m.backgroundPoster.setFields(m.layout.next.backgroundPoster)
         m.focusPoster.setFields(m.layout.next.focusPoster)
 
-        if m.grid.currFocusColumn = m.constants.NEXT_COLUMN_INDEX then m.focusPoster.setFields(m.layout.next.focused.focusPoster)
+        if m.grid.currFocusColumn = 1 then m.focusPoster.setFields(m.layout.next.focused.focusPoster)
     end if
 end function
 
-function onFocusPercentChanged(evt as object) as void
-    ' if isFirstColumnItem()
-    '     m.focusPoster.translation = [abs(m.layout.now.focusPoster.unfocused.xCoordOffset * m.top.focusPercent - m.layout.now.focusPoster.unfocused.xCoordOffset), 0]
-    ' else
-        ' m.focusPoster.width = abs(m.layout.next.focused.focusPoster.width  * m.top.focusPercent - 1)
-    ' end if
-
-    ' if isFirstColumnItem()
-    '     m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
-    ' else
-    '     m.focusPoster.setFields(m.layout.next.focused.focusPoster)
-    ' end if
-end function
-
-' Update all items, so when the user scrolls all items (within the currently focused column) are in their correct state
 function onCurrFocusColumnChanged(evt as object) as void
 
-    ' If this is a NOW item
+    ' We perform the focus poster transitions in this block using m.top.focusPercent
     if isFirstColumnItem()
         m.focusPoster.translation = [abs(m.layout.now.focusPoster.unfocused.xCoordOffset * m.top.focusPercent - m.layout.now.focusPoster.unfocused.xCoordOffset), 0]
     else
         m.focusPoster.width = abs(m.layout.next.focused.focusPoster.width * m.top.focusPercent)
     end if
 
-    if evt.getData() = m.constants.NOW_COLUMN_INDEX
+    ' If the first column is focused...
+    if m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX
+        ' Set all first column items to their focused layout
         if isFirstColumnItem()
             m.focusPoster.setFields(m.layout.now.focused.focusPoster)
         else
+            ' Set all second column items to their unfocused layout
             m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
         end if
     end if
 
-    if evt.getData() = m.constants.NEXT_COLUMN_INDEX ' If this is a NEXT item
+    ' If the second column is focused...
+    if m.grid.currFocusColumn = m.constants.NEXT_COLUMN_INDEX
         if isFirstColumnItem()
+            ' Set all first column items to their focused layout
             m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
         else
+            ' Set all second column items to their unfocused layout
             m.focusPoster.setFields(m.layout.next.focused.focusPoster)
         end if
     end if
@@ -83,7 +74,7 @@ function onGridHasFocusChanged(evt as object)
     if not m.top.gridHasFocus
         m.focusPoster.setFields(m.layout.footprint.focusPoster)
     else
-        if nowColumnIsFocused()
+        if m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX
             if isFirstColumnItem() then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
         end if
     end if
@@ -93,12 +84,9 @@ function reset()
 end function
 
 function isFirstColumnItem() as boolean
-    return m.top.index MOD 2 = m.constants.NOW_COLUMN_INDEX
+    return m.top.index MOD 2 = 0
 end function
 
-function nowColumnIsFocused() as boolean
-    return m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX
-end function
 
 
 ' Layout.brs
