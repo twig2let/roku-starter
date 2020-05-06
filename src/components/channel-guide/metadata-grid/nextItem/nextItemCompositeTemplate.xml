@@ -11,40 +11,36 @@
     </interface>
 
     <children>
-        <LayoutGroup
-            layoutDirection="horiz"
-            horizAlignment="left"
-            vertAlignment="center"
-            translation="[31,31]"
-            itemSpacings="[46]">
+        <Group
+            id="titleSynopsisGroup"
+            translation="[31,31]">
 
-            <Label
-                id="titleLabel"
-                font="font:SmallBoldSystemFont" />
+            <LayoutGroup
+                layoutDirection="vert"
+                horizAlignment="left"
+                itemSpacings="[30]">
 
-            <Label
-                id="ratingLabel"
-                font="font:SmallSystemFont" />
+                <Label
+                    id="titleLabel"
+                    color="0xFFFFFFFF"
+                    font="font:SmallBoldSystemFont" />
 
-            <Label
-                id="timeRangeLabel"
-                font="font:SmallestSystemFont" />
-        </LayoutGroup>
+                <Label
+                    id="synopsisLabel"
+                    color="0x000000FF"
+                    font="font:SmallestSystemFont" />
+            </LayoutGroup>
+        </Group>
 
         <Label
-            id="synopsisLabel"
-            width="800"
-            ellipsizeOnBoundary="true"
-            font="font:SmallestSystemFont"
-            horizAlign="left"
-            vertAlign="center"
-            translation="[148,87]" />
+            id="timeRangeLabel"
+            color="0xFFFFFFFF"
+            font="font:SmallestSystemFont" />
 
-        <Animation id="textColorFadeAnimation" duration="0.8" repeat="false" easeFunction="linear">
-            <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="titleLabel.color"   />
-            <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="ratingLabel.color"   />
-            <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="timeLabel.color"   />
-            <ColorFieldInterpolator id="testColor"   key="[0.0, 1.0]"    keyValue="[ 0x00FFFFFF, 0x00000000 ]"  fieldToInterp="synopsisLabel.color"   />
+        <Animation id="textColorAnimation" duration="0.8" repeat="false" easeFunction="linear">
+            <ColorFieldInterpolator id="titleLabelInterp" key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="titleLabel.color" />
+            <ColorFieldInterpolator id="timeRangeLabelInterp" key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="timeRangeLabel.color" />
+            <ColorFieldInterpolator id="synopsisLabelInterp" key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="synopsisLabel.color" />
         </Animation>
     </children>
 </component>

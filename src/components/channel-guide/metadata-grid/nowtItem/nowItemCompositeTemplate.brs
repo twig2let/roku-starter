@@ -32,8 +32,8 @@ function onItemContentChanged(evt as object) as void
 end function
 
 function onFocusPercentChanged(evt as object) as void
-    m.activeAndFocusedTemplate.opacity = m.top.focusPercent
-    m.unfocusedTemplate.opacity = abs(1 * m.top.focusPercent - 1)
+    m.activeAndFocusedTemplate.opacity = abs(1 * m.top.focusPercent - 1)
+    m.unfocusedTemplate.opacity = m.top.focusPercent
 end function
 
 function onGridHasFocusChanged(evt as object) as void
