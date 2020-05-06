@@ -7,6 +7,7 @@
     <interface>
         <field id="itemContent" type="node" alwaysNotify="true" />
         <field id="focusPercent" type="float" alwaysNotify="true" />
+        <field id="columnIndex" type="integer" alwaysNotify="true" />
         <field id="gridHasFocus" type="boolean" alwaysNotify="false" />
     </interface>
 
@@ -40,7 +41,7 @@
         <Animation id="textColorAnimation" duration="0.8" repeat="false" easeFunction="linear">
             <ColorFieldInterpolator id="titleLabelInterp" key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="titleLabel.color" />
             <ColorFieldInterpolator id="timeRangeLabelInterp" key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="timeRangeLabel.color" />
-            <ColorFieldInterpolator id="synopsisLabelInterp" key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="synopsisLabel.color" />
+            <!-- <ColorFieldInterpolator id="synopsisLabelInterp" key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="synopsisLabel.color" /> -->
         </Animation>
     </children>
 </component>

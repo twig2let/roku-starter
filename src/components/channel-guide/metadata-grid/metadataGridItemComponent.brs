@@ -144,6 +144,7 @@ function onGridHasFocusChanged(evt = {} as object)
         end if
     end if
 
+    m.template.columnIndex = m.grid.currFocusColumn
     m.template.gridHasFocus = m.top.gridHasFocus
 end function
 

@@ -20,21 +20,32 @@ function onItemContentChanged(evt as object) as void
     m.titleLabel.text = m.top.itemContent.title
     ' m.ratingLabel.text = m.top.itemContent.parentalRating
     m.synopsisLabel.text = m.top.itemContent.synopsis
+
+    ' Hack to ensure newly created content item components get the focused state if the
+    ' Next column is focused. 
+    if m.top.columnIndex = 1 then
+        m.top.focusPercent = 1
+        onFocusPercentChanged()
+    end if
 end function
 
-function onFocusPercentChanged(evt as object)
+function onFocusPercentChanged(evt = {} as object)
     ?"onFocusPercentChanged: " m.top.focusPercent
-    m.titleSynopsisGroup.translation = [m.layout.focused.titleLabel.translation[0] * m.top.focusPercent, m.layout.focused.titleLabel.translation[1]]
+    m.titleSynopsisGroup.translation = [(m.layout.focused.titleLabel.translation[0] * m.top.focusPercent) + 31, m.layout.focused.titleLabel.translation[1]]
     m.titleLabelInterp.fraction = m.top.focusPercent
     m.timeRangeLabelInterp.fraction = m.top.focusPercent
 end function
 
 function onGridHasFocusChanged(evt as object) as void
-    for each interp in m.labelInterps
-        interp.reverse = (m.top.focusPercent = 1 and not m.top.gridHasFocus)
-    end for
+    if not m.top.gridHasFocus and m.top.columnIndex = 1
+        m.titleLabelInterp.reverse = true ' black to white
+        m.textColorAnimation.control = "start"
+    end if
 
-    m.textColorAnimation.control = "start"
+    if m.top.gridHasFocus and m.top.columnIndex = 1
+        m.titleLabelInterp.reverse = false ' white to black
+        m.textColorAnimation.control = "start"
+    end if
 end function
 
 
