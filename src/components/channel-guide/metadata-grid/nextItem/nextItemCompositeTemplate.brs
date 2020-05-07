@@ -1,11 +1,8 @@
-function init() as Void
+function init() as void
     m.layout = getLayout()
 
-    m.textColorAnimation = m.top.findNode("textColorAnimation")
-    m.labelInterps = m.textColorAnimation.getChildren(m.textColorAnimation.getChildCount(), 0)
-    m.titleLabelInterp = m.top.findNode("titleLabelInterp")
-    m.timeRangeLabelInterp = m.top.findNode("timeRangeLabelInterp")
-
+    m.titleLabelColorInterp = m.top.findNode("titleLabelColorInterp")
+    m.timeRangeLabelColorInterp = m.top.findNode("timeRangeLabelColorInterp")
     m.titleSynopsisGroup = m.top.findNode("titleSynopsisGroup")
     m.titleLabel = m.top.findNode("titleLabel")
     m.timeRangeLabel = m.top.findNode("timeRangeLabel")
@@ -13,47 +10,77 @@ function init() as Void
 
     m.top.observeField("itemContent", "onItemContentChanged")
     m.top.observeField("focusPercent", "onFocusPercentChanged")
-    m.top.observeField("gridHasFocus", "onGridHasFocusChanged")
+    m.top.observeField("state", "onStateChanged")
 end function
 
 function onItemContentChanged(evt as object) as void
     m.titleLabel.text = m.top.itemContent.title
-    ' m.ratingLabel.text = m.top.itemContent.parentalRating
     m.synopsisLabel.text = m.top.itemContent.synopsis
-
-    ' Hack to ensure newly created content item components get the focused state if the
-    ' Next column is focused.
-    if m.top.columnIndex = 1 then
-        m.top.focusPercent = 1
-        onFocusPercentChanged()
-    end if
+    m.timeRangeLabel.text = m.top.itemContent.period
 end function
 
-function onFocusPercentChanged(evt = {} as object)
-    m.titleSynopsisGroup.translation = [(m.layout.focused.titleLabel.translation[0] * m.top.focusPercent) + 31, m.layout.focused.titleLabel.translation[1]]
-    m.titleLabelInterp.fraction = m.top.focusPercent
-    m.timeRangeLabelInterp.fraction = m.top.focusPercent
+function onFocusPercentChanged(evt as object)
+    m.titleSynopsisGroup.translation = [(m.layout.focused.titleSynopsisGroup.translation[0] * m.top.focusPercent), m.layout.focused.titleSynopsisGroup.translation[1]]
+    m.titleLabelColorInterp.fraction = m.top.focusPercent
+    m.timeRangeLabelColorInterp.fraction = m.top.focusPercent
 end function
 
-function onGridHasFocusChanged(evt as object) as void
-    if not m.top.gridHasFocus and m.top.columnIndex = 1
-        m.titleLabelInterp.reverse = true ' black to white
-        m.textColorAnimation.control = "start"
-    end if
-
-    if m.top.gridHasFocus and m.top.columnIndex = 1
-        m.titleLabelInterp.reverse = false ' white to black
-        m.textColorAnimation.control = "start"
-    end if
+function onStateChanged(evt as object)
+    m.titleSynopsisGroup.setFields(m.layout[m.top.state].titleSynopsisGroup)
+    m.titleLabel.setFields(m.layout[m.top.state].titleLabel)
+    m.timeRangeLabel.setFields(m.layout[m.top.state].timeRangeLabel)
 end function
-
 
 function getLayout()
     return {
+        footprint: {
+            titleSynopsisGroup: {
+                translation: [0, 31]
+            }
+            titleLabel: {
+                color: "0xFFFFFFFF"
+            }
+            synopsisLabel: {
+            }
+            timeRangeLabel: {
+                color: "0xFFFFFFFF"
+            }
+        }
         focused: {
+            titleSynopsisGroup: {
+                translation: [ - 328, 31]
+            }
             titleLabel: {
                 color: "0x000000FF"
-                translation: [-300, 31]
+            }
+            timeRangeLabel: {
+                color: "0x000000FF"
+            }
+        }
+        unfocused: {
+            titleSynopsisGroup: {
+                translation: [0, 31]
+            }
+            titleLabel: {
+                color: "0xFFFFFFFF"
+            }
+            synopsisLabel: {
+            }
+            timeRangeLabel: {
+                color: "0xFFFFFFFF"
+            }
+        }
+        nextColumnFootprint: {
+            titleSynopsisGroup: {
+                translation: [ - 328, 31]
+            }
+            titleLabel: {
+                color: "0xFFFFFFFF"
+            }
+            synopsisLabel: {
+            }
+            timeRangeLabel: {
+                color: "0xFFFFFFFF"
             }
         }
     }

@@ -1,4 +1,5 @@
 function init() as void
+    m.layout = getLayout()
 
     ' FootprintTemplate template elements
     m.footprintTemplate = m.top.findNode("footprintTemplate")
@@ -47,13 +48,50 @@ function onFocusPercentChanged(evt as object) as void
 end function
 
 function onStateChanged(evt as object) as void
-    if m.top.state = "footprint"
-        m.focusedTemplate.opacity = 0
-        m.unfocusedTemplate.opacity = 0
-        m.footprintTemplate.opacity = 1
-    else if m.top.state = "focused"
-        m.focusedTemplate.opacity = 1
-        m.unfocusedTemplate.opacity = 0
-        m.footprintTemplate.opacity = 0
-    end if
+    m.focusedTemplate.setFields(m.layout[m.top.state].focusedTemplate)
+    m.unfocusedTemplate.setFields(m.layout[m.top.state].unfocusedTemplate)
+    m.footprintTemplate.setFields(m.layout[m.top.state].footprintTemplate)
+end function
+
+function getLayout()
+    return {
+        footprint: {
+            footprintTemplate: {
+                opacity: 1
+            }
+            focusedTemplate: {
+                opacity: 0
+            }
+            unfocusedTemplate: {
+                opacity: 0
+            }
+        }
+        focused: {
+            footprintTemplate: {
+                opacity: 0
+            }
+            focusedTemplate: {
+                opacity: 1
+            }
+            unfocusedTemplate: {
+                opacity: 0
+            }
+        }
+        unfocused: {
+            footprintTemplate: {
+                opacity: 0
+            }
+            focusedTemplate: {
+                opacity: 0
+            }
+            unfocusedTemplate: {
+                opacity: 1
+            }
+        }
+        nextColumnFootprint: {
+            footprintTemplate: {}
+            focusedTemplate: {}
+            unfocusedTemplate: {}
+        }
+    }
 end function
