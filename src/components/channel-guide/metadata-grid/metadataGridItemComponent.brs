@@ -6,6 +6,13 @@ function init() as void
         NEXT_COLUMN_INDEX: 1
     }
 
+    m.states = {
+        unfocused: "unfocused"
+        focused: "focused"
+        footprint: "footprint"
+        nextColumnFootprint: "nextColumnFootprint"
+    }
+
     ' Assigned either the now or next item component template
     m.template = invalid
 
@@ -19,84 +26,60 @@ function init() as void
     ' (in its respective column) to reflect the appropriate focused/unfocused states when
     ' e.g. when a user switches column.
     m.grid.ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
-
     m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
+end function
+
+function setState(state as string) as void
+    ? "Changing state from: " m.state " to: " state
+    m.state = state
+    applyState(m.state)
+end function
+
+' Set the backgroundPoster, focusPoster and patch states in here
+function applyState(state as string) as void
+    m.backgroundPoster.setFields(m.layout[getColumnKey()][state].backgroundPoster)
+    m.focusPoster.setFields(m.layout[getColumnKey()][state].focusPoster)
+    m.patch.setFields(m.layout[getColumnKey()][state].patch)
 end function
 
 function onItemContentChanged(evt as object) as void
     reset()
 
-    itemContent = m.top.itemContent
+    ' Set default layout values when we know item type we are e.g. now or next
+    m.backgroundPoster.setFields(m.layout[getColumnKey()].backgroundPoster)
+    m.focusPoster.setFields(m.layout.[getColumnKey()].focusPoster)
+    m.patch.setFields(m.layout.[getColumnKey()].patch)
 
-    if isFirstColumnItem()
-        m.backgroundPoster.setFields(m.layout.now.backgroundPoster)
-        m.focusPoster.setFields(m.layout.now.focusPoster)
-        m.patch.setFields(m.layout.now.patch)
-
-        if m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX then m.focusPoster.setFields(m.layout.now.focused.focusPoster)
-
-        m.template = m.templateContainer.createChild("nowItemCompositeTemplate")
+    ' Set the state of the new item
+    if isFirstColumnFocused()
+        if isFirstColumnItem() then setState(m.states.focused) else setState(m.states.unfocused)
     else
-        m.backgroundPoster.setFields(m.layout.next.backgroundPoster)
-        m.focusPoster.setFields(m.layout.next.focusPoster)
-
-        if m.grid.currFocusColumn = m.constants.NEXT_COLUMN_INDEX then m.focusPoster.setFields(m.layout.next.focused.focusPoster)
-
-        m.template = m.templateContainer.createChild("nextItemCompositeTemplate")
+        if isFirstColumnItem() then setState(m.states.unfocused) else setState(m.states.focused)
     end if
 
-    ' These field's observers depend on the existence of m.template so we don't want to
-    ' observe them until m.template has been set.
+    ' Append the now or next item template
+    m.template = m.templateContainer.createChild(Substitute("{0}ItemCompositeTemplate", getColumnKey()))
+
+    ' These observers depend on the existence of m.template so we don't want to
+    ' observe them until m.template has been set
     m.top.ObserveFieldScoped("gridHasFocus", "onGridHasFocusChanged")
-    ' m.top.ObserveFieldScoped("focusPercent", "onFocusPercentChanged")
 
-    ' Fire the GridHasFocus callback so any new item subscribers get the current state.
-    onGridHasFocusChanged()
-
-    m.template.itemContent = itemContent
+    m.template.itemContent = m.top.itemContent
 end function
 
-' function onFocusPercentChanged(evt as object) as void
-'     m.template.focusPercent = m.top.focusPercent
-' end function
-
 function onCurrFocusColumnChanged(evt as object) as void
-    ?"onCurrFocusColumnChanged: " m.grid.currFocusColumn
-    ' If the first column is fully focused ...
+    ' Don't update anything if the focus moved away from the grid whilst
+    ' the currently focused column was changing
+    if not m.top.gridHasFocus then return
+
+    ' Here we are updating all items in a column to the correct state, once the column
+    ' transition has finished e.g. m.grid.currFocusColumn = 0 or 1
     if m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX
-        ' Set all first column items to their focused layout
-        if isFirstColumnItem()
-            ' User can unfocus the grid whilst grid item focus is transitioning
-            if not m.top.gridHasFocus
-                m.focusPoster.setFields(m.layout.now.footprint.focusPoster)
-            else
-                m.focusPoster.setFields(m.layout.now.focused.focusPoster)
-            end if
-        else
-            ' Set all second column items to their unfocused layout
-            m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
-        end if
-        ' Else if the second column is fully focused...
+        if isFirstColumnItem() then setState(m.states.focused) else setState(m.states.unfocused)
     else if m.grid.currFocusColumn = m.constants.NEXT_COLUMN_INDEX
-        if isFirstColumnItem()
-            ' Set all first column items to their unfocused layout
-            if not m.top.gridHasFocus
-                m.focusPoster.setFields(m.layout.now.footprint.focusPoster)
-                m.patch.setFields(m.layout.now.footprint.patch)
-            else
-                m.focusPoster.setFields(m.layout.now.unfocused.focusPoster)
-            end if
-        else
-            if not m.top.gridHasFocus
-                ' Set all second column items to their focused layout
-                m.focusPoster.setFields(m.layout.next.footprint.focusPoster)
-            else
-                m.focusPoster.setFields(m.layout.next.focused.focusPoster)
-            end if
-        end if
-        ' Else focus is still transitioning
+        if isFirstColumnItem() then setState(m.states.unfocused) else setState(m.states.focused)
     else
-        ' We perform the focus poster transitions in this block using m.top.focusPercent
+        ' We're handling the focus poster transition in this block
         if isFirstColumnItem()
             m.focusPoster.translation = [abs(m.layout.now.focusPoster.unfocused.xCoordOffset * m.top.focusPercent - m.layout.now.focusPoster.unfocused.xCoordOffset), 0]
         else
@@ -104,48 +87,23 @@ function onCurrFocusColumnChanged(evt as object) as void
         end if
     end if
 
+    ' Set the focus percentage on the template so we can use it to animate the metadata
     m.template.focusPercent = m.grid.currFocusColumn
 end function
 
-' ToDo: Fix this, hiding/showing focus highlight when focus moves on and off grid
+' ToDo: Add the grid unfocusing when the next column is focused e.g. show the patch
 function onGridHasFocusChanged(evt = {} as object)
-    ' If the grid has been unfocused
-    if not m.top.gridHasFocus
-        ?"not GridHasFocus"
-        ' If the first column was last focused
-        if m.grid.currFocusColumn < m.constants.NEXT_COLUMN_INDEX
-            m.focusPoster.setFields(m.layout.now.footprint.focusPoster)
-            if isFirstColumnItem()
-                m.patch.setFields(m.layout.now.footprint.patch)
-            else
-                m.focusPoster.setFields(m.layout.next.footprint.focusPoster)
-            end if
-        else
-            if isFirstColumnItem()
-                ' Technically the patch "belongs" to the now item layou but we leverage it
-                ' to achieve the impression of a wider, unfoucsed next item
-                m.patch.setFields(m.layout.next.footprint.patch)
-            else
-                m.focusPoster.setFields(m.layout.next.footprint.focusPoster)
-            end if
-        end if
-    else
-        ?"GridHasFocus"
-        if m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX
-            if isFirstColumnItem()
-                m.focusPoster.setFields(m.layout.now.focused.focusPoster)
-                m.patch.setFields(m.layout.now.patch)
-            else
-                m.focusPoster.setFields(m.layout.next.unfocused.focusPoster)
-            end if
-        else
-            m.focusPoster.setFields(m.layout.next.focused.focusPoster)
-            if isFirstColumnItem() then m.patch.setFields(m.layout.now.unfocused.patch)
-        end if
-    end if
 
-    m.template.columnIndex = m.grid.currFocusColumn
-    m.template.gridHasFocus = m.top.gridHasFocus
+    if not m.top.gridHasFocus
+        setState(m.states.footprint)
+        if not isFirstColumnFocused() then setState(m.states.nextColumnFootprint)
+    else
+        if isFirstColumnFocused()
+            if isFirstColumnItem() then setState(m.states.focused) else setState(m.states.unfocused)
+        else
+            if isFirstColumnItem() then setState(m.states.unfocused) else setState(m.states.focused)
+        end if
+    end if'
 end function
 
 function reset()
@@ -155,10 +113,19 @@ function reset()
     m.templateContainer.removeChildrenIndex(m.templateContainer.getChildCount(), 0)
 end function
 
+' Helpers
+function isFirstColumnFocused()
+    ' On initial load the grid's currFocusColumn field is -1
+    return m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX or m.grid.currFocusColumn = -1
+end function
+
 function isFirstColumnItem() as boolean
     return m.top.index MOD 2 = 0
 end function
 
+function getColumnKey() as string
+    return ["now", "next"][m.top.index MOD 2]
+end function
 
 
 ' Layout.brs
@@ -187,13 +154,17 @@ function getLayout()
                 translation: [0, 0]
             }
             focusPoster: {
+                height: itemHeight
+                uri: "pkg://images/generic_left.9.png"
+                blendColor: "#FCCC12"
+                translation: [0, 0]
+
                 unfocused: {
                     ' The offset we animate the translation to when unfocused
                     xCoordOffset: nowItemUnfocusedWidth + 1 ' We plus 1 pixel so the rounded corner is hidden but we still achieve the transition effect
                 }
             }
             patch: {
-                opacity: 1
                 color: "#FCCC12"
                 width: nowItemWidth - nowItemUnfocusedWidth
                 height: itemHeight
@@ -211,9 +182,6 @@ function getLayout()
                 focusPoster: {
                     opacity: 1
                     width: nowItemWidth
-                    height: itemHeight
-                    uri: "pkg://images/generic_left.9.png"
-                    blendColor: "#FCCC12"
                     translation: [0, 0]
                 }
                 patch: {
@@ -224,14 +192,20 @@ function getLayout()
             unfocused: {
                 focusPoster: {
                     opacity: 1
-                    height: itemHeight
-                    uri: "pkg://images/generic_left.9.png"
-                    blendColor: "#FCCC12"
                     translation: [nowItemUnfocusedWidth, 0]
                 }
                 patch: {
                     opacity: 1
                     color: "#FCCC12"
+                }
+            }
+            nextColumnFootprint: {
+                patch: {
+                    opacity: 1
+                    color: "#000000"
+                }
+                focusPoster: {
+                    opacity: 0
                 }
             }
         }
@@ -251,13 +225,12 @@ function getLayout()
                 blendColor: "#FCCC12"
                 translation: [ - phantomWidth, 0]
             }
+            patch: {
+                visible: false
+            }
             footprint: {
                 focusPoster: {
                     opacity: 0
-                }
-                patch: {
-                    opacity: 1
-                    color: "#000000"
                 }
             }
             focused: {
@@ -273,6 +246,15 @@ function getLayout()
                     opacity: 1
                     width: 0
                     translation: [ - phantomWidth, 0]
+                }
+            }
+            nextColumnFootprint: {
+                focusPoster: {
+                    opacity: 0
+                }
+                patch: {
+                    opacity: 1
+                    color: "#000000"
                 }
             }
         }
