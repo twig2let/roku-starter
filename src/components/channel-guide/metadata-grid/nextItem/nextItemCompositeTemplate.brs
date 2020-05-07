@@ -51,6 +51,7 @@ function getLayout()
                 translation: [ - 328, 31]
             }
             titleLabel: {
+                width: 600
                 color: "0x000000FF"
             }
             timeRangeLabel: {
@@ -62,6 +63,7 @@ function getLayout()
                 translation: [0, 31]
             }
             titleLabel: {
+                width: 200
                 color: "0xFFFFFFFF"
             }
             synopsisLabel: {
