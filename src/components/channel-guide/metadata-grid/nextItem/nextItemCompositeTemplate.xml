@@ -9,6 +9,7 @@
         <field id="focusPercent" type="float" alwaysNotify="true" />
         <field id="columnIndex" type="integer" alwaysNotify="true" />
         <field id="gridHasFocus" type="boolean" alwaysNotify="false" />
+        <field id="state" type="string" alwaysNotify="true" />
     </interface>
 
     <children>

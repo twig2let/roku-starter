@@ -8,20 +8,19 @@
         <field id="itemContent" type="node" alwaysNotify="true" />
         <field id="focusPercent" type="float" alwaysNotify="true" />
         <field id="gridHasFocus" type="boolean" alwaysNotify="false" />
-
         <field id="state" type="string" alwaysNotify="true" />
     </interface>
 
     <children>
 
-        <!-- Active and Focused Template -->
+        <!-- Footprint Template -->
         <Group
-            id="activeAndFocusedTemplate"
+            id="footprintTemplate"
             opacity="1"
             translation="[0,0]">
 
             <Poster
-                id="activeAndFocusedTemplate_logoPoster"
+                id="footprintTemplate_logoPoster"
                 uri="pkg:/images/metadata-logo.png"
                 width="56"
                 height="48"
@@ -37,38 +36,77 @@
 
                 <Label
                     color="0xFFFFFFFF"
-                    id="activeAndFocusedTemplate_titleLabel"
+                    id="footprintTemplate_titleLabel"
                     font="font:SmallBoldSystemFont" />
 
                 <Label
                     color="0xFFFFFFFF"
-                    id="activeAndFocusedTemplate_ratingLabel"
+                    id="footprintTemplate_ratingLabel"
                     font="font:SmallSystemFont" />
 
                 <Label
                     color="0xFFFFFFFF"
-                    id="activeAndFocusedTemplate_timeRangeLabel"
+                    id="footprintTemplate_timeRangeLabel"
                     font="font:SmallestSystemFont" />
             </LayoutGroup>
 
             <Label
                 color="0xFFFFFFFF"
-                id="activeAndFocusedTemplate_synopsisLabel"
+                id="footprintTemplate_synopsisLabel"
                 width="800"
                 ellipsizeOnBoundary="true"
                 font="font:SmallestSystemFont"
                 horizAlign="left"
                 vertAlign="center"
                 translation="[148,87]" />
+        </Group>
 
-            <Animation id="textColorAnimation" duration="0.4" repeat="false" easeFunction="outExpo">
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_logoPoster.blendColor"   />
-                <ColorFieldInterpolator key="[0.0, 1.0]" id="activeAndFocusedTemplate_titleLabelInterp" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_titleLabel.color" />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_ratingLabel.color" />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_timeRangeLabel.color" />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_timeLabel.color" />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_synopsisLabel.color" />
-            </Animation>
+        <!-- Focused Template -->
+        <Group
+            id="focusedTemplate"
+            opacity="0"
+            translation="[0,0]">
+
+            <Poster
+                id="focusedTemplate_logoPoster"
+                uri="pkg:/images/metadata-logo.png"
+                width="56"
+                height="48"
+                translation="[46,52]"
+                blendColor="0x000000FF" />
+
+            <LayoutGroup
+                layoutDirection="horiz"
+                horizAlignment="left"
+                vertAlignment="center"
+                translation="[148,41]"
+                itemSpacings="[46]">
+
+                <Label
+                    color="0x000000FF"
+                    id="focusedTemplate_titleLabel"
+                    font="font:SmallBoldSystemFont" />
+
+                <Label
+                    color="0x000000FF"
+                    id="focusedTemplate_ratingLabel"
+                    font="font:SmallSystemFont" />
+
+                <Label
+                    color="0x000000FF"
+                    id="focusedTemplate_timeRangeLabel"
+                    font="font:SmallestSystemFont" />
+            </LayoutGroup>
+
+            <Label
+                color="0x000000FF"
+                id="focusedTemplate_synopsisLabel"
+                width="800"
+                ellipsizeOnBoundary="true"
+                font="font:SmallestSystemFont"
+                horizAlign="left"
+                vertAlign="center"
+                translation="[148,87]" />
         </Group>
 
         <!-- Unfocused Template -->
