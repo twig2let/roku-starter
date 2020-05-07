@@ -13,6 +13,7 @@ function init() as void
         nextColumnFootprint: "nextColumnFootprint"
     }
 
+    m.state = invalid
     ' Assigned either the now or next item component template
     m.template = invalid
 
@@ -67,12 +68,12 @@ function onItemContentChanged(evt as object) as void
     m.template.itemContent = m.top.itemContent
 end function
 
-function onCurrFocusColumnChanged(evt as object) as void
-    ' Don't update anything if the focus moved away from the grid whilst
-    ' the currently focused column was changing
+function onCurrFocusColumnChanged(evt = {} as object) as void
+    ' Don't update anything if the focus moved away from the grid, for instance
+    ' whilst the column focus was changing
     if not m.top.gridHasFocus then return
 
-    ' Here we are updating all items in a column to the correct state, once the column
+    ' Here we are updating all items in a column to the respective state but only once the column
     ' transition has finished e.g. m.grid.currFocusColumn = 0 or 1
     if m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX
         if isFirstColumnItem() then setState(m.states.focused) else setState(m.states.unfocused)
@@ -91,12 +92,11 @@ function onCurrFocusColumnChanged(evt as object) as void
     m.template.focusPercent = m.grid.currFocusColumn
 end function
 
-' ToDo: Add the grid unfocusing when the next column is focused e.g. show the patch
-function onGridHasFocusChanged(evt = {} as object)
+' Handler for when the markup grid loses and gains focus
+function onGridHasFocusChanged(evt as object) as Void
 
     if not m.top.gridHasFocus
-        setState(m.states.footprint)
-        if not isFirstColumnFocused() then setState(m.states.nextColumnFootprint)
+        if isFirstColumnFocused() then setState(m.states.footprint) else setState(m.states.nextColumnFootprint)
     else
         if isFirstColumnFocused()
             if isFirstColumnItem() then setState(m.states.focused) else setState(m.states.unfocused)
@@ -104,9 +104,11 @@ function onGridHasFocusChanged(evt = {} as object)
             if isFirstColumnItem() then setState(m.states.unfocused) else setState(m.states.focused)
         end if
     end if'
+
+    ' m.template.gridHasFocus = m.top.gridHasFocus
 end function
 
-function reset()
+function reset() as void
     m.top.unobserveField("gridHasFocus")
     m.top.unobserveField("focusPercent")
 
@@ -114,8 +116,10 @@ function reset()
 end function
 
 ' Helpers
-function isFirstColumnFocused()
-    ' On initial load the grid's currFocusColumn field is -1
+
+function isFirstColumnFocused() as boolean
+    ' On init the grid's currFocusColumn field is -1 and as the first (now) column will always be
+    ' focused by default on init, we can return true in this scenario
     return m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX or m.grid.currFocusColumn = -1
 end function
 
@@ -129,7 +133,7 @@ end function
 
 
 ' Layout.brs
-function getLayout()
+function getLayout() as object
 
     itemHeight = 152
     itemPadding = 31
