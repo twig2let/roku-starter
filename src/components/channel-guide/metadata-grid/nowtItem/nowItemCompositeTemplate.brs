@@ -2,6 +2,12 @@ function init() as void
     m.textColorAnimation = m.top.findNode("textColorAnimation")
     m.labelInterps = m.textColorAnimation.getChildren(m.textColorAnimation.getChildCount(), 0)
 
+    m.colorTransitions = {
+        focused: ["0xFFFFFFFF", "0x000000FF"]
+        footprint: ["0x000000FF", "0xFFFFFFFF"]
+        nextColumnFootprint: ["0x000000FF", "0xFFFFFFFF"]
+        unfocused: ["0x000000FF", "0xFFFFFFFF"]
+    }
     ' Active & Focused template elements
     m.activeAndFocusedTemplate = m.top.findNode("activeAndFocusedTemplate")
     m.activeFocused_titleLabel = m.activeAndFocusedTemplate.findNode("activeAndFocusedTemplate_titleLabel")
@@ -16,7 +22,7 @@ function init() as void
 
     m.top.observeField("itemContent", "onItemContentChanged")
     m.top.observeField("focusPercent", "onFocusPercentChanged")
-    m.top.observeField("gridHasFocus", "onGridHasFocusChanged")
+    m.top.observeField("state", "onStateChanged")
 end function
 
 function onItemContentChanged(evt as object) as void
@@ -36,10 +42,9 @@ function onFocusPercentChanged(evt as object) as void
     m.unfocusedTemplate.opacity = m.top.focusPercent
 end function
 
-function onGridHasFocusChanged(evt as object) as void
+function onStateChanged(evt as object) as void
     for each interp in m.labelInterps
-        interp.reverse = not m.top.gridHasFocus
+        interp.keyValue = m.colorTransitions[m.top.state]
     end for
-
     m.textColorAnimation.control = "start"
 end function

@@ -8,6 +8,8 @@
         <field id="itemContent" type="node" alwaysNotify="true" />
         <field id="focusPercent" type="float" alwaysNotify="true" />
         <field id="gridHasFocus" type="boolean" alwaysNotify="false" />
+
+        <field id="state" type="string" alwaysNotify="true" />
     </interface>
 
     <children>
@@ -59,9 +61,9 @@
                 vertAlign="center"
                 translation="[148,87]" />
 
-            <Animation id="textColorAnimation" duration="0.8" repeat="false" easeFunction="outExpo">
+            <Animation id="textColorAnimation" duration="0.4" repeat="false" easeFunction="outExpo">
                 <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_logoPoster.blendColor"   />
-                <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_titleLabel.color" />
+                <ColorFieldInterpolator key="[0.0, 1.0]" id="activeAndFocusedTemplate_titleLabelInterp" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_titleLabel.color" />
                 <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_ratingLabel.color" />
                 <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_timeRangeLabel.color" />
                 <ColorFieldInterpolator key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="activeAndFocusedTemplate_timeLabel.color" />

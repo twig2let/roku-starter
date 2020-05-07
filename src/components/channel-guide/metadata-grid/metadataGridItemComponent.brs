@@ -41,6 +41,8 @@ function applyState(state as string) as void
     m.backgroundPoster.setFields(m.layout[getColumnKey()][state].backgroundPoster)
     m.focusPoster.setFields(m.layout[getColumnKey()][state].focusPoster)
     m.patch.setFields(m.layout[getColumnKey()][state].patch)
+
+    m.template.state = state
 end function
 
 function onItemContentChanged(evt as object) as void
@@ -51,15 +53,15 @@ function onItemContentChanged(evt as object) as void
     m.focusPoster.setFields(m.layout.[getColumnKey()].focusPoster)
     m.patch.setFields(m.layout.[getColumnKey()].patch)
 
+    ' Append the now or next item template
+    m.template = m.templateContainer.createChild(Substitute("{0}ItemCompositeTemplate", getColumnKey()))
+
     ' Set the state of the new item
     if isFirstColumnFocused()
         if isFirstColumnItem() then setState(m.states.focused) else setState(m.states.unfocused)
     else
         if isFirstColumnItem() then setState(m.states.unfocused) else setState(m.states.focused)
     end if
-
-    ' Append the now or next item template
-    m.template = m.templateContainer.createChild(Substitute("{0}ItemCompositeTemplate", getColumnKey()))
 
     ' These observers depend on the existence of m.template so we don't want to
     ' observe them until m.template has been set
