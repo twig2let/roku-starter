@@ -42,7 +42,7 @@ function applyState(state as string) as void
     m.focusPoster.setFields(m.layout[getColumnKey()][state].focusPoster)
     m.patch.setFields(m.layout[getColumnKey()][state].patch)
 
-    m.template.state = state
+    m.template.state = m.state
 end function
 
 function onItemContentChanged(evt as object) as void
