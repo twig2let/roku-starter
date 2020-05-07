@@ -7,13 +7,11 @@
     <interface>
         <field id="itemContent" type="node" alwaysNotify="true" />
         <field id="focusPercent" type="float" alwaysNotify="true" />
-        <field id="gridHasFocus" type="boolean" alwaysNotify="false" />
         <field id="state" type="string" alwaysNotify="true" />
     </interface>
 
     <children>
         <Group id="titleSynopsisGroup">
-
             <LayoutGroup
                 layoutDirection="vert"
                 horizAlignment="left"
@@ -24,7 +22,7 @@
                     id="titleLabel"
                     color="0xFFFFFFFF"
                     font="font:SmallBoldSystemFont" />
-                    <ColorFieldInterpolator id="titleLabelColorInterp"  key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="titleLabel.color"   />
+                    <ColorFieldInterpolator id="titleLabelColorInterp"  key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="titleLabel.color" />
 
                 <Label
                     id="synopsisLabel"
@@ -38,7 +36,6 @@
             color="0xFFFFFFFF"
             font="font:SmallestSystemFont"
             translation="[325, 31]" />
-            
-            <ColorFieldInterpolator id="timeRangeLabelColorInterp"  key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="timeRangeLabel.color"   />
+            <ColorFieldInterpolator id="timeRangeLabelColorInterp"  key="[0.0, 1.0]" keyValue="[0xFFFFFFFF, 0x000000FF]" fieldToInterp="timeRangeLabel.color" />
     </children>
 </component>

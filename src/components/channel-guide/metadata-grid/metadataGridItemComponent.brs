@@ -24,8 +24,8 @@ function init() as void
     m.templateContainer = m.top.findNode("templateContainer")
 
     ' We observe the grid's currFocusColumn field so that we know when to update an item
-    ' (in its respective column) to reflect the appropriate focused/unfocused states when
-    ' e.g. when a user switches column.
+    ' (in its respective column) to reflect the appropriate states when, for example
+    ' a user switches column.
     m.grid.ObserveField("currFocusColumn", "onCurrFocusColumnChanged")
     m.top.ObserveFieldScoped("itemContent", "onItemContentChanged")
 end function
@@ -48,7 +48,7 @@ end function
 function onItemContentChanged(evt as object) as void
     reset()
 
-    ' Set default layout values when we know item type we are e.g. now or next
+    ' Set the default layout values when we know what type of item this is e.g. now or next
     m.backgroundPoster.setFields(m.layout[getColumnKey()].backgroundPoster)
     m.focusPoster.setFields(m.layout.[getColumnKey()].focusPoster)
     m.patch.setFields(m.layout.[getColumnKey()].patch)
@@ -75,7 +75,7 @@ function onCurrFocusColumnChanged(evt = {} as object) as void
     ' whilst the column focus was changing
     if not m.top.gridHasFocus then return
 
-    ' Here we are updating all items in a column to the respective state but only once the column
+    ' Here we are updating all items in a column to their respective state but only once the column
     ' transition has finished e.g. m.grid.currFocusColumn = 0 or 1
     if m.grid.currFocusColumn = m.constants.NOW_COLUMN_INDEX
         if isFirstColumnItem() then setState(m.states.focused) else setState(m.states.unfocused)
@@ -106,8 +106,6 @@ function onGridHasFocusChanged(evt as object) as Void
             if isFirstColumnItem() then setState(m.states.unfocused) else setState(m.states.focused)
         end if
     end if'
-
-    ' m.template.gridHasFocus = m.top.gridHasFocus
 end function
 
 function reset() as void
