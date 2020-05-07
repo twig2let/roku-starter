@@ -22,7 +22,7 @@ function onItemContentChanged(evt as object) as void
     m.synopsisLabel.text = m.top.itemContent.synopsis
 
     ' Hack to ensure newly created content item components get the focused state if the
-    ' Next column is focused. 
+    ' Next column is focused.
     if m.top.columnIndex = 1 then
         m.top.focusPercent = 1
         onFocusPercentChanged()
@@ -30,7 +30,6 @@ function onItemContentChanged(evt as object) as void
 end function
 
 function onFocusPercentChanged(evt = {} as object)
-    ?"onFocusPercentChanged: " m.top.focusPercent
     m.titleSynopsisGroup.translation = [(m.layout.focused.titleLabel.translation[0] * m.top.focusPercent) + 31, m.layout.focused.titleLabel.translation[1]]
     m.titleLabelInterp.fraction = m.top.focusPercent
     m.timeRangeLabelInterp.fraction = m.top.focusPercent
