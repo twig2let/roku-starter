@@ -1,7 +1,7 @@
-⚠ Please check out my newer, more modern and fully featured BrighterScript starter template here, (https://github.com/twig2let/roku-brighterscript-starter)
+⚠ Please check out my newer, more modern and fully featured BrighterScript starter template [here](https://github.com/twig2let/roku-brighterscript-starter)
 
 <hr/>
-# Roku Starter
+# Roku Hello World
 
 This is a barebones scaffold for writing Roku applications.
 
